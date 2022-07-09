@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Test</title>
+</head>
+<body>
+<h1>Trouver une formation à distance ou en présentiel</h1>
+	<form action="KeyWordServlet" method="post">
+		<table>
+		    <tr>  
+		    <th>Partie client</th>          
+		        <td><i>Quelle formation recherchez-vous?</i><input type="text" name="keyword">  </td>       
+		    </tr>
+		    <tr>
+		        <td><input type="submit" name="submit">  </td> 
+		    </tr>    
+		</table>
+	</form>
+	
+	<br><br><br><br>
+	
+	<h1>Ajouter une formation</h1>
+	<form action="AddFormServlet" method="post">
+	    <table>
+	    	<tr>
+		    	<th>Partie admin</th>          
+	            <td><i>Ajouter une formation à la base de donnée.</i> 
+            </tr>
+            <tr>
+	            <td><i>Nom de la formation</i> <input type="text" name="formationname">  </td></td>
+	            <td><i>Détail de la formation</i> <input type="text" name="formationdetail">  </td></td>
+	            <td><i>Objectif de la formation</i> <input type="text" name="formationobjectif">  </td></td>
+	            <td><i>Prérequis de la formation</i> <input type="text" name="formationprerequis">  </td></td>
+            </tr>
+            <tr> 
+            	<td><input type="submit" name="submit">  </td> 
+            </tr>
+    	</table>
+  	</form>
+</body>
+</html>
