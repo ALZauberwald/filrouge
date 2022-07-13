@@ -27,14 +27,18 @@ public class DAOFormation {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-				Objectif ob= new Objectif(formationobjectif);	
+				Objectif ob= new Objectif(formationobjectif);
+				
 				Prerequis pr= new Prerequis(formationprerequis);
 				
-				Formation newform= new Formation(formationname,ob,formationdetail, pr);
 				
-				//pour l'instant, lien onetoone à upgrader en lien one to many
-				ob.setFormation(newform);
-				pr.setFormation(newform);
+				Formation newform= new Formation(formationname,formationdetail);
+				
+				newform.getObjectifsFormation().add(ob);
+				
+				
+				newform.getPrerequisFormation().add(pr);
+				
 				
 				em.persist(newform);;
 			tx.commit();
