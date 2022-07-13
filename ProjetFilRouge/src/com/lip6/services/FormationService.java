@@ -1,6 +1,9 @@
 package com.lip6.services;
 
+
+
 import com.lip6.daos.DAOFormation;
+import com.lip6.entities.TypeSession;
 
 //passe plat vers le DAO
 public class FormationService {
@@ -9,5 +12,8 @@ public class FormationService {
 		DAOFormation daof= new DAOFormation();
 		daof.addFormation(formationname,formationdetail, formationobjectif, formationprerequis);
 	}
-
+	public void createSession(String nomSession, Float prix, String dateDebut, String lieu, TypeSession typesession) {
+		DAOFormation daof= new DAOFormation();
+		daof.addSession(nomSession,prix,dateDebut,lieu,typesession);
+	}
 }
