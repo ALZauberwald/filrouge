@@ -20,5 +20,10 @@ public class Stagiaire extends Personne {
 		super(firstName, lastName, adr_electron, adresse);
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Stagiaire(long idStagiaire) {
+		super();
+		this.idStagiaire = idStagiaire;
+	}
 
 }
