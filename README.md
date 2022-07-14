@@ -53,30 +53,30 @@ les informations sur le contenu de la formation ainsi que sur les détails de pr
 
 Responsable Catalogue afin de voir avoir lui le contenu à mettre absolument
 
-sur le site ainsi que les données qu’il faudra surlignées et mettre en évidence pour les clients.
+sur le site ainsi que les données qu’il faudra surligner et mettre en évidence pour les clients.
 
 Un lien devra bien sûr être fourni au client afin de lui permettre de contacter directement
 
 le service commercial ou bien de s’enregistrer directement en ligne pour suivre une session donnée. Le point
 
-suivant détail cet aspect-là du SI.
+suivant détaille cet aspect-là du SI.
 
 
 
 
 2. Enregistrement en ligne pour suivre une session de formation : Si un client est intéressé
 
-par une formation, il doit avoir la possibilité de s’inscrire en ligne en choisissant la date et le lieu de la session
+par une formation, il doit avoir la possibilité de s’inscrire en ligne (FINALEMENT, IL A ETE CONVENU QUE "s’enregistrer directement en ligne" DU POINT 1 DESIGNE LA MEME CHOSE QUE "s’inscrire en ligne" DE CE POINT 2) en choisissant la date et le lieu de la session
 
-puis en indiquant ces coordonnées ainsi que celle de son entreprise (s’il en fait partie d’une). Bien sûr, l’idéal
+puis en indiquant ses coordonnées ainsi que celle de son entreprise (s’il en fait partie d’une). Bien sûr, l’idéal
 
-est qu’il est fait le test des prérequis (lien sur la page de formation) avant de s’inscrire. Il est aussi possible de
+est qu’il ait fait le test des prérequis (lien sur la page de formation) avant de s’inscrire. Il est aussi possible de
 
 demander ce qu’on appelle une session intra-entreprise. Celle-ci peut se faire selon les dates du client et dans
 
 son entreprise ou bien dans une salle louée par IT-Training. Le client peut également demander une formation
 
-personnalisée selon ces besoins et ces objectifs. Il faudra alors monter un plan de formation et le lui envoyer
+personnalisée selon ses besoins et ses objectifs. Il faudra alors monter un plan de formation et le lui envoyer
 
 pour validation. Pour plus d’information sur ce point n’hésitez pas à contacter le Responsable
 
@@ -84,16 +84,16 @@ d’enregistrement des formations. Une fois une demande de formation effectuée 
 
 logistique se met en place afin d’automatiser et d’accélérer au maximum la mise
 
-en place de la formation ainsi que de son suivi. Le point suivant détail cet aspect.
+en place de la formation ainsi que de son suivi. Le point suivant détaille cet aspect.
 
 
 
 
-3. Logistique pour l’organisation de la formation : Il y’a deux types de formations.
+3. Logistique pour l’organisation de la formation : Il y a deux types de formations.
 
 Les inter-entreprises et les intra-entreprise. Pour les inters, les sessions sont fixes et organisées selon un
 
-calendrier défini tout le long de l’année. Exemple, pour Java, il y’a systématiquement une session de
+calendrier défini tout le long de l’année. Exemple, pour Java, il y a systématiquement une session de
 
 programmée par mois et pas centre de formation. Pour XML, vous avez une session tous les deux mois, etc.
 
@@ -125,9 +125,9 @@ pédagogique du formateur, au moins trois semaines à l’avance.
 
 Les formateurs doivent confirmer au plus vite, sinon, on passe aux suivants. Il arrive aussi
 
-que le formateur se désiste d’une formation cependant, il n’a pas le droit de le faire à moins
+que le formateur se désiste d’une formation ; cependant, il n’a pas le droit de le faire à moins
 
-de 15 jours de la formation, autrement il risque d’avoir un blâme. Même chose, si IT-Training annule à moins
+de 15 jours de la formation, car autrement il risque d’avoir un blâme. Même chose, si IT-Training annule à moins
 
 d’une semaine, elle doit lui régler son intervention ou bien une partie.
 
@@ -199,7 +199,7 @@ cas de mauvaises notes et surtout de descendre voir les stagiaires insatisfaits 
 
 Une note inférieure à 3 sur les points cités plus haut déclenche de suite une alerte qualité dans
 
-e tableau de bord du responsable formation qui doit connaitre la source du problème au plus vite.
+le tableau de bord du responsable formation qui doit connaitre la source du problème au plus vite.
 
 Si plusieurs stagiaires sont unanimes sur une mauvaise note, la pédagogie du formateur par exemple, ce dernier sera
 
@@ -236,14 +236,14 @@ des formations inter. Dans son tableau de bord, il a l’information des absents
 
 sa date de fin, et surtout, les évaluations des stagiaires en instantané pour leur dernier jour
 
-de formation. Des alertes seront déclenchées selon leur niveau de gravité. Pour plus de détail
+de formation. Des alertes seront déclenchées selon leur niveau de gravité. Pour plus de détails
 
 sur ce point, prendre RDV avec le Responsable Logistique et le Responsable de formation Inter-E.
 
 
 
 
-6. Service commerciale et SAV : ce service a pour objectif de prospecter de nouveaux clients,
+6. Service commercial et SAV : ce service a pour objectif de prospecter de nouveaux clients,
 
 de relancer les clients ayant émis des souhaits de projets de formations dans les formulaires d’évaluation, de répondre
 
