@@ -17,13 +17,18 @@ import com.lip6.entities.Prerequis;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
+import com.lip6.entities.Chapitre;
+import com.lip6.entities.Formation;
+import com.lip6.entities.Objectif;
+import com.lip6.entities.Prerequis;
+import com.lip6.entities.Theme;
 import com.lip6.util.JpaUtil;
 
 
 
 public class DAOFormation {
 
-	//Ajouter une nouvelle formation dans la base de donnée filrouge
+	//Ajouter une nouvelle formation dans la base de donnï¿½e filrouge
 	public boolean addFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {
 		boolean success=false;
 		try {
@@ -31,15 +36,22 @@ public class DAOFormation {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-				Objectif ob= new Objectif(formationobjectif);	
-				Prerequis pr= new Prerequis(formationprerequis);
+				Objectif ob= new Objectif(formationobjectif);				
+				Prerequis pr= new Prerequis(formationprerequis);				
+				Chapitre cp= new Chapitre("chapitre test", 5, "Ce chapitre n'existe pas vraiment :)");
+				Theme tm = new Theme("theme test");
+				Theme st1= new Theme("Je suis destinï¿½ ï¿½ ï¿½tre un sous theme");
 				
-				Formation newform= new Formation(formationname,ob,formationdetail, pr);
+				Formation newform= new Formation(formationname,formationdetail);
 				
-				//pour l'instant, lien onetoone à upgrader en lien one to many
-				ob.setFormation(newform);
-				pr.setFormation(newform);
-				
+				newform.getObjectifsFormation().add(ob);						
+				newform.getPrerequisFormation().add(pr);
+				newform.getChapitres().add(cp);
+				cp.setFormation(newform);
+				newform.getTheme().add(tm);
+				tm.getFormation().add(newform);
+				tm.getSousthemes().add(st1);
+										
 				em.persist(newform);;
 			tx.commit();
 			
@@ -102,7 +114,7 @@ public class DAOFormation {
 		}
 
 		return success;
-}
+	}
 	public boolean removeSession(long id) {
 		
 		boolean success=false;
@@ -122,7 +134,7 @@ public class DAOFormation {
 		}
 
 		return success;
-}
+	}
 	
 	
 	

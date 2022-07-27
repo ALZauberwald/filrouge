@@ -1,5 +1,8 @@
 package com.lip6.entities;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -7,37 +10,45 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 @Entity
 public class Formation {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idFormation;
-	
+	private int idFormation;	
 	private String nomFormation;
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id_objectif")
-	private Objectif objectifsFormation;
-	private String detailFormation;
-	@OneToOne(cascade = CascadeType.PERSIST)
-	@JoinColumn(name = "id_prerequis")
-	private Prerequis prerequisFormation;
 	
-	//constructeur
-	public Formation(String nomFormation, Objectif ob, String detailFormation, Prerequis pr) {
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name = "objectifs_par_formation",joinColumns = @JoinColumn(name = "id_formation"), inverseJoinColumns = @JoinColumn(name="id_objectif"))
+	private Set<Objectif> objectifsFormation = new HashSet<>();
+	
+	
+	private String detailFormation;
+	
+	@ManyToMany(cascade = CascadeType.PERSIST)
+	@JoinTable(name ="prerequis_par_formation", joinColumns=@JoinColumn(name = "id_formation"),inverseJoinColumns = @JoinColumn(name="id_prerequis"))
+	private Set<Prerequis> prerequisFormation= new HashSet<>();
+	
+	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="formation")
+	private Set<Chapitre> chapitres= new HashSet<>();
+	
+	@ManyToMany( cascade=CascadeType.PERSIST)	
+	private Set<Theme> theme= new HashSet<>();
+	
+	public Formation() { }
+
+	public Formation(String nomFormation, String detailFormation) {
 		super();
 		this.nomFormation = nomFormation;
-		this.objectifsFormation = ob;
 		this.detailFormation = detailFormation;
-		this.prerequisFormation = pr;
-	}
-	
-	public Formation() {  
 		
 	}
 
-		
+
 	public int getIdFormation() {
 		return idFormation;
 	}
@@ -54,11 +65,13 @@ public class Formation {
 		this.nomFormation = nomFormation;
 	}
 
-	public Objectif getObjectifsFormation() {
+
+
+	public Set<Objectif> getObjectifsFormation() {
 		return objectifsFormation;
 	}
 
-	public void setObjectifsFormation(Objectif objectifsFormation) {
+	public void setObjectifsFormation(Set<Objectif> objectifsFormation) {
 		this.objectifsFormation = objectifsFormation;
 	}
 
@@ -70,12 +83,28 @@ public class Formation {
 		this.detailFormation = detailFormation;
 	}
 
-	public Prerequis getPrerequisFormation() {
+	public Set<Prerequis> getPrerequisFormation() {
 		return prerequisFormation;
 	}
 
-	public void setPrerequisFormation(Prerequis prerequisFormation) {
+	public void setPrerequisFormation(Set<Prerequis> prerequisFormation) {
 		this.prerequisFormation = prerequisFormation;
+	}
+
+	public Set<Chapitre> getChapitres() {
+		return chapitres;
+	}
+
+	public void setChapitres(Set<Chapitre> chapitres) {
+		this.chapitres = chapitres;
+	}
+
+	public Set<Theme> getTheme() {
+		return theme;
+	}
+
+	public void setTheme(Set<Theme> theme) {
+		this.theme = theme;
 	}
 
 	@Override
