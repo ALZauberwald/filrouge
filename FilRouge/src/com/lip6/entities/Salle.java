@@ -15,11 +15,12 @@ import javax.persistence.OneToMany;
 public class Salle {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idSalle;
+	@Column(columnDefinition = "BOOLEAN")
 	private boolean installationFinie=false;
 	private String adresse;
 	private String nomSalle;
 	
-	@OneToMany(cascade=CascadeType.PERSIST,mappedBy="salle")
+	@OneToMany(cascade=CascadeType.ALL,mappedBy="salle")
 	private Set <Session> sessions = new HashSet<Session>();
 	
 	public Salle(String adresse, String nomSalle) {

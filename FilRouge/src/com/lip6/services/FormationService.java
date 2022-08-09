@@ -3,6 +3,7 @@ package com.lip6.services;
 
 
 import com.lip6.daos.DAOFormation;
+import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
 
@@ -25,8 +26,64 @@ public class FormationService {
 		DAOFormation daos= new DAOFormation();
 		daos.removeSession(id);
 	}
-	public void updateSession(Session s , long id) {
+	public void updateSession(String champAModif, String modif  , long id) {
 		DAOFormation daos= new DAOFormation();
-		daos.updateSession(s,id);
+		//Récupération objet de la BDD
+		Session session= daos.searchSession(id);
+		//modif
+		if(champAModif.contentEquals("nomSession")) {
+			session.setNomSession(modif);
+		}
+		else if(champAModif.contentEquals("prix")) {
+			session.setPrix(Float.parseFloat(modif));
+		}
+		else if(champAModif.contentEquals("dateDebut")) {
+			session.setDateDebut(modif);
+		}
+		else if(champAModif.contentEquals("lieu")) {
+			session.setLieu(modif);
+		}
+		else if(champAModif.contentEquals("formateurConfirmé")) {
+			if(modif.contentEquals("true")){
+				session.setFormateurConfirme(true);
+			}
+			else
+				session.setFormateurConfirme(true);
+		}
+		else if(champAModif.contentEquals("typeSession")) {
+			TypeSession type = TypeSession.INTER_ENTREPRISE;
+			if(modif.equals("inter entreprise"))
+				session.setTypeSession(TypeSession.INTER_ENTREPRISE);
+			else if(modif.equals("intra entreprise"))
+				session.setTypeSession(TypeSession.INTRA_ENTREPRISE);
+			else if(modif.equals("perso"))
+				session.setTypeSession(TypeSession.PERSONNALISEE);
+		}
+		else if(champAModif.contentEquals("adresse")) {
+			Salle sa = new Salle(modif,session.getSalle().getNomSalle());
+			session.setSalle(sa);
+			sa.getSessions().add(session);
+		}
+		else if(champAModif.contentEquals("nomSalle")) {
+			Salle sa = new Salle(session.getSalle().getAdresse(),modif);
+			session.setSalle(sa);
+			sa.getSessions().add(session);
+		}
+		else if(champAModif.contentEquals("installationFinie")) {
+			if(modif.contentEquals("true")){
+				session.getSalle().setInstallationFinie(true);
+			}
+			else
+				session.getSalle().setInstallationFinie(false);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		daos.updateSession(session,id);
 	}
 }

@@ -46,7 +46,7 @@ public class SearchSessionServlet extends HttpServlet {
 		FormationService formation= new FormationService();
 		
 		//redirection 
-		System.out.println(formation.searchSession(id).getSalle().getAdresse()+" *********************************************");
+
 		request.setAttribute("sess",formation.searchSession(id));
 		RequestDispatcher rd= request.getRequestDispatcher("infosession.jsp") ;
 		rd.forward(request, response);

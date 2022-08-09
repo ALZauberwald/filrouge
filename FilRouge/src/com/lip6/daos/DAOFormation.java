@@ -146,8 +146,11 @@ public boolean updateSession(Session session,long id) {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			
-			tx.begin();	
-			Session se= em.find(Session.class, id);
+			tx.begin();
+			em.merge(session);
+			
+			
+			
 			
 			
 			tx.commit();

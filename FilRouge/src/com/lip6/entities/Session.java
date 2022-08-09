@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +22,8 @@ public class Session {
 	private float prix=1000;
 	private String dateDebut;
 	private String lieu;
-	private boolean formateurConfirme=false;
+	@Column(columnDefinition = "BOOLEAN")
+	private boolean formateurConfirme;
 	private TypeSession typeSession;
 	
 	@ManyToOne(cascade = CascadeType.PERSIST)

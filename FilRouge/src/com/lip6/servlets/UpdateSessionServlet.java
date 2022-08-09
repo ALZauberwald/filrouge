@@ -43,38 +43,12 @@ public class UpdateSessionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 			
-			long idSession = Long.parseLong(request.getParameter("idSession"));
-			String nomSession =(request.getParameter("nomSession"));
-			float prix =Float.parseFloat(request.getParameter("prix"));
-			String date =(request.getParameter("dateDebut"));
-			String lieu =(request.getParameter("lieuSession"));
-			Boolean formateur =Boolean.parseBoolean(request.getParameter("formateur"));
-			String typeSession =(request.getParameter("typeSession"));
-			String adresse =(request.getParameter("adresse"));
-			long idSalle =Long.parseLong(request.getParameter("idSalle"));
-			String nomSalle =(request.getParameter("nomSalle"));
-			Boolean install =Boolean.parseBoolean(request.getParameter("install"));
-			long idForm =Long.parseLong(request.getParameter("idFormation"));
-			String nomFormation =(request.getParameter("nomFormation"));
-			String detailFormation =(request.getParameter("detailFormation"));
-			TypeSession type = TypeSession.INTER_ENTREPRISE;
-			if(typeSession.equals("inter entreprise"))
-				type= TypeSession.INTER_ENTREPRISE;
-			else if(typeSession.equals("intra entreprise"))
-				type= TypeSession.INTRA_ENTREPRISE;
-			else if(typeSession.equals("perso"))
-				type= TypeSession.PERSONNALISEE;
-			Session s = new Session(nomSession,prix,date,lieu,type);
-			s.setFormateurConfirme(formateur);
-			Salle sa = new Salle(adresse, nomSalle);
-			sa.setIdSalle(idSalle);
-			sa.setInstallationFinie(install);
-			s.setSalle(sa);
-			Formation f = new Formation(nomFormation,detailFormation);
-			f.setIdFormation(idForm);
-			s.setIdSession(idSession);
-			FormationService formation = new FormationService();
-			formation.updateSession(s, idSession);
+			String champAModif = request.getParameter("champAModif");
+			String modif = request.getParameter("modif");
+			String idstr = request.getParameter("idSession");
+			long id = Long.parseLong(idstr);
+			FormationService session = new FormationService();
+			session.updateSession(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}
 
