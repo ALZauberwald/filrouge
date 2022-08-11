@@ -29,11 +29,48 @@
 	            <td><i>Ajouter une formation &#224 la base de donn&#233e.</i> 
             </tr>
             <tr>
-	            <td><i>Nom de la formation</i> <input type="text" name="formationname">  </td></td>
-	            <td><i>D&#233tail de la formation</i> <input type="text" name="formationdetail">  </td></td>
-	            <td><i>Objectif de la formation</i> <input type="text" name="formationobjectif">  </td></td>
-	            <td><i>Pr&#233requis de la formation</i> <input type="text" name="formationprerequis">  </td></td>
+	            <td><i>Nom de la formation</i> <input type="text" name="formationname">  </td>
+	            <td><i>D&#233tail de la formation</i> <input type="text" name="formationdetail">  </td>
+	            <td><i>Objectif de la formation</i> <input type="text" name="formationobjectif">  </td>
+	            <td><i>Pr&#233requis de la formation</i> <input type="text" name="formationprerequis">  </td>
             </tr>
+            <tr> 
+            	<td><input type="submit" name="submit">  </td> 
+            </tr>
+    	</table>
+  	</form>
+  	
+  	
+  	
+  	<h1>Chercher une formation ou/et la mettre à jour</h1>
+	<form action="SearchFormationServlet" method="post">
+	    <table>
+	    	<tr>
+		    	<th>Partie admin</th>          
+	            <td><i>chercher une formation dans la base de donnée.</i> 
+            </tr>
+            <tr>
+	            <td><i>Id de la formation à rechercher</i> <input type="number" name="idFormation">  </td>
+	            
+            </tr>
+            <tr> 
+            	<td><input type="submit" name="submit">  </td> 
+            </tr>
+    	</table>
+  	</form>
+  	
+  	
+  	
+  	<h1>Supprimer une formation</h1>
+	<form action="RemoveFormServlet" method="post">
+	    <table>
+	    	<tr>
+		    	<th>Partie admin</th>          
+	            <td><i>Supprimer une formation de la base de donnée.</i> 
+            </tr>
+            <tr>
+	            <td><i>Id de la formation à supprimer</i> <input type="number" name="idFormation">  </td>
+	                  </tr>
             <tr> 
             	<td><input type="submit" name="submit">  </td> 
             </tr>
