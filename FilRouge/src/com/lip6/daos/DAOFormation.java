@@ -20,8 +20,6 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
-
-	Session sess = new Session();
 	//Ajouter une nouvelle formation dans la base de donn�e filrouge
 	public boolean addFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {
 		boolean success=false;
@@ -59,6 +57,7 @@ public class DAOFormation {
 		return success;
 	}
 	
+
 	public Formation searchFormation(long id) {
 		Formation fm = new Formation();
 		try {
@@ -97,110 +96,6 @@ public boolean removeFormation(long id) {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	public boolean addSession(long idFormation ,String nomSession, Float prixSession , String dateDebut , String lieuSession ,TypeSession typesession, String adresse , String nomSalle  ) {
-		
-			boolean success=false;
-			try {
-				EntityManager em=JpaUtil.getEmf().createEntityManager();	
-				EntityTransaction tx = em.getTransaction();
-				
-				tx.begin();	
-				Session se= new Session(nomSession, prixSession, dateDebut, lieuSession, typesession);
-				Salle sa = new Salle(adresse,nomSalle);
-				Evaluation eva=new Evaluation("prof");
-				
-				Formation form=em.find(Formation.class,idFormation);
-				se.setSalle(sa);
-				se.getEvaluations().add(eva);
-				sa.getSessions().add(se);				
-				em.persist(se);
-				se.setFormation(form);
-				form.getSessions().add(se);
-								
-				tx.commit();
-				
-				em.close();
-				
-				success=true;
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
 
-			return success;
-	}
-	public Session searchSession(long id) {
-		Session se = new Session();
-		try {
-			EntityManager em=JpaUtil.getEmf().createEntityManager();	
-			EntityTransaction tx = em.getTransaction();
-			
-			tx.begin();	
-			se= em.find(Session.class, id);
-			
-			System.out.println(se);
-			
-			em.close();
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return se;
-		
-	}
-	public boolean removeSession(long id) {
-		
-		boolean success=false;
-		try {
-			EntityManager em=JpaUtil.getEmf().createEntityManager();	
-			EntityTransaction tx = em.getTransaction();
-			
-			tx.begin();	
-			Session se= em.find(Session.class, id);
-			em.remove(se);
-			tx. commit();
-			em.close();
-			
-			success=true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return success;
-	}
-public boolean updateSession(Session session,long id) {
-		
-		boolean success=false;
-		try {
-			EntityManager em=JpaUtil.getEmf().createEntityManager();	
-			EntityTransaction tx = em.getTransaction();
-			
-			tx.begin();
-			
-			em.merge(session);
-			
-			
-			
-			
-			
-			tx.commit();
-			em.close();
-			
-			success=true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return success;
-	}
-	
 	
 }

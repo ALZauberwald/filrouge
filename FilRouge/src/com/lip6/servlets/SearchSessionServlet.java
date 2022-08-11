@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lip6.entities.Session;
-import com.lip6.services.FormationService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -43,11 +43,13 @@ public class SearchSessionServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idSession"));
-		FormationService formation= new FormationService();
+		SessionService session= new SessionService();
 		
 		//redirection 
 
-		request.setAttribute("form",formation.searchSession(id));
+
+		request.setAttribute("sess",session.searchSession(id));
+
 		RequestDispatcher rd= request.getRequestDispatcher("infosession.jsp") ;
 		rd.forward(request, response);
 		

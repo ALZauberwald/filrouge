@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lip6.entities.TypeSession;
-import com.lip6.services.FormationService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class CreerSession
@@ -41,10 +41,10 @@ public class CreerSessionServlet extends HttpServlet {
 		String nomSession =request.getParameter("nomSession");
 		String prixSession =request.getParameter("prix");
 		String dateDebut = request.getParameter("dateDebut");
+		String dateFin = request.getParameter("dateFin");
 		String lieuSession =request.getParameter("lieuSession");
 		String typeSession = request.getParameter("typeSession");
-		String adresse = request.getParameter("adresse");
-		String nomSalle = request.getParameter("nomSalle");
+		long idSalle = Long.parseLong(request.getParameter("idSalle"));
 		
 		TypeSession type = TypeSession.INTER_ENTREPRISE;
 		if(typeSession.equals("inter entreprise"))
@@ -56,8 +56,8 @@ public class CreerSessionServlet extends HttpServlet {
 		
 		
 		
-		FormationService form= new FormationService();
-		form.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,lieuSession,type,adresse,nomSalle);
+		SessionService session= new SessionService();
+		session.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,dateFin,lieuSession,type,idSalle);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

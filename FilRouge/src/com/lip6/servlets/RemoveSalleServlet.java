@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.services.SessionService;
+import com.lip6.services.SalleService;
 
 /**
- * Servlet implementation class RemoveSessionServlet
+ * Servlet implementation class RemoveSalleServlet
  */
-@WebServlet("/RemoveSessionServlet")
-public class RemoveSessionServlet extends HttpServlet {
+@WebServlet("/RemoveSalleServlet")
+public class RemoveSalleServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveSessionServlet() {
+    public RemoveSalleServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -37,10 +37,9 @@ public class RemoveSessionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long id = Long.parseLong(request.getParameter("idSession"));
-		SessionService session= new SessionService();
-		session.removeSession(id);
-		//redirection 
+		long id = Long.parseLong(request.getParameter("idSalle"));
+		SalleService salle = new SalleService();
+		salle.removeSalle(id);
 		response.sendRedirect("index.html");
 	}
 
