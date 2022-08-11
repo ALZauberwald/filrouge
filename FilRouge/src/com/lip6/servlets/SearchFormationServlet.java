@@ -12,19 +12,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lip6.entities.Session;
-import com.lip6.services.SessionService;
+import com.lip6.services.FormationService;
 
 /**
  * Servlet implementation class SearchSessionServlet
  */
-@WebServlet("/SearchSessionServlet")
-public class SearchSessionServlet extends HttpServlet {
+@WebServlet("/SearchFormationServlet")
+public class SearchFormationServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchSessionServlet() {
+    public SearchFormationServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +42,13 @@ public class SearchSessionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long id = Long.parseLong(request.getParameter("idSession"));
-		SessionService session= new SessionService();
+		long id = Long.parseLong(request.getParameter("idFormation"));
+		FormationService formation= new FormationService();
 		
-		//redirection 
-
-
-		request.setAttribute("sess",session.searchSession(id));
-
-		RequestDispatcher rd= request.getRequestDispatcher("infosession.jsp") ;
+		request.setAttribute("form",formation.searchFormation(id));
+		RequestDispatcher rd= request.getRequestDispatcher("infoformation.jsp") ;
 		rd.forward(request, response);
+	
 		
 	}
 	
