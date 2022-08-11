@@ -21,12 +21,15 @@ public class Session {
 	private String nomSession;
 	private float prix=1000;
 	private String dateDebut;
+	private String dateFin;
 	private String lieu;
 	@Column(columnDefinition = "BOOLEAN")
 	private boolean formateurConfirme;
 	private TypeSession typeSession;
+	@Column(columnDefinition = "BOOLEAN")
+	private boolean installationFinie=false;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	@JoinColumn(name="id_salle")
 	private Salle salle;
 	
@@ -46,13 +49,15 @@ public class Session {
 	@JoinColumn(name="id_formation")
 	private Formation formation;
 
-	public Session(String nomSession, float prix, String dateDebut, String lieu, TypeSession typeSession) {
+	public Session(String nomSession, float prix, String dateDebut,String dateFin, String lieu, TypeSession typeSession) {
 		this.nomSession=nomSession;
 		this.prix = prix;
 		this.dateDebut = dateDebut;
+		this.dateFin=dateFin;
 		this.lieu = lieu;
 		this.formateurConfirme = false;
 		this.typeSession = typeSession;
+		this.installationFinie=false;
 	}
 
 	public Session() {
@@ -138,13 +143,33 @@ public class Session {
 	public void setNomSession(String nomSession) {
 		this.nomSession = nomSession;
 	}
+	
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public boolean isInstallationFinie() {
+		return installationFinie;
+	}
+
+	public void setInstallationFinie(boolean installationFinie) {
+		this.installationFinie = installationFinie;
+	}
 
 	@Override
 	public String toString() {
 		return "Session [idSession=" + idSession + ", nomSession=" + nomSession + ", prix=" + prix + ", dateDebut="
-				+ dateDebut + ", lieu=" + lieu + ", formateurConfirme=" + formateurConfirme + ", typesession="
-				+ typeSession + ", salle=" + salle + ", evaluations=" + evaluations + ", formation=" + formation + "]";
+				+ dateDebut + ", dateFin=" + dateFin + ", lieu=" + lieu + ", formateurConfirme=" + formateurConfirme
+				+ ", typeSession=" + typeSession + ", installationFinie=" + installationFinie + ", salle=" + salle
+				+ ", evaluations=" + evaluations + ", formation=" + formation + "]";
 	}
+
+	
 
 	
 	

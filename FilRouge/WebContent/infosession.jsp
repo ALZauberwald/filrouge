@@ -26,7 +26,8 @@
 	            <td><i>typeSession</i> <%= sess.getTypeSession() %>  </td>
 	 	        <td><i>adresse</i> <%= sess.getSalle().getAdresse()%>  </td>
 	            <td><i>nomSalle</i> <%= sess.getSalle().getNomSalle()%> </td>
-	            <td><i>installationFinie</i> <%= sess.getSalle().getInstallationFinie() %></td>	            
+	            <td><i>installationFinie</i> <%= sess.isInstallationFinie() %></td>	 
+	            <td><i>idSalle</i> <%=sess.getSalle().getIdSalle() %>  </td>        
 	            
              </tr>
             <tr>

@@ -19,10 +19,10 @@
             	<td><i>Veuillez rentrer le nom de la session</i> <input type="text" name="nomSession">  </td>
 	            <td><i>Prix de la session</i> <input type="text" name="prix">  </td>
 	            <td><i>Date de début de la session</i> <input type="text" name="dateDebut">  </td>
+	            <td><i>Date de fin de la session</i> <input type="text" name="dateFin">  </td>
 	            <td><i>Ville de la session</i> <input type="text" name="lieuSession">  </td>
 	            <td><i>Type de session</i> <input type="text" name="typeSession">  </td>
-	            <td><i>Adresse de la session</i> <input type="text" name="adresse">  </td>
-	            <td><i>Nom de la salle</i> <input type="text" name="nomSalle">  </td>
+	            <td><i>Id de la salle prévue</i> <input type="number" name="idSalle">  </td>
             </tr>
             
             <tr>

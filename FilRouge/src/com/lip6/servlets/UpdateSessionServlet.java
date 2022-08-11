@@ -12,7 +12,7 @@ import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
-import com.lip6.services.FormationService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class UpdateSessionServlet
@@ -47,7 +47,7 @@ public class UpdateSessionServlet extends HttpServlet {
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idSession");
 			long id = Long.parseLong(idstr);
-			FormationService session = new FormationService();
+			SessionService session = new SessionService();
 			session.updateSession(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}

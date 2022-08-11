@@ -15,8 +15,6 @@ import javax.persistence.OneToMany;
 public class Salle {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idSalle;
-	@Column(columnDefinition = "BOOLEAN")
-	private boolean installationFinie=false;
 	private String adresse;
 	private String nomSalle;
 	
@@ -26,7 +24,6 @@ public class Salle {
 	public Salle(String adresse, String nomSalle) {
 		this.adresse = adresse;
 		this.nomSalle = nomSalle;
-		this.installationFinie=false;
 	}
 
 	public Salle() {
@@ -39,14 +36,6 @@ public class Salle {
 
 	public void setIdSalle(long idSalle) {
 		this.idSalle = idSalle;
-	}
-
-	public boolean getInstallationFinie() {
-		return installationFinie;
-	}
-
-	public void setInstallationFinie(boolean installationFinie) {
-		this.installationFinie = installationFinie;
 	}
 
 	public String getAdresse() {
@@ -75,7 +64,7 @@ public class Salle {
 
 	@Override
 	public String toString() {
-		return "Salle [idSalle=" + idSalle + ", installationFinie=" + installationFinie + ", adresse=" + adresse
+		return "Salle [idSalle=" + idSalle + ", adresse=" + adresse
 				+ ", nomSalle=" + nomSalle + "]";
 	}
 	
