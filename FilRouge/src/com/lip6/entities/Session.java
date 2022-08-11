@@ -26,7 +26,7 @@ public class Session {
 	private boolean formateurConfirme;
 	private TypeSession typeSession;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_salle")
 	private Salle salle;
 	

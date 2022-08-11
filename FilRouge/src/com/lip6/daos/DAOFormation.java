@@ -147,6 +147,7 @@ public boolean updateSession(Session session,long id) {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();
+			
 			em.merge(session);
 			
 			

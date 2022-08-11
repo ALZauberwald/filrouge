@@ -30,6 +30,7 @@ public class FormationService {
 		DAOFormation daos= new DAOFormation();
 		//Récupération objet de la BDD
 		Session session= daos.searchSession(id);
+		System.out.println(session.getSalle()+"*************************************");
 		//modif
 		if(champAModif.contentEquals("nomSession")) {
 			session.setNomSession(modif);
@@ -48,10 +49,9 @@ public class FormationService {
 				session.setFormateurConfirme(true);
 			}
 			else
-				session.setFormateurConfirme(true);
+				session.setFormateurConfirme(false);
 		}
 		else if(champAModif.contentEquals("typeSession")) {
-			TypeSession type = TypeSession.INTER_ENTREPRISE;
 			if(modif.equals("inter entreprise"))
 				session.setTypeSession(TypeSession.INTER_ENTREPRISE);
 			else if(modif.equals("intra entreprise"))
@@ -63,6 +63,7 @@ public class FormationService {
 			Salle sa = new Salle(modif,session.getSalle().getNomSalle());
 			session.setSalle(sa);
 			sa.getSessions().add(session);
+			
 		}
 		else if(champAModif.contentEquals("nomSalle")) {
 			Salle sa = new Salle(session.getSalle().getAdresse(),modif);

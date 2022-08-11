@@ -1,4 +1,4 @@
-package com.lip6.entities;
+package com.lip6.daos;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -39,50 +39,28 @@ public  class Crud <T>{
 
 		return success;
 	}
-public boolean searchObject(T t, long id) {	
-		boolean success=false;
+public T searchObject(T t, long id) {	
+		T objectRenvoye = null;
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
-			EntityTransaction tx = em.getTransaction();
+			//EntityTransaction tx = em.getTransaction();
 			
-			tx.begin();	
-			T object= (T) em.find(type, id);
-			
+			//tx.begin();		
+			T object= em.find(type, id);
+			objectRenvoye =object;
 			System.out.println("voici l'object de type : "+object.getClass()+" retourné : "+object);
 			
+			//tx.commit();
 			em.close();
 			
-			success=true;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
-		return success;
-	}
-public boolean UpdateObject(long id , T t) {
-	
-	boolean success=false;
-	try {
-		EntityManager em=JpaUtil.getEmf().createEntityManager();	
-		EntityTransaction tx = em.getTransaction();
-		
-		tx.begin();	
-		T object= em.find(type, id);
-		object = t;
-		em.persist(object);
-		
-		tx. commit();
-		em.close();
-		
-		
-		success=true;
-	} catch (Exception e) {
-		e.printStackTrace();
+		return objectRenvoye;
 	}
 
-	return success;
-}
-public boolean removeObject(long id) {
+public boolean removeObject(T t,long id) {
 	
 	boolean success=false;
 	try {
@@ -90,12 +68,12 @@ public boolean removeObject(long id) {
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();	
-		T object= em.find(type, id);
-		em.remove(object);
+		T objeect= em.find(type, id);
+		em.remove(objeect);
 		tx. commit();
 		em.close();
 		
-		System.out.println("L'object "+object+ " de type : "+object.getClass()+" a bien été supprimé.");
+		System.out.println("L'object "+objeect+ " de type : "+objeect.getClass()+" a bien été supprimé.");
 		
 		success=true;
 	} catch (Exception e) {
@@ -105,5 +83,22 @@ public boolean removeObject(long id) {
 	return success;
 }
 
+public boolean updateObject(T t, long id) {	
+	boolean success=false;
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();	
+		em.merge(t);		
+		tx.commit();
+		em.close();
+		
+		success=true;
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
 
+	return success;
+}
 }
