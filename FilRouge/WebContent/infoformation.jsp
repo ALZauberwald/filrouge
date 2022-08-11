@@ -19,8 +19,13 @@
             	<td><i>Id Formation</i> <%= form.getIdFormation() %> </td>
              	<td><i>nomFormation</i> <%= form.getNomFormation() %>  </td>
              	<td><i>Detail de la formation</i> <%= form.getDetailFormation() %>  </td>
-	            <%-- <td><i>Objectifs</i> <%= form.getObjectifsFormation() %>  </td>
-	            <td><i>Prerequis</i> <%= form.getPrerequisFormation() %> </td> --%>
+             	
+	             <td><i>Objectifs</i>            
+	           		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){ %>
+    				<%= objectif.getNomObjectif() %> </br>
+ 					<% } %> 
+	            </td>
+	            <%-- <td><i>Prerequis</i> <%= form.getPrerequisFormation() %> </td>  --%>
 	            <%-- <td><i>Sessions</i> <%= form.getSessions() %>  </td>
 	            <td><i>Theme</i> <%= form.getTheme() %>  </td>
 	            <td><i>Chapitres </i> <%= form.getChapitres() %>  </td>     --%>      

@@ -3,9 +3,11 @@ package com.lip6.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +24,7 @@ public class Formation {
 	private long idFormation;	
 	
 	private String nomFormation;
+	
 	
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "objectifs_par_formation",joinColumns = @JoinColumn(name = "id_formation"), inverseJoinColumns = @JoinColumn(name="id_objectif"))
