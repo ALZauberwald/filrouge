@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Formation" ></jsp:useBean>
+<jsp:useBean id="objectifsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <body>
  
 <form action="UpdateFormationServlet" method="POST">
@@ -60,6 +61,30 @@
             <tr>
             <td><input type="submit" name="submit"></td>
             </tr>
+            
+            <tr>
+            	<th>Vous voulez ajouter un objectif à la formation ?</th>
+            	<td><i>Choisissez l'objectif à rajouter parmi ceux disponible</i>
+            	<SELECT name="searchObjectif" size="1">
+            		<% for (Object objectif:objectifsdisponibles){%>
+						<OPTION value="objectif"> <%= objectif%>
+					<% } %> 
+				</SELECT> 
+            	</td>
+            	
+            	
+            	
+            	<th>Vous voulez modifier ou supprimer un objectif de la formation ?</th>
+            	<td><i>Choisissez d'abord l'objectif concerné</i>
+            	<SELECT name="searchObjectif" size="1">
+            		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){%>
+						<OPTION value="objectif"> <%= objectif.getNomObjectif()%>
+					<% } %> 
+				</SELECT> 
+            	</td>
+            	<%-- <td> <%= objectifsdisponibles%></td> --%>
+            </tr>
+            
 </table>
 </form>
 <br>

@@ -1,9 +1,16 @@
 package com.lip6.services;
 
+import java.util.Set;
+
 import com.lip6.daos.DAOObjectif;
 import com.lip6.entities.Objectif;
 
 public class ObjectifService {
+	
+	public Set<Objectif> recupObjectifs(){
+		DAOObjectif daof= new DAOObjectif();
+		return daof.recupObjectif();
+	}
 	
 	public void createObjectif(String objectifname) {
 		DAOObjectif daof= new DAOObjectif();
@@ -29,4 +36,6 @@ public class ObjectifService {
 		daos.updateObjectif(objectif);
 	}
 
+	
+	
 }
