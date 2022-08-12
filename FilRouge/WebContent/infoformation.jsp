@@ -1,3 +1,4 @@
+<%@page import="com.lip6.entities.Prerequis"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -25,10 +26,27 @@
     				<%= objectif.getNomObjectif() %> </br>
  					<% } %> 
 	            </td>
-	            <%-- <td><i>Prerequis</i> <%= form.getPrerequisFormation() %> </td>  --%>
-	            <%-- <td><i>Sessions</i> <%= form.getSessions() %>  </td>
-	            <td><i>Theme</i> <%= form.getTheme() %>  </td>
-	            <td><i>Chapitres </i> <%= form.getChapitres() %>  </td>     --%>      
+	             <td><i>Prerequis</i> 
+	            	<% for (com.lip6.entities.Prerequis prerequis:form.getPrerequisFormation()){ %>
+    				<%= prerequis.getNomPrerequis() %> </br>
+ 					<% } %> 
+ 					</td> 
+	             <td><i>Sessions</i> 
+	             	<% for (com.lip6.entities.Session ses:form.getSessions()){ %>
+    				<%= ses.getNomSession() %> </br>
+ 					<% } %>   
+ 				</td>
+	            
+	             <td><i>Theme</i> 
+	             	<% for (com.lip6.entities.Theme th:form.getTheme()){ %>
+    				<%= th.getNomTheme() %> </br>
+ 					<% } %>   
+ 				</td>
+	            <td><i>Chapitres </i> 
+	            	<% for (com.lip6.entities.Chapitre cp:form.getChapitres()){ %>
+    				<%= cp.getNomChapitre() %> </br>
+ 					<% } %>   
+ 				</td>     
 	        </tr>
             <tr>
             	<td><i>IdFormation</i> <input name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>

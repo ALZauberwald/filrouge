@@ -1,6 +1,8 @@
 package com.lip6.services;
 
 import com.lip6.daos.DAOFormation;
+import com.lip6.daos.DAOSalle;
+import com.lip6.daos.DAOSession;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
@@ -18,14 +20,24 @@ public class FormationService {
 		return daos.searchFormation(id);
 	}
 	public void removeFormation(long id) {
-		System.out.println("j'arrive ici quand meme ( formationservice)");
 		DAOFormation daos= new DAOFormation();
 		daos.removeFormation(id);
 	}
 
 	public void updateFormation(String champAModif, String modif  , long id) {
-		
+		DAOFormation daos= new DAOFormation();
+		//Récupération objet de la BDD
+		Formation formation= daos.searchFormation(id);
+		//modif
+		if(champAModif.contentEquals("nom")) {
+			formation.setNomFormation(modif);
 		}
+		else if(champAModif.contentEquals("detail")) {
+			formation.setDetailFormation(modif);
+		}		
+		daos.updateFormation(formation);
+	}
+		
 	
 	
 	

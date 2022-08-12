@@ -94,8 +94,26 @@ public boolean removeFormation(long id) {
 		}
 		return success;
 	}
-	
-	
+
+
+public boolean updateFormation(Formation formation) {		
+		boolean success=false;
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+			em.merge(formation);
+			tx.commit();
+			em.close();
+			
+			success=true;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return success;
+	}	
 
 	
 }
