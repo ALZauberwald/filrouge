@@ -50,7 +50,11 @@
 	        </tr>
             <tr>
             	<td><i>IdFormation</i> <input name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
-            	<td><i>Veuillez rentrer le champ à modifier</i> <input name = "champAModif" type ="text" /></td>
+            	<td><i>Veuillez choisir le champ à modifier</i>
+            		<SELECT name="champAModif" size="1">
+						<OPTION value="nom"> Nom de la formation (<%= form.getNomFormation()%>)
+						<OPTION value="detail"> Detail de la formation (<%= form.getDetailFormation()%>)
+					</SELECT> 
             	<td><i>Veuillez rentrer la valeur du champ à modifier</i> <input name="modif" type="text" /></td>
             </tr>
             <tr>
