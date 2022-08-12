@@ -4,14 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+
 
 //premiere version de l'objet objectif
 @Entity
 public class Objectif {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idObjectif;
+	private long idObjectif;
 	private String nomObjectif;
 	
 	public Objectif(String nomObjectif) {
@@ -23,11 +22,11 @@ public class Objectif {
 		
 	}
 
-	public int getIdObjectif() {
+	public long getIdObjectif() {
 		return idObjectif;
 	}
 
-	public void setIdObjectif(int idObjectif) {
+	public void setIdObjectif(long idObjectif) {
 		this.idObjectif = idObjectif;
 	}
 
