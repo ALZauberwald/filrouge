@@ -10,14 +10,22 @@ import com.lip6.entities.TypeSession;
 
 //passe plat vers le DAO
 public class FormationService {
-	
-	public void assoPrerequis(long idForm,long idObj){
+	public void assoChapitre(long idForm,long idChap){
 		DAOFormation daof= new DAOFormation();
-		daof.assoPrerequis(idForm, idObj);
+		daof.assoChapitre(idForm, idChap);
 	}
-	public void rmPrerequis(long idForm,long idObj){
+	public void rmChapitre(long idForm,long idChap){
 		DAOFormation daof= new DAOFormation();
-		daof.removePrerequis(idForm, idObj);
+		daof.removeChapitre(idForm, idChap);
+	}
+	
+	public void assoPrerequis(long idForm,long idPr){
+		DAOFormation daof= new DAOFormation();
+		daof.assoPrerequis(idForm, idPr);
+	}
+	public void rmPrerequis(long idForm,long idPr){
+		DAOFormation daof= new DAOFormation();
+		daof.removePrerequis(idForm, idPr);
 	}
 	
 	public void assoObjectif(long idForm,long idObj){

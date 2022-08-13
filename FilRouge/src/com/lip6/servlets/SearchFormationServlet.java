@@ -15,9 +15,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lip6.entities.Objectif;
 import com.lip6.entities.Session;
+import com.lip6.services.ChapitreService;
 import com.lip6.services.FormationService;
 import com.lip6.services.ObjectifService;
 import com.lip6.services.PrerequisService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -52,10 +54,14 @@ public class SearchFormationServlet extends HttpServlet {
 		FormationService formation= new FormationService();	
 		ObjectifService objectifserv= new ObjectifService();
 		PrerequisService prerequisserv = new PrerequisService();
+		ChapitreService chapitreserv = new ChapitreService();
+		SessionService sessionserv = new SessionService();
 		
 		request.setAttribute("form",formation.searchFormation(id));
 		request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());
 		request.setAttribute("prerequisdisponibles", prerequisserv.recupPrerequis());
+		request.setAttribute("chapitresdisponibles", chapitreserv.recupChapitres());
+		//request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infoformation.jsp") ;
 		rd.forward(request, response);

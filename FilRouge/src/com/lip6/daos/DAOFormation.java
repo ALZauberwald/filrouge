@@ -20,14 +20,56 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
-	public void assoPrerequis(Long idForm, Long idObj) {
+	public void assoChapitre(Long idForm, Long idChap) {
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();
 				Formation fo= em.find(Formation.class, idForm);
-				Prerequis prAAssocier= em.find(Prerequis.class, idObj);
+				Chapitre cpAAssocier= em.find(Chapitre.class, idChap);
+				fo.getChapitres().add(cpAAssocier);
+				cpAAssocier.setFormation(fo);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeChapitre(Long idForm, Long idChapitre) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Chapitre cpASupprimer= em.find(Chapitre.class, idChapitre);
+				fo.getPrerequisFormation().remove(cpASupprimer);
+				cpASupprimer.setFormation(null);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void assoPrerequis(Long idForm, Long idPrerequis) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Prerequis prAAssocier= em.find(Prerequis.class, idPrerequis);
 				fo.getPrerequisFormation().add(prAAssocier);
 			
 			tx.commit();
@@ -40,14 +82,14 @@ public class DAOFormation {
 		}
 	}
 	
-	public void removePrerequis(Long idForm, Long idObj) {
+	public void removePrerequis(Long idForm, Long idPrerequis) {
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();
 				Formation fo= em.find(Formation.class, idForm);
-				Prerequis prASupprimer= em.find(Prerequis.class, idObj);
+				Prerequis prASupprimer= em.find(Prerequis.class, idPrerequis);
 				fo.getPrerequisFormation().remove(prASupprimer);
 			
 			tx.commit();

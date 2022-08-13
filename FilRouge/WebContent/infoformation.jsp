@@ -10,7 +10,8 @@
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Formation" ></jsp:useBean>
 <jsp:useBean id="objectifsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="prerequisdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
-
+<jsp:useBean id="chapitresdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
+<jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
 <body>
  
@@ -124,6 +125,35 @@
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmPrerequis">Supprimer le prerequis</td>
+         </tr>
+            
+            <!-- Gestion des chapitres -->  
+        <tr>
+           	<th>Vous voulez ajouter un chapitre à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
+            	<td><i>Voici la liste des chapitres disponibles</i>	
+            		<SELECT size="1">
+            			<% for (Object chapitre:chapitresdisponibles){%>
+							<OPTION> <%= chapitre.toString().split("idChapitre=")[1].split(",")[0]+"  |  "+chapitre.toString().split("nomChapitre=")[1].split(", ")[0]%>	
+						<% } %> 
+					</SELECT> 
+            	</td>
+            	<td><i>Indiquez simplement le numéro du chapitre que vous souhaitez ajouter</i><input name="idChapitre" type="number" ></td>
+        <tr>
+           	<td><button input type="submit" name="choix" value="assoChapitre">Ajouter le chapitre</td>
+        </tr>
+           	<th>Vous voulez supprimer un chapitre de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
+           	<td><i>Voici la liste des chapitres qui sont pour l'instant liés à cette formation</i>
+            	<SELECT size="1">
+            		<% for (com.lip6.entities.Chapitre chapitre:form.getChapitres()){%>
+						<OPTION value="chapitre"> <%= chapitre.getNomChapitre()%>
+					<% } %> 
+				</SELECT> 
+           	</td>
+           	<td><i>Indiquez simplement le numéro du chapitre que vous souhaitez supprimer</i><input name="idChapitreRm" type="number" >
+            	
+         </tr>
+         <tr>
+           	<td><button input type="submit" name="choix" value="rmChapitre">Supprimer le chapitre</td>
          </tr>
             
 	</table>
