@@ -9,10 +9,12 @@
 </head>
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Formation" ></jsp:useBean>
 <jsp:useBean id="objectifsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
+
+
 <body>
  
 <form action="UpdateFormationServlet" method="POST">
-<table>
+	<table>
 			
 			<tr>          
 	            <td><i>Modifier une formation dans la base de donnée.</i> 
@@ -61,13 +63,23 @@
             <tr>
             <td><input type="submit" name="submit"></td>
             </tr>
-            
+       </table>
+</form>
+
+
+<form action="UpdateFormation2Servlet" method="POST">
+	<table>
             <tr>
             	<th>Vous voulez ajouter un objectif à la formation ?</th>
             	<td><i>Choisissez l'objectif à rajouter parmi ceux disponible</i>
+            	
             	<SELECT name="searchObjectif" size="1">
             		<% for (Object objectif:objectifsdisponibles){%>
-						<OPTION value="objectif"> <%= objectif%>
+            			<% %>
+						<%-- <OPTION value="objectif"> <%= objectif%> --%>
+						<OPTION value=<%String valeur = objectif.toString().split("idObjectif=")[1].split(",")[0];%>)> <%= objectif.toString().split("nomObjectif=")[1].split("]")[0]%>
+						<%-- <OPTION value="objectif"> <%= objectif.toString().split("idObjectif=")[1].split(",")[0]%> --%>
+						
 					<% } %> 
 				</SELECT> 
             	</td>
@@ -84,7 +96,9 @@
             	</td>
             	<%-- <td> <%= objectifsdisponibles%></td> --%>
             </tr>
-            
+            <tr>
+            	<td><input type="submit" name="submit"></td>
+            </tr>
 </table>
 </form>
 <br>

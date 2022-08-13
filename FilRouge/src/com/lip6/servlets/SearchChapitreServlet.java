@@ -1,8 +1,6 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,22 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.entities.Objectif;
-import com.lip6.entities.Session;
-import com.lip6.services.FormationService;
-import com.lip6.services.ObjectifService;
+import com.lip6.services.ChapitreService;
 
 /**
  * Servlet implementation class SearchSessionServlet
  */
-@WebServlet("/SearchFormationServlet")
-public class SearchFormationServlet extends HttpServlet {
+@WebServlet("/SearchChapitreServlet")
+public class SearchChapitreServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchFormationServlet() {
+    public SearchChapitreServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -46,15 +41,11 @@ public class SearchFormationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long id = Long.parseLong(request.getParameter("idFormation"));
-		FormationService formation= new FormationService();
+		long id = Long.parseLong(request.getParameter("idChapitre"));
+		ChapitreService Chapitre= new ChapitreService();
 		
-		ObjectifService objectifserv= new ObjectifService();
-		request.setAttribute("form",formation.searchFormation(id));
-		request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());
-		
-		
-		RequestDispatcher rd= request.getRequestDispatcher("infoformation.jsp") ;
+		request.setAttribute("form",Chapitre.searchChapitre(id));
+		RequestDispatcher rd= request.getRequestDispatcher("infoChapitre.jsp") ;
 		rd.forward(request, response);
 	
 		

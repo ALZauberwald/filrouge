@@ -12,7 +12,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Prerequis {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPrerequis;
+	private long idPrerequis;
 	private String nomPrerequis;
 	
 	public Prerequis(String nomPrerequis) {
@@ -20,10 +20,11 @@ public class Prerequis {
 		this.nomPrerequis = nomPrerequis;
 	}
 	public Prerequis() {}
-	public int getIdPrerequis() {
+	
+	public long getIdPrerequis() {
 		return idPrerequis;
 	}
-	public void setIdPrerequis(int idPrerequis) {
+	public void setIdPrerequis(long idPrerequis) {
 		this.idPrerequis = idPrerequis;
 	}
 	public String getNomPrerequis() {
