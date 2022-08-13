@@ -15,6 +15,10 @@ public class FormationService {
 		DAOFormation daof= new DAOFormation();
 		daof.assoObjectif(idForm, idObj);
 	}
+	public void rmObjectif(long idForm,long idObj){
+		DAOFormation daof= new DAOFormation();
+		daof.removeObjectif(idForm, idObj);
+	}
 	
 	
 	public void createFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {

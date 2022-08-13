@@ -82,14 +82,14 @@
             	</td>
             	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez ajouter</i><input name="idObjectif" type="number" ></td>
             <tr>
-            	<td><input type="submit" name="submit"></td>
+            	<td><button input type="submit" name="choix" value="asso">Ajouter l'objectif</td>
             </tr>
             
             
             	
             	
             	
-            	<th>Vous voulez supprimer un objectif de la formation ?</th>
+            	<th>Vous voulez supprimer un objectif de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
             	<td><i>Voici la liste des objectifs qui sont pour l'instant liés à cette formation</i>
             	<SELECT size="1">
             		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){%>
@@ -97,11 +97,11 @@
 					<% } %> 
 				</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez supprimer</i>
+            	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez supprimer</i><input name="idObjectifRm" type="number" >
             	
             </tr>
             <tr>
-            	<td><input type="submit" name="submit"></td>
+            	<td><button input type="submit" name="choix" value="rm">Supprimer l'objectif</td>
             </tr>
 </table>
 </form>

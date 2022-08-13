@@ -40,6 +40,25 @@ public class DAOFormation {
 		}
 	}
 	
+	public void removeObjectif(Long idForm, Long idObj) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Objectif obAAssocier= em.find(Objectif.class, idObj);
+				fo.getObjectifsFormation().remove(obAAssocier);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 	
 	//Ajouter une nouvelle formation dans la base de donn�e filrouge
 	public boolean addFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {
