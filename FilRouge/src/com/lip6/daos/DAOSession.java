@@ -26,10 +26,10 @@ public class DAOSession {
 			Formation form=em.find(Formation.class,idFormation);
 			se.setSalle(sa);
 			se.getEvaluations().add(eva);
-			sa.getSessions().add(se);				
-			em.persist(se);
+			sa.getSessions().add(se);	
 			se.setFormation(form);
 			form.getSessions().add(se);
+			em.persist(se);
 							
 			tx.commit();
 			

@@ -3,43 +3,47 @@ package com.lip6.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
-import javax.persistence.Column;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
+
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+
 
 @Entity
 public class Formation {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idFormation;	
+	
 	private String nomFormation;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "objectifs_par_formation",joinColumns = @JoinColumn(name = "id_formation"), inverseJoinColumns = @JoinColumn(name="id_objectif"))
 	private Set<Objectif> objectifsFormation = new HashSet<>();
 	
 	
 	private String detailFormation;
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
+	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name ="prerequis_par_formation", joinColumns=@JoinColumn(name = "id_formation"),inverseJoinColumns = @JoinColumn(name="id_prerequis"))
 	private Set<Prerequis> prerequisFormation= new HashSet<>();
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="formation")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="formation")
 	private Set<Chapitre> chapitres= new HashSet<>();
 	
-	@ManyToMany( cascade=CascadeType.PERSIST)	
+	@ManyToMany( cascade=CascadeType.ALL)	
 	private Set<Theme> theme= new HashSet<>();
 	
-	@OneToMany(cascade = CascadeType.PERSIST, mappedBy="formation")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy="formation")
 	private Set<Session> sessions= new HashSet<>();
 	
 	public Formation() { }

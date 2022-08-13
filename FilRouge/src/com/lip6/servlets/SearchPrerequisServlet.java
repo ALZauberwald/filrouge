@@ -11,20 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.entities.Session;
-import com.lip6.services.SessionService;
+import com.lip6.services.PrerequisService;
 
 /**
  * Servlet implementation class SearchSessionServlet
  */
-@WebServlet("/SearchSessionServlet")
-public class SearchSessionServlet extends HttpServlet {
+@WebServlet("/SearchPrerequisServlet")
+public class SearchPrerequisServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchSessionServlet() {
+    public SearchPrerequisServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,16 +41,13 @@ public class SearchSessionServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long id = Long.parseLong(request.getParameter("idSession"));
-		SessionService session= new SessionService();
+		long id = Long.parseLong(request.getParameter("idPrerequis"));
+		PrerequisService Prerequis= new PrerequisService();
 		
-		//redirection 
-
-
-		request.setAttribute("sess",session.searchSession(id));
-
-		RequestDispatcher rd= request.getRequestDispatcher("infosession.jsp") ;
+		request.setAttribute("form",Prerequis.searchPrerequis(id));
+		RequestDispatcher rd= request.getRequestDispatcher("infoPrerequis.jsp") ;
 		rd.forward(request, response);
+	
 		
 	}
 	

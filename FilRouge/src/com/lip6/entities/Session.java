@@ -1,7 +1,9 @@
 package com.lip6.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import java.beans.*;
@@ -36,14 +40,17 @@ public class Session {
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Evaluation>evaluations=new ArrayList<Evaluation>() ;
 	
-	//@ManyToOne(c
-	//private Formateur formateur;
+	@ManyToOne
+	@JoinColumn(name="id_formateur")
+	private Formateur formateur;
 	
-	//@ManyToMany
-	//private List<Stagiaire> stagiaire = new ArrayList<Stagiaire>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name ="Stagiaires_par_Sessions", joinColumns=@JoinColumn(name = "id_Session"),inverseJoinColumns = @JoinColumn(name="id_Stagiaire"))
+	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
-	//@ManyToMany
-	//private List<Client> client = new ArrayList <Client>();
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name ="Clients_par_Sessions", joinColumns=@JoinColumn(name = "id_Session"),inverseJoinColumns = @JoinColumn(name="id_Client"))
+	private Set<Client> client = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name="id_formation")
@@ -161,19 +168,38 @@ public class Session {
 		this.installationFinie = installationFinie;
 	}
 
+	public Set<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+	public void setStagiaires(Set<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+
+	public Formateur getFormateur() {
+		return formateur;
+	}
+
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
+	}
+
+	public Set<Client> getClient() {
+		return client;
+	}
+
+	public void setClient(Set<Client> client) {
+		this.client = client;
+	}
+
 	@Override
 	public String toString() {
 		return "Session [idSession=" + idSession + ", nomSession=" + nomSession + ", prix=" + prix + ", dateDebut="
 				+ dateDebut + ", dateFin=" + dateFin + ", lieu=" + lieu + ", formateurConfirme=" + formateurConfirme
 				+ ", typeSession=" + typeSession + ", installationFinie=" + installationFinie + ", salle=" + salle
-				+ ", evaluations=" + evaluations + ", formation=" + formation + "]";
+				+ ", evaluations=" + evaluations + ", formateur=" + formateur + ", stagiaires=" + stagiaires
+				+ ", client=" + client + ", formation=" + formation + "]";
 	}
-
-	
-
-	
-	
-	
 	
 	
 	
