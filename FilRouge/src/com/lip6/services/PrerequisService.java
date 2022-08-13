@@ -7,7 +7,7 @@ import com.lip6.entities.Prerequis;
 
 public class PrerequisService {
 	
-	public Set<Prerequis> recupPrerequiss(){
+	public Set<Prerequis> recupPrerequis(){
 		DAOPrerequis daof= new DAOPrerequis();
 		return daof.recupPrerequis();
 	}

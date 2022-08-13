@@ -20,6 +20,46 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
+	public void assoPrerequis(Long idForm, Long idObj) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Prerequis prAAssocier= em.find(Prerequis.class, idObj);
+				fo.getPrerequisFormation().add(prAAssocier);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removePrerequis(Long idForm, Long idObj) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Prerequis prASupprimer= em.find(Prerequis.class, idObj);
+				fo.getPrerequisFormation().remove(prASupprimer);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void assoObjectif(Long idForm, Long idObj) {
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
