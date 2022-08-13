@@ -11,6 +11,12 @@ import com.lip6.entities.TypeSession;
 //passe plat vers le DAO
 public class FormationService {
 	
+	public void assoObjectif(long idForm,long idObj){
+		DAOFormation daof= new DAOFormation();
+		daof.assoObjectif(idForm, idObj);
+	}
+	
+	
 	public void createFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {
 		DAOFormation daof= new DAOFormation();
 		daof.addFormation(formationname, formationdetail, formationobjectif, formationprerequis);

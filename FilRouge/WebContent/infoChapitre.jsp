@@ -21,11 +21,7 @@
          	<td><i>Durée du Chapitre</i> <%= form.getDureeChapitre()%>  </td>
          	<td><i>Détail du Chapitre</i> <%= form.getDetailChapitre() %>  </td>
          	
-         	<%-- <td><i>formations auxquelles ce chapitre est rattaché </i> 
-	            	<% for (com.lip6.entities.Formation fm:form.getFormation()){ %>
-    				<%= fm.getNomFormation() %> </br>
- 					<% } %>   
- 			</td>  --%> 
+         	 <td><i>formation à laquelle ce chapitre est rattaché </i></br> <%= form.getFormation().getNomFormation() %></td>  
            	
            	
            	

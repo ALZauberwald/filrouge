@@ -42,8 +42,11 @@ public class UpdateFormation2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String objectif = request.getParameter("searchObjectif");
-			System.out.println("***********************************************"+objectif+"11111111111111111111111111111");
+			
+			long idform= Long.parseLong(request.getParameter("idFormation"));
+			long idObj= Long.parseLong(request.getParameter("idObjectif"));
+			FormationService forma = new FormationService();
+			forma.assoObjectif(idform, idObj);
 			response.sendRedirect("index.html");
 	}
 

@@ -52,7 +52,7 @@
  				</td>     
 	        </tr>
             <tr>
-            	<td><i>IdFormation</i> <input name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
+            	<td><i>Formation n°<%= form.getIdFormation()%></i> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
             	<td><i>Veuillez choisir le champ à modifier</i>
             		<SELECT name="champAModif" size="1">
 						<OPTION value="nom"> Nom de la formation (<%= form.getNomFormation()%>)
@@ -70,31 +70,35 @@
 <form action="UpdateFormation2Servlet" method="POST">
 	<table>
             <tr>
-            	<th>Vous voulez ajouter un objectif à la formation ?</th>
-            	<td><i>Choisissez l'objectif à rajouter parmi ceux disponible</i>
+            	<th>Vous voulez ajouter un objectif à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">
             	
-            	<SELECT name="searchObjectif" size="1">
+            	<td><i>Voici la liste des objectifs disponibles</i>
+            	
+            	<SELECT size="1">
             		<% for (Object objectif:objectifsdisponibles){%>
-            			<% %>
-						<%-- <OPTION value="objectif"> <%= objectif%> --%>
-						<OPTION value=<%String valeur = objectif.toString().split("idObjectif=")[1].split(",")[0];%>)> <%= objectif.toString().split("nomObjectif=")[1].split("]")[0]%>
-						<%-- <OPTION value="objectif"> <%= objectif.toString().split("idObjectif=")[1].split(",")[0]%> --%>
-						
+						<OPTION> <%= objectif.toString().split("idObjectif=")[1].split(",")[0]+"  |  "+objectif.toString().split("nomObjectif=")[1].split("]")[0]%>	
 					<% } %> 
 				</SELECT> 
             	</td>
+            	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez ajouter</i><input name="idObjectif" type="number" ></td>
+            <tr>
+            	<td><input type="submit" name="submit"></td>
+            </tr>
+            
+            
             	
             	
             	
-            	<th>Vous voulez modifier ou supprimer un objectif de la formation ?</th>
-            	<td><i>Choisissez d'abord l'objectif concerné</i>
-            	<SELECT name="searchObjectif" size="1">
+            	<th>Vous voulez supprimer un objectif de la formation ?</th>
+            	<td><i>Voici la liste des objectifs qui sont pour l'instant liés à cette formation</i>
+            	<SELECT size="1">
             		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){%>
 						<OPTION value="objectif"> <%= objectif.getNomObjectif()%>
 					<% } %> 
 				</SELECT> 
             	</td>
-            	<%-- <td> <%= objectifsdisponibles%></td> --%>
+            	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez supprimer</i>
+            	
             </tr>
             <tr>
             	<td><input type="submit" name="submit"></td>
