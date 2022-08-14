@@ -20,6 +20,128 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
+	public void assoChapitre(Long idForm, Long idChap) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Chapitre cpAAssocier= em.find(Chapitre.class, idChap);
+				fo.getChapitres().add(cpAAssocier);
+				cpAAssocier.setFormation(fo);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeChapitre(Long idForm, Long idChapitre) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Chapitre cpASupprimer= em.find(Chapitre.class, idChapitre);
+				fo.getPrerequisFormation().remove(cpASupprimer);
+				cpASupprimer.setFormation(null);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void assoPrerequis(Long idForm, Long idPrerequis) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Prerequis prAAssocier= em.find(Prerequis.class, idPrerequis);
+				fo.getPrerequisFormation().add(prAAssocier);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removePrerequis(Long idForm, Long idPrerequis) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Prerequis prASupprimer= em.find(Prerequis.class, idPrerequis);
+				fo.getPrerequisFormation().remove(prASupprimer);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void assoObjectif(Long idForm, Long idObj) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Objectif obAAssocier= em.find(Objectif.class, idObj);
+				fo.getObjectifsFormation().add(obAAssocier);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeObjectif(Long idForm, Long idObj) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Objectif obAAssocier= em.find(Objectif.class, idObj);
+				fo.getObjectifsFormation().remove(obAAssocier);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	//Ajouter une nouvelle formation dans la base de donn�e filrouge
 	public boolean addFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {
 		boolean success=false;

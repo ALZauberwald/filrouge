@@ -20,7 +20,9 @@ public class DAOPrerequis {
 	public Set<Prerequis> recupPrerequis(){
 		Set<Prerequis> setPrerequis = new HashSet<>();
 		try {
-			//JPQL --> renvoie la liste de tous les Prerequiss
+
+			//JPQL --> renvoie la liste de tous les Prerequis
+
 			String requete = "SELECT pr FROM Prerequis pr"; 
 			
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	

@@ -10,6 +10,33 @@ import com.lip6.entities.TypeSession;
 
 //passe plat vers le DAO
 public class FormationService {
+	public void assoChapitre(long idForm,long idChap){
+		DAOFormation daof= new DAOFormation();
+		daof.assoChapitre(idForm, idChap);
+	}
+	public void rmChapitre(long idForm,long idChap){
+		DAOFormation daof= new DAOFormation();
+		daof.removeChapitre(idForm, idChap);
+	}
+	
+	public void assoPrerequis(long idForm,long idPr){
+		DAOFormation daof= new DAOFormation();
+		daof.assoPrerequis(idForm, idPr);
+	}
+	public void rmPrerequis(long idForm,long idPr){
+		DAOFormation daof= new DAOFormation();
+		daof.removePrerequis(idForm, idPr);
+	}
+	
+	public void assoObjectif(long idForm,long idObj){
+		DAOFormation daof= new DAOFormation();
+		daof.assoObjectif(idForm, idObj);
+	}
+	public void rmObjectif(long idForm,long idObj){
+		DAOFormation daof= new DAOFormation();
+		daof.removeObjectif(idForm, idObj);
+	}
+	
 	
 	public void createFormation(String formationname,String formationdetail, String formationobjectif, String formationprerequis) {
 		DAOFormation daof= new DAOFormation();

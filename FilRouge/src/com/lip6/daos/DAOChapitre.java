@@ -21,7 +21,9 @@ public class DAOChapitre {
 		Set<Chapitre> setChapitre = new HashSet<>();
 		try {
 			//JPQL --> renvoie la liste de tous les Chapitres
-			String requete = "SELECT ob FROM Chapitre ob"; 
+
+			String requete = "SELECT cp FROM Chapitre cp"; 
+
 			
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
@@ -30,9 +32,11 @@ public class DAOChapitre {
 			Query query = em.createQuery(requete); 
 			List<Chapitre> results = query.getResultList();
 			// je passe chaque element de la liste dans le set
-			for (Chapitre Chapitre : results) {
-				System.out.println(Chapitre);
-				setChapitre.add(Chapitre);
+
+			for (Chapitre chapitre : results) {
+				System.out.println(chapitre);
+				setChapitre.add(chapitre);
+
 			}
 			tx.commit();
 			
