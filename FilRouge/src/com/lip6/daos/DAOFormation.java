@@ -2,8 +2,13 @@ package com.lip6.daos;
 
 
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 
 import com.lip6.entities.Evaluation;
 import com.lip6.entities.Formation;
@@ -20,6 +25,38 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
+	public Set<Formation> recupFormation(){
+		Set<Formation> setFormation = new HashSet<>();
+		try {
+			//JPQL --> renvoie la liste de toutes les formations
+
+			String requete = "SELECT fm FROM Formation fm"; 
+
+			
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();	
+			Query query = em.createQuery(requete); 
+			List<Formation> results = query.getResultList();
+			// je passe chaque element de la liste dans le set
+
+			for (Formation formation : results) {
+				System.out.println(formation);
+				setFormation.add(formation);
+
+			}
+			tx.commit();
+			
+			em.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return setFormation;
+	}
+	
+	
 	public void assoSession(Long idForm, Long idSession) {
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
@@ -48,7 +85,7 @@ public class DAOFormation {
 			tx.begin();
 				Formation fo= em.find(Formation.class, idForm);
 				Session sessASupprimer= em.find(Session.class, idSession);
-				fo.getTheme().remove(sessASupprimer);
+				fo.getSessions().remove(sessASupprimer);
 				sessASupprimer.setFormation(null);
 			
 			tx.commit();

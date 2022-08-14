@@ -125,9 +125,7 @@ public class Formation {
 
 	@Override
 	public String toString() {
-		return "Formation " + idFormation + "--> nom=" + nomFormation + ", objectifs="
-				+ objectifsFormation + ", detail=" + detailFormation + ", prerequis="
-				+ prerequisFormation ;
+		return idFormation + "  |  " + nomFormation ;
 	}
 	
 	

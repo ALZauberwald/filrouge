@@ -1,5 +1,7 @@
 package com.lip6.services;
 
+import java.util.Set;
+
 import com.lip6.daos.DAOFormation;
 import com.lip6.daos.DAOSalle;
 import com.lip6.daos.DAOSession;
@@ -10,6 +12,11 @@ import com.lip6.entities.TypeSession;
 
 //passe plat vers le DAO
 public class FormationService {
+	public Set<Formation> recupFormations(){
+		DAOFormation daof= new DAOFormation();
+		return daof.recupFormation();
+	}	
+	
 	public void assoSession(long idForm,long idSe){
 		DAOFormation daof= new DAOFormation();
 		daof.assoSession(idForm, idSe);
