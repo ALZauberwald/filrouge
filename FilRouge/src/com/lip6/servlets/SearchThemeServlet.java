@@ -1,8 +1,6 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,27 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.entities.Objectif;
-import com.lip6.entities.Session;
-import com.lip6.services.ChapitreService;
-import com.lip6.services.FormationService;
-import com.lip6.services.ObjectifService;
-
-import com.lip6.services.PrerequisService;
-import com.lip6.services.SessionService;
-
+import com.lip6.services.ThemeService;
 
 /**
  * Servlet implementation class SearchSessionServlet
  */
-@WebServlet("/SearchFormationServlet")
-public class SearchFormationServlet extends HttpServlet {
+@WebServlet("/SearchThemeServlet")
+public class SearchThemeServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchFormationServlet() {
+    public SearchThemeServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -51,22 +41,11 @@ public class SearchFormationServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		long id = Long.parseLong(request.getParameter("idFormation"));
+		long id = Long.parseLong(request.getParameter("idTheme"));
+		ThemeService theme= new ThemeService();
 		
-		FormationService formation= new FormationService();	
-		ObjectifService objectifserv= new ObjectifService();
-		PrerequisService prerequisserv = new PrerequisService();
-		ChapitreService chapitreserv = new ChapitreService();
-		SessionService sessionserv = new SessionService();
-		
-		request.setAttribute("form",formation.searchFormation(id));
-		request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());
-		request.setAttribute("prerequisdisponibles", prerequisserv.recupPrerequis());
-		request.setAttribute("chapitresdisponibles", chapitreserv.recupChapitres());
-		//request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
-
-		
-		RequestDispatcher rd= request.getRequestDispatcher("infoformation.jsp") ;
+		request.setAttribute("form",theme.searchTheme(id));
+		RequestDispatcher rd= request.getRequestDispatcher("infoTheme.jsp") ;
 		rd.forward(request, response);
 	
 		

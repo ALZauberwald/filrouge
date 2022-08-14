@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -25,6 +26,9 @@ public class Theme {
 	// Un theme peut posseder des sousthemes --relation onetomany-- notion de reflexivité
 	@OneToMany ( cascade=CascadeType.PERSIST)
 	private Set<Theme> sousthemes=new HashSet<>();
+	// Un theme possede un surtheme (le theme du haut est "informatique") // tant que ce premier theme n'est pas créé de maniere perenne, on ne renseigne pas la valeur par defaut du surtheme
+//	@ManyToOne(cascade=CascadeType.PERSIST)
+//	private Theme surtheme= new Theme("informatique");
 	
 	public Theme(String nomTheme) {
 		super();
@@ -64,6 +68,14 @@ public class Theme {
 	public void setSousthemes(Set<Theme> sousthemes) {
 		this.sousthemes = sousthemes;
 	}
+
+//	public Theme getSurtheme() {
+//		return surtheme;
+//	}
+//
+//	public void setSurtheme(Theme surtheme) {
+//		this.surtheme = surtheme;
+//	}
 	
 	
 

@@ -27,7 +27,7 @@
 	 	        <td><i>adresse</i> <%= sess.getSalle().getAdresse()%>  </td>
 	            <td><i>nomSalle</i> <%= sess.getSalle().getNomSalle()%> </td>
 	            <td><i>installationFinie</i> <%= sess.isInstallationFinie() %></td>	 
-	            <td><i>idFormateur</i> <%= sess.getFormateur() %></td>	 
+	            <%-- <td><i>idFormateur</i> <%= sess.getFormateur() %></td> --%>	 
 	            <td><i>idSalle</i> <%=sess.getSalle().getIdSalle() %>  </td>        
 	            
              </tr>
