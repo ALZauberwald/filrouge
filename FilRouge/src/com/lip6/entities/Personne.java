@@ -10,8 +10,8 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-public abstract class Personne {
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE  )@DiscriminatorColumn(name = "Type")
+public class Personne {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String nom;
@@ -59,6 +59,11 @@ public abstract class Personne {
 	}
 	public Personne() {
 		super();
+	}
+	@Override
+	public String toString() {
+		return "Personne [id=" + id + ", nom=" + nom + ", prenom=" + prenom + ", adresse=" + adresse + ", tel=" + tel
+				+ ", mail=" + mail + "]";
 	}
 	
 	

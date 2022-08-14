@@ -44,13 +44,17 @@ public class Session {
 	@JoinColumn(name="id_formateur")
 	private Formateur formateur;
 	
-	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name ="Stagiaires_par_Sessions", joinColumns=@JoinColumn(name = "id_Session"),inverseJoinColumns = @JoinColumn(name="id_Stagiaire"))
+	@ManyToMany(cascade ={CascadeType.PERSIST,
+			CascadeType.DETACH,
+			CascadeType.MERGE,
+			CascadeType.REFRESH
+},mappedBy = "sessions")
+	
 	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
-	@ManyToMany(cascade = CascadeType.ALL)
+	@ManyToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name ="Clients_par_Sessions", joinColumns=@JoinColumn(name = "id_Session"),inverseJoinColumns = @JoinColumn(name="id_Client"))
-	private Set<Client> client = new HashSet<>();
+	private Set<Client> clients = new HashSet<>();
 	
 	@ManyToOne
 	@JoinColumn(name="id_formation")
@@ -185,16 +189,18 @@ public class Session {
 	}
 
 	public Set<Client> getClient() {
-		return client;
+		return clients;
 	}
 
 	public void setClient(Set<Client> client) {
-		this.client = client;
+		this.clients = client;
 	}
 
 	@Override
 	public String toString() {
+
 		return  idSession + "  |  "  + nomSession;
+
 	}
 	
 	

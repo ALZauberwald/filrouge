@@ -3,10 +3,13 @@ package com.lip6.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -24,7 +27,12 @@ public class Stagiaire extends Personne {
 }
 
 
-	@ManyToMany(mappedBy = "stagiaires")
+	@ManyToMany(cascade = {CascadeType.PERSIST,
+							CascadeType.DETACH,
+							CascadeType.MERGE,
+							CascadeType.REFRESH
+			})
+	@JoinTable(name ="Stagiaires_par_Sessions", joinColumns=@JoinColumn(name = "id_Stagiaire"),inverseJoinColumns = @JoinColumn(name="id_Sessions"))
 	private Set<Session> sessions =  new HashSet<>();
 	
 //	public long getIdStagiaire() {

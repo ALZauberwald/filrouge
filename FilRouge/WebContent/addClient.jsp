@@ -14,6 +14,7 @@
 	            <td><i>Ajouter une session à la base de donnée.</i> 
             </tr>
             <tr> 
+            	<td><i>Id de la session</i><input type="number" name="idSession"></td> 
             	<td><i>Veuillez rentrer le nom</i> <input type="text" name="nomClient">  </td>
 	            <td><i>Veuillez rentrer le prénom</i> <input type="text" name="prenomClient">  </td>
 	            <td><i>Veuillez rentrer l'adresse</i> <input type="text" name="adresse">  </td>

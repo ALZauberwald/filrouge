@@ -35,5 +35,10 @@ public class Formateur extends Personne {
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
+
+	@Override
+	public String toString() {
+		return "formateur = " + super.toString() + " dateEmbauche= " + dateEmbauche ;
+	}
 	
 }

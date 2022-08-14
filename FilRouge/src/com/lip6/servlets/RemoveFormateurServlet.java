@@ -7,19 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.services.ClientService;
+import com.lip6.services.FormateurService;
 
 /**
- * Servlet implementation class AddClientServlet
+ * Servlet implementation class RemoveFormateurServlet
  */
-@WebServlet("/AddClientServlet")
-public class AddClientServlet extends HttpServlet {
+@WebServlet("/RemoveFormateurServlet")
+public class RemoveFormateurServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddClientServlet() {
+    public RemoveFormateurServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,15 +36,11 @@ public class AddClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id = Long.parseLong(request.getParameter("idSession"));
-		String nom =request.getParameter("nomClient");
-		String prenom = request.getParameter("prenomClient");
-		String adresse = request.getParameter("adresse");
-		String tel =request.getParameter("tel");
-		String mail = request.getParameter("mail");
-		String numSiret=request.getParameter("numSiret");
-		ClientService cs = new ClientService();
-		cs.addClient(id,nom, prenom,  adresse,tel, mail,numSiret);
+		String nom = request.getParameter("nom");
+		String prenom = request.getParameter("prenom");
+		
+		FormateurService fs = new FormateurService();
+		fs.removeFormateur(nom,prenom);
 		response.sendRedirect("index.html");
 	}
 
