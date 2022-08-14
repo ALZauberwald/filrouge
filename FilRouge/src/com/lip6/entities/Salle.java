@@ -3,9 +3,11 @@ package com.lip6.entities;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -17,9 +19,8 @@ public class Salle {
 	private long idSalle;
 	private String adresse;
 	private String nomSalle;
-	
-	@OneToMany(cascade=CascadeType.ALL,mappedBy="salle")
-	private Set <Session> sessions = new HashSet<Session>();
+	@OneToMany(cascade= {CascadeType.ALL},mappedBy="salle")
+	private Set <Session> sessions = new HashSet<>();
 	
 	public Salle(String adresse, String nomSalle) {
 		this.adresse = adresse;

@@ -33,7 +33,7 @@ public class Session {
 	@Column(columnDefinition = "BOOLEAN")
 	private boolean installationFinie=false;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
 	@JoinColumn(name="id_salle")
 	private Salle salle;
 	
@@ -49,7 +49,6 @@ public class Session {
 			CascadeType.MERGE,
 			CascadeType.REFRESH
 },mappedBy = "sessions")
-	
 	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
 	@ManyToMany(cascade = CascadeType.PERSIST)

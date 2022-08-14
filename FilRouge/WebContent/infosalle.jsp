@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="salle" scope="request" class="com.lip6.entities.Salle" ></jsp:useBean>
+<jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <body>
 <form action="UpdateSalleServlet" method="POST">
 	<table>
@@ -19,6 +20,42 @@
 	            <td><input type="submit" name="submit"></td>
 	    </tr>
 	</table>
+</form>
+<br>
+<form action="UpdateSalle2Servlet" method="POST">
+	<table>
+<!-- Gestion des sessions -->  
+         <tr>
+           	<th>Vous voulez ajouter une session √† une salle ?</th><input type="HIDDEN" name="idSalle" type="number" value="<%= salle.getIdSalle()%>">    	
+            	<td><i>Voici la liste des sessions disponibles</i>	
+            		<SELECT size="1">
+            			<% for (Object sess:sessionsdisponibles){%>
+            				<OPTION><%= sess %>	
+						<% } %> 
+					</SELECT> 
+            	</td>
+            	<td><i>Indiquez simplement le num√©ro de la session que vous souhaitez ajouter</i><input name="idSession" type="number" ></td>
+        <tr>
+           	<td><button input type="submit" name="choix" value="assoSession">Ajouter la session</td>
+        </tr>
+           	<%-- <th>Vous voulez supprimer la salle d'une session ?</th><input type="HIDDEN" name="idSalleRm" type="number" value="<%= salle.getIdSalle()%>">
+           	<td><i>Voici la liste des sessions qui sont pour l'instant liÈes ‡ cette salle</i>
+            	<SELECT size="1">
+             		<% for (com.lip6.entities.Session sess:salle.getSessions()){ %>
+						<OPTION value="Session"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
+					<% } %>  
+				</SELECT>
+           	</td>
+           	<td><%= salle.getSessions() %></td>
+           	<td><i>Indiquez simplement le num√©ro de la session que vous souhaitez supprimer</i><input name="idSessionRm" type="number" >
+            	
+         </tr>
+         <tr>
+           	<td><button input type="submit" name="choix" value="rmSession">Supprimer la session</td>
+         </tr>   --%>  
+            
+	</table>
+
 </form>
 </body>
 </html>
