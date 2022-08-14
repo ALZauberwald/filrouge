@@ -50,7 +50,7 @@ public class DAOSession {
 	
 	
 	
-	public boolean addSession(long idFormation ,String nomSession, Float prixSession , String dateDebut , String dateFin , String lieuSession ,TypeSession typesession, long idSalle  ) {
+	public boolean addSession(long idFormation ,String nomSession, Float prixSession , String dateDebut , String dateFin , String lieuSession ,TypeSession typesession) {
 		
 		boolean success=false;
 		try {
@@ -59,13 +59,10 @@ public class DAOSession {
 			
 			tx.begin();	
 			Session se= new Session(nomSession, prixSession, dateDebut,dateFin, lieuSession, typesession);
-			Salle sa = em.find(Salle.class, idSalle);
 			Evaluation eva=new Evaluation("prof");
 			
 			Formation form=em.find(Formation.class,idFormation);
-			se.setSalle(sa);
-			se.getEvaluations().add(eva);
-			sa.getSessions().add(se);	
+			se.getEvaluations().add(eva);	
 			se.setFormation(form);
 			form.getSessions().add(se);
 			em.persist(se);
@@ -91,7 +88,7 @@ public Session searchSession(long id) {
 		se= em.find(Session.class, id);
 		
 		System.out.println(se);
-		
+		tx.commit();
 		em.close();
 		
 		

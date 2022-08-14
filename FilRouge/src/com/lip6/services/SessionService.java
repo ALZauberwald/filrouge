@@ -16,9 +16,9 @@ public class SessionService {
 		return daof.recupSession();
 	}
 	
-	public void createSession(long idFormation,String nomSession, Float prix, String dateDebut,String dateFin, String lieu, TypeSession typesession , long IdSalle) {
+	public void createSession(long idFormation,String nomSession, Float prix, String dateDebut,String dateFin, String lieu, TypeSession typesession ) {
 		DAOSession daos= new DAOSession();
-		daos.addSession(idFormation,nomSession,prix,dateDebut,dateFin,lieu,typesession,IdSalle);
+		daos.addSession(idFormation,nomSession,prix,dateDebut,dateFin,lieu,typesession);
 	}
 	public Session searchSession(long id) {
 		DAOSession daos= new DAOSession();

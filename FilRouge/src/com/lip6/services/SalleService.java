@@ -1,5 +1,6 @@
 package com.lip6.services;
 
+import java.util.Set;
 import com.lip6.daos.DAOSalle;
 import com.lip6.entities.Salle;
 
@@ -26,5 +27,16 @@ public class SalleService {
 		sa.setNomSalle(nomSalle);
 		daos.updateSalle(sa);
 	}
-	
+	public Set<Salle> recupSalle(){
+		DAOSalle daos= new DAOSalle();
+		return daos.recupSalle();
+	}
+	public void assoSession(long idSalle,long idSe){
+		DAOSalle daos= new DAOSalle();
+		daos.assoSession(idSalle, idSe);
+	}
+	public void removeSession(long idSalle,long idSe){
+		DAOSalle daos= new DAOSalle();
+		daos.removeSession(idSalle, idSe);
+	}
 }
