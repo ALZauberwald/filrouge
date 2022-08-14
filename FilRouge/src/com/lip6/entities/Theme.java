@@ -69,6 +69,13 @@ public class Theme {
 		this.sousthemes = sousthemes;
 	}
 
+	@Override
+	public String toString() {
+		return idTheme + "  |  " + nomTheme ;
+	}
+
+	
+	
 //	public Theme getSurtheme() {
 //		return surtheme;
 //	}

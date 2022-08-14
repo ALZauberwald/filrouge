@@ -20,6 +20,48 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
+	public void assoTheme(Long idForm, Long idTheme) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Theme thAAssocier= em.find(Theme.class, idTheme);
+				fo.getTheme().add(thAAssocier);
+				thAAssocier.getFormation().add(fo);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeTheme(Long idForm, Long idTheme) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Theme thASupprimer= em.find(Theme.class, idTheme);
+				fo.getTheme().remove(thASupprimer);
+				thASupprimer.getFormation().remove(fo);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
 	public void assoChapitre(Long idForm, Long idChap) {
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
@@ -48,7 +90,7 @@ public class DAOFormation {
 			tx.begin();
 				Formation fo= em.find(Formation.class, idForm);
 				Chapitre cpASupprimer= em.find(Chapitre.class, idChapitre);
-				fo.getPrerequisFormation().remove(cpASupprimer);
+				fo.getChapitres().remove(cpASupprimer);
 				cpASupprimer.setFormation(null);
 			
 			tx.commit();

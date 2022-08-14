@@ -40,7 +40,7 @@ public class Objectif {
 
 	@Override
 	public String toString() {
-		return "Objectif [idObjectif=" + idObjectif + ", nomObjectif=" + nomObjectif + "]";
+		return  idObjectif + "  |  " + nomObjectif ;
 	}
 	
 	

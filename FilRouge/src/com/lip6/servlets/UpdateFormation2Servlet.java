@@ -79,6 +79,18 @@ public class UpdateFormation2Servlet extends HttpServlet {
 				FormationService formation = new FormationService();
 				formation.rmChapitre(idform, idObj);
 			}
+			else if(choix.equals("assoTheme")) {
+				long idform= Long.parseLong(request.getParameter("idFormation"));
+				long idChap= Long.parseLong(request.getParameter("idTheme"));
+				FormationService forma = new FormationService();
+				forma.assoTheme(idform, idChap);
+			}
+			else if (choix.equals("rmTheme")) {
+				long idform= Long.parseLong(request.getParameter("idFormationRm"));
+				long idObj= Long.parseLong(request.getParameter("idThemeRm"));
+				FormationService formation = new FormationService();
+				formation.rmTheme(idform, idObj);
+			}
 
 			response.sendRedirect("index.html");
 	}

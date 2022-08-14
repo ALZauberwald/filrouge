@@ -111,8 +111,7 @@ public class Chapitre {
 	}
 	@Override
 	public String toString() {
-		return "Chapitre -->  nomChapitre=" + nomChapitre + ", idChapitre=" + idChapitre + ", dureeChapitre="
-				+ dureeChapitre + ", detailChapitre=" + detailChapitre + ", formation=" + formation ;
+		return idChapitre + "  |  " + nomChapitre ;
 	}
 
 

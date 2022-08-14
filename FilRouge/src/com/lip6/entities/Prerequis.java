@@ -35,7 +35,7 @@ public class Prerequis {
 	}
 	@Override
 	public String toString() {
-		return "Prerequis [idPrerequis=" + idPrerequis + ", nomPrerequis=" + nomPrerequis + "]";
+		return  idPrerequis + "  |  "+ nomPrerequis ;
 	}
 	
 	
