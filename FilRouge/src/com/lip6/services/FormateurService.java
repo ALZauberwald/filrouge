@@ -8,4 +8,12 @@ public class FormateurService {
 		fm.addFormateur(nomStagiaire,prenomStagiaire,adresse,tel,mail,dateEmbauche);
 		
 	}
+	public void searchFormateur(String nom, String prenom) {
+		DAOFormateur fm = new DAOFormateur();
+		fm.searchFormateur(nom, prenom);
+	}
+	public void removeFormateur(String nom, String prenom) {
+		DAOFormateur fm = new DAOFormateur();
+		fm.removeFormateur(nom, prenom);
+	}
 }

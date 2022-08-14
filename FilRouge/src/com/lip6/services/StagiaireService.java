@@ -8,4 +8,12 @@ public class StagiaireService {
 		st.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
 		
 	}
+	public void searchStagiaire(String nom, String prenom) {
+		DAOStagiaire st = new DAOStagiaire();
+		st.searchStagiaire(nom,prenom);
+	}
+	public void removeStagiaire(String nom, String prenom) {
+		DAOStagiaire st = new DAOStagiaire();
+		st.removeStagiaire(nom,prenom);
+	}
 }

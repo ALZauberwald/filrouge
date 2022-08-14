@@ -28,5 +28,43 @@
             </tr>
 		</table>
 	</form>
+	<br>
+	<h1>Rechercher un formateur existant</h1>
+	<br>
+	<form action="SearchFormateurServlet" method="POST">
+		<table>		
+			<tr>          
+	          	<td><i>Rechercher un formateur</i> 
+	         </tr>
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le nom du formateur</i> <input type="text" name="nom"></td>
+	         </tr> 
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le prénom du formateur</i> <input type="text" name="prenom"></td>
+	         </tr>       
+	         <tr>
+	         	<td><input type="submit" name="submit"></td>
+	         </tr>
+		</table>
+	</form>
+	<br>
+	<h1>Supprimer un formateur existant</h1>
+	<br>
+	<form action="RemoveFormateurServlet" method="POST">
+		<table>		
+			<tr>          
+	          	<td><i>Supprimer un formateur</i> 
+	         </tr>
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le nom du formateur</i> <input type="text" name="nom"></td>
+	         </tr> 
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le prénom du formateur</i> <input type="text" name="prenom"></td>
+	         </tr>       
+	         <tr>
+	         	<td><input type="submit" name="submit"></td>
+	         </tr>
+		</table>
+	</form>
 </body>
 </html>
