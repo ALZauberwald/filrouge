@@ -21,6 +21,7 @@ import com.lip6.services.ObjectifService;
 
 import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
+import com.lip6.services.ThemeService;
 
 
 /**
@@ -58,12 +59,13 @@ public class SearchFormationServlet extends HttpServlet {
 		PrerequisService prerequisserv = new PrerequisService();
 		ChapitreService chapitreserv = new ChapitreService();
 		SessionService sessionserv = new SessionService();
+		ThemeService themeserv = new ThemeService();
 		
-		ObjectifService objectifserv= new ObjectifService();
 		request.setAttribute("form",formation.searchFormation(id));
 		request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());
 		request.setAttribute("prerequisdisponibles", prerequisserv.recupPrerequis());
 		request.setAttribute("chapitresdisponibles", chapitreserv.recupChapitres());
+		request.setAttribute("themesdisponibles", themeserv.recupTheme());
 		//request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
 
 		

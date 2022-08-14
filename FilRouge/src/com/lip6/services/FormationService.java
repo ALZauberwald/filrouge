@@ -10,6 +10,14 @@ import com.lip6.entities.TypeSession;
 
 //passe plat vers le DAO
 public class FormationService {
+	public void assoTheme(long idForm,long idTh){
+		DAOFormation daof= new DAOFormation();
+		daof.assoTheme(idForm, idTh);
+	}
+	public void rmTheme(long idForm,long idTh){
+		DAOFormation daof= new DAOFormation();
+		daof.removeTheme(idForm, idTh);
+	}
 	public void assoChapitre(long idForm,long idChap){
 		DAOFormation daof= new DAOFormation();
 		daof.assoChapitre(idForm, idChap);
