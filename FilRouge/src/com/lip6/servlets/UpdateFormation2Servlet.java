@@ -79,6 +79,7 @@ public class UpdateFormation2Servlet extends HttpServlet {
 				FormationService formation = new FormationService();
 				formation.rmChapitre(idform, idObj);
 			}
+
 			response.sendRedirect("index.html");
 	}
 

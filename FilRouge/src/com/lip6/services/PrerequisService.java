@@ -7,7 +7,9 @@ import com.lip6.entities.Prerequis;
 
 public class PrerequisService {
 	
+
 	public Set<Prerequis> recupPrerequis(){
+
 		DAOPrerequis daof= new DAOPrerequis();
 		return daof.recupPrerequis();
 	}
@@ -27,7 +29,7 @@ public class PrerequisService {
 
 	public void updatePrerequis(String champAModif, String modif , long id) {
 		DAOPrerequis daos= new DAOPrerequis();
-		//Récupération objet de la BDD
+		//RÃ©cupÃ©ration objet de la BDD
 		Prerequis Prerequis= daos.searchPrerequis(id);
 		//modif
 		if(champAModif.contentEquals("nom")) {

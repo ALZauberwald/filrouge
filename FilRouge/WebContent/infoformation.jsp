@@ -13,12 +13,13 @@
 <jsp:useBean id="chapitresdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
+
 <body>
  
 <form action="UpdateFormationServlet" method="POST">
 	<table>
 		<tr>          
-	    	<td><i>Modifier une formation dans la base de donnée.</i> 
+	    	<td><i>Modifier une formation dans la base de donnÃ©e.</i> 
         </tr>
         <tr>
            	<td><i>Id Formation</i> <%= form.getIdFormation() %> </td>
@@ -52,13 +53,13 @@
 			</td>     
         </tr>
         <tr>
-           	<td><i>Formation n°<%= form.getIdFormation()%></i> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
-           	<td><i>Veuillez choisir le champ à modifier</i>
+           	<td><i>Formation nÂ°<%= form.getIdFormation()%></i> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
+           	<td><i>Veuillez choisir le champ Ã  modifier</i>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom de la formation (<%= form.getNomFormation()%>)
 					<OPTION value="detail"> Detail de la formation (<%= form.getDetailFormation()%>)
 				</SELECT> 
-       		<td><i>Veuillez rentrer la valeur du champ à modifier</i> <input name="modif" type="text" /></td>
+       		<td><i>Veuillez rentrer la valeur du champ Ã  modifier</i> <input name="modif" type="text" /></td>
         </tr>
         <tr>
              <td><input type="submit" name="submit"></td>
@@ -71,7 +72,7 @@
 		</br>
 		<!-- Gestion des objectifs -->  
         <tr>
-           	<th>Vous voulez ajouter un objectif à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
+           	<th>Vous voulez ajouter un objectif Ã  la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des objectifs disponibles</i>	
             		<SELECT size="1">
             			<% for (Object objectif:objectifsdisponibles){%>
@@ -79,19 +80,19 @@
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez ajouter</i><input name="idObjectif" type="number" ></td>
+            	<td><i>Indiquez simplement le numÃ©ro de l'objectif que vous souhaitez ajouter</i><input name="idObjectif" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="asso">Ajouter l'objectif</td>
         </tr>
            	<th>Vous voulez supprimer un objectif de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-           	<td><i>Voici la liste des objectifs qui sont pour l'instant liés à cette formation</i>
+           	<td><i>Voici la liste des objectifs qui sont pour l'instant liÃ©s Ã  cette formation</i>
             	<SELECT size="1">
             		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){%>
 						<OPTION value="objectif"> <%= objectif.getNomObjectif()%>
 					<% } %> 
 				</SELECT> 
            	</td>
-           	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez supprimer</i><input name="idObjectifRm" type="number" >
+           	<td><i>Indiquez simplement le numÃ©ro de l'objectif que vous souhaitez supprimer</i><input name="idObjectifRm" type="number" >
             	
          </tr>
          <tr>
@@ -101,7 +102,7 @@
           <!-- Gestion des prerequis -->  
           </br></br>
          <tr>
-           	<th>Vous voulez ajouter un prerequis à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
+           	<th>Vous voulez ajouter un prerequis Ã  la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des prerequis disponibles</i>	
             		<SELECT size="1">
             			<% for (Object prerequis:prerequisdisponibles){%>
@@ -109,19 +110,19 @@
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro du prerequis que vous souhaitez ajouter</i><input name="idPrerequis" type="number" ></td>
+            	<td><i>Indiquez simplement le numÃ©ro du prerequis que vous souhaitez ajouter</i><input name="idPrerequis" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoPrerequis">Ajouter le prerequis</td>
         </tr>
            	<th>Vous voulez supprimer un prerequis de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-           	<td><i>Voici la liste des prerequis qui sont pour l'instant liés à cette formation</i>
+           	<td><i>Voici la liste des prerequis qui sont pour l'instant liÃ©s Ã  cette formation</i>
             	<SELECT size="1">
             		<% for (com.lip6.entities.Prerequis prerequis:form.getPrerequisFormation()){%>
 						<OPTION value="prerequis"> <%= prerequis.getNomPrerequis()%>
 					<% } %> 
 				</SELECT> 
            	</td>
-           	<td><i>Indiquez simplement le numéro du prerequis que vous souhaitez supprimer</i><input name="idPrerequisRm" type="number" >        	
+           	<td><i>Indiquez simplement le numÃ©ro du prerequis que vous souhaitez supprimer</i><input name="idPrerequisRm" type="number" >        	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmPrerequis">Supprimer le prerequis</td>
@@ -129,7 +130,7 @@
             
             <!-- Gestion des chapitres -->  
         <tr>
-           	<th>Vous voulez ajouter un chapitre à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
+           	<th>Vous voulez ajouter un chapitre Ã  la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des chapitres disponibles</i>	
             		<SELECT size="1">
             			<% for (Object chapitre:chapitresdisponibles){%>
@@ -137,19 +138,19 @@
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro du chapitre que vous souhaitez ajouter</i><input name="idChapitre" type="number" ></td>
+            	<td><i>Indiquez simplement le numÃ©ro du chapitre que vous souhaitez ajouter</i><input name="idChapitre" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoChapitre">Ajouter le chapitre</td>
         </tr>
            	<th>Vous voulez supprimer un chapitre de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-           	<td><i>Voici la liste des chapitres qui sont pour l'instant liés à cette formation</i>
+           	<td><i>Voici la liste des chapitres qui sont pour l'instant liÃ©s Ã  cette formation</i>
             	<SELECT size="1">
             		<% for (com.lip6.entities.Chapitre chapitre:form.getChapitres()){%>
 						<OPTION value="chapitre"> <%= chapitre.getNomChapitre()%>
 					<% } %> 
 				</SELECT> 
            	</td>
-           	<td><i>Indiquez simplement le numéro du chapitre que vous souhaitez supprimer</i><input name="idChapitreRm" type="number" >
+           	<td><i>Indiquez simplement le numÃ©ro du chapitre que vous souhaitez supprimer</i><input name="idChapitreRm" type="number" >
             	
          </tr>
          <tr>
@@ -157,6 +158,7 @@
          </tr>
             
 	</table>
+
 </form>
 <br>
 </body>
