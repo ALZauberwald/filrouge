@@ -44,7 +44,6 @@ public class CreerSessionServlet extends HttpServlet {
 		String dateFin = request.getParameter("dateFin");
 		String lieuSession =request.getParameter("lieuSession");
 		String typeSession = request.getParameter("typeSession");
-		long idSalle = Long.parseLong(request.getParameter("idSalle"));
 		
 		TypeSession type = TypeSession.INTER_ENTREPRISE;
 		if(typeSession.equals("inter entreprise"))
@@ -57,7 +56,7 @@ public class CreerSessionServlet extends HttpServlet {
 		
 		
 		SessionService session= new SessionService();
-		session.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,dateFin,lieuSession,type,idSalle);
+		session.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,dateFin,lieuSession,type);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

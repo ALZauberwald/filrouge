@@ -27,7 +27,7 @@ public class DAOSalle {
 			tx.commit();
 			
 			em.close();
-			
+			System.out.println(sa.getSessions());
 			success=true;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -45,7 +45,8 @@ public class DAOSalle {
 			sa= em.find(Salle.class, id);
 			
 			System.out.println(sa);
-			
+			System.out.println(sa.getSessions());
+			tx.commit();
 			em.close();
 			
 			

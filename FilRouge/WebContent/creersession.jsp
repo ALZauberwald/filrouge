@@ -22,7 +22,6 @@
 	            <td><i>Date de fin de la session</i> <input type="text" name="dateFin">  </td>
 	            <td><i>Ville de la session</i> <input type="text" name="lieuSession">  </td>
 	            <td><i>Type de session</i> <input type="text" name="typeSession">  </td>
-	            <td><i>Id de la salle prévue</i> <input type="number" name="idSalle">  </td>
             </tr>
             
             <tr>

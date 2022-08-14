@@ -38,7 +38,7 @@
         <tr>
            	<td><button input type="submit" name="choix" value="assoSession">Ajouter la session</td>
         </tr>
-           	<%-- <th>Vous voulez supprimer la salle d'une session ?</th><input type="HIDDEN" name="idSalleRm" type="number" value="<%= salle.getIdSalle()%>">
+           	<th>Vous voulez supprimer la salle d'une session ?</th><input type="HIDDEN" name="idSalleRm" type="number" value="<%= salle.getIdSalle()%>">
            	<td><i>Voici la liste des sessions qui sont pour l'instant liées à cette salle</i>
             	<SELECT size="1">
              		<% for (com.lip6.entities.Session sess:salle.getSessions()){ %>
@@ -46,13 +46,12 @@
 					<% } %>  
 				</SELECT>
            	</td>
-           	<td><%= salle.getSessions() %></td>
            	<td><i>Indiquez simplement le numÃ©ro de la session que vous souhaitez supprimer</i><input name="idSessionRm" type="number" >
             	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmSession">Supprimer la session</td>
-         </tr>   --%>  
+         </tr>     
             
 	</table>
 

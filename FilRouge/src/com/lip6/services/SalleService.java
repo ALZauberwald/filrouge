@@ -1,10 +1,7 @@
 package com.lip6.services;
 
 import java.util.Set;
-
-import com.lip6.daos.DAOFormation;
 import com.lip6.daos.DAOSalle;
-import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 
 public class SalleService {

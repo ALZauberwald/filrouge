@@ -33,7 +33,7 @@ public class Session {
 	@Column(columnDefinition = "BOOLEAN")
 	private boolean installationFinie=false;
 	
-	@ManyToOne(cascade = {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@ManyToOne
 	@JoinColumn(name="id_salle")
 	private Salle salle;
 	
@@ -71,7 +71,7 @@ public class Session {
 	}
 
 	public Session() {
-		super();
+		
 	}
 
 	public long getIdSession() {

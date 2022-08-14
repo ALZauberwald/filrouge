@@ -19,7 +19,7 @@ public class Salle {
 	private long idSalle;
 	private String adresse;
 	private String nomSalle;
-	@OneToMany(cascade= {CascadeType.ALL},mappedBy="salle")
+	@OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},mappedBy="salle")
 	private Set <Session> sessions = new HashSet<>();
 	
 	public Salle(String adresse, String nomSalle) {
@@ -55,11 +55,11 @@ public class Salle {
 		this.nomSalle = nomSalle;
 	}
 
-	public Set <Session> getSessions() {
+	public Set<Session> getSessions() {
 		return sessions;
 	}
 
-	public void setSessions(HashSet <Session> sessions) {
+	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
 
