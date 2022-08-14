@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lip6.services.FormationService;
+import com.lip6.services.SessionService;
 import com.lip6.services.ThemeService;
 
 /**
@@ -43,6 +45,12 @@ public class SearchThemeServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idTheme"));
 		ThemeService theme= new ThemeService();
+		
+		FormationService formationserv = new FormationService();
+		request.setAttribute("formationsdisponibles", formationserv.recupFormations());
+		
+		ThemeService themeserv = new ThemeService();
+		request.setAttribute("themesdisponibles", themeserv.recupTheme());
 		
 		request.setAttribute("form",theme.searchTheme(id));
 		RequestDispatcher rd= request.getRequestDispatcher("infoTheme.jsp") ;

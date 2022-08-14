@@ -12,48 +12,50 @@
 <jsp:useBean id="prerequisdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="chapitresdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="themesdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
-<%-- <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean> --%>
+<jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
 
 <body>
  
 <form action="UpdateFormationServlet" method="POST">
 	<table>
-		<tr>          
-	    	<td><i>Modifier une formation dans la base de donnée.</i> 
-        </tr>
+	<!-- affichage du contenu de la formation -->          
+	    	<h1>Modifier une formation dans la base de donnee.</h1> 
         <tr>
-           	<td><i>Id Formation</i> <%= form.getIdFormation() %> </td>
-           	<td><i>nomFormation</i> <%= form.getNomFormation() %>  </td>
-           	<td><i>Detail de la formation</i> <%= form.getDetailFormation() %>  </td>
+        	<h2>Voici le contenu de la formation selectionnee</h2>
+           	<td><i>Id Formation</i> </br><%= form.getIdFormation() %> </td>
+           	<td><i>nomFormation</i> </br><%= form.getNomFormation() %>  </td>
+           	<td><i>Detail de la formation</i> </br><%= form.getDetailFormation() %>  </td>
              	
             <td><i>Objectifs</i>            
            		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){ %>
-   				<%= objectif.getNomObjectif() %> </br>
+   				</br><%= objectif.getNomObjectif() %> 
 				<% } %> 
             </td>
              <td><i>Prerequis</i> 
             	<% for (com.lip6.entities.Prerequis prerequis:form.getPrerequisFormation()){ %>
-   				<%= prerequis.getNomPrerequis() %> </br>
+   				</br><%= prerequis.getNomPrerequis() %> 
 				<% } %> 
 			</td> 
              <td><i>Sessions</i> 
              	<% for (com.lip6.entities.Session ses:form.getSessions()){ %>
-   				<%= ses.getNomSession() %> </br>
+   				</br><%= ses.getNomSession() %> 
 				<% } %>   
 			</td> 
              <td><i>Theme</i> 
              	<% for (com.lip6.entities.Theme th:form.getTheme()){ %>
-   				<%= th.getNomTheme() %> </br>
+   				</br><%= th.getNomTheme() %> 
 				<% } %>   
 			</td>
             <td><i>Chapitres </i> 
             	<% for (com.lip6.entities.Chapitre cp:form.getChapitres()){ %>
-   				<%= cp.getNomChapitre() %> </br>
+   				</br><%= cp.getNomChapitre() %> 
 				<% } %>   
 			</td>     
         </tr>
+        <!-- affichage des modifications possibles (les champs)-->
         <tr>
+        	<h2>Pour modifier un champ</h2>
            	<td><i>Formation n°<%= form.getIdFormation()%></i> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">
@@ -67,12 +69,13 @@
         </tr>
    </table>
 </form>
-
+<!-- affichage des modifications d'associations possibles -->
 <form action="UpdateFormation2Servlet" method="POST">
 	<table>
 		</br>
 		<!-- Gestion des objectifs -->  
         <tr>
+        	<h2>Pour modifier une association</h2>
            	<th>Vous voulez ajouter un objectif à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des objectifs disponibles</i>	
             		<SELECT size="1">
@@ -186,6 +189,35 @@
          <tr>
            	<td><button input type="submit" name="choix" value="rmTheme">Supprimer le theme</td>
          </tr> 
+            
+         <!-- Gestion des sessions -->  
+         <tr>
+           	<th>Vous voulez ajouter une session à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
+            	<td><i>Voici la liste des sessions disponibles</i>	
+            		<SELECT size="1">
+            			<% for (Object sess:sessionsdisponibles){%>
+            				<OPTION><%= sess %>	
+						<% } %> 
+					</SELECT> 
+            	</td>
+            	<td><i>Indiquez simplement le numéro de la session que vous souhaitez ajouter</i><input name="idSession" type="number" ></td>
+        <tr>
+           	<td><button input type="submit" name="choix" value="assoSession">Ajouter la session</td>
+        </tr>
+           	<th>Vous voulez supprimer une session de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
+           	<td><i>Voici la liste des sessions qui sont pour l'instant liés à cette formation</i>
+            	<SELECT size="1">
+            		<% for (com.lip6.entities.Session sess:form.getSessions()){ %>
+						<OPTION value="Session"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
+					<% } %> 
+				</SELECT> 
+           	</td>
+           	<td><i>Indiquez simplement le numéro de la session que vous souhaitez supprimer</i><input name="idSessionRm" type="number" >
+            	
+         </tr>
+         <tr>
+           	<td><button input type="submit" name="choix" value="rmSession">Supprimer la session</td>
+         </tr>    
             
 	</table>
 

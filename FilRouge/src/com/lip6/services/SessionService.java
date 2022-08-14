@@ -1,12 +1,21 @@
 package com.lip6.services;
 
+import java.util.Set;
+
+import com.lip6.daos.DAOChapitre;
 import com.lip6.daos.DAOSalle;
 import com.lip6.daos.DAOSession;
+import com.lip6.entities.Chapitre;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
 
 public class SessionService {
+	public Set<Session> recupSession(){
+		DAOSession daof= new DAOSession();
+		return daof.recupSession();
+	}
+	
 	public void createSession(long idFormation,String nomSession, Float prix, String dateDebut,String dateFin, String lieu, TypeSession typesession , long IdSalle) {
 		DAOSession daos= new DAOSession();
 		daos.addSession(idFormation,nomSession,prix,dateDebut,dateFin,lieu,typesession,IdSalle);

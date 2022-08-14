@@ -57,15 +57,15 @@ public class UpdateFormation2Servlet extends HttpServlet {
 			}
 			else if(choix.equals("assoPrerequis")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
-				long idObj= Long.parseLong(request.getParameter("idPrerequis"));
+				long idPr= Long.parseLong(request.getParameter("idPrerequis"));
 				FormationService forma = new FormationService();
-				forma.assoPrerequis(idform, idObj);
+				forma.assoPrerequis(idform, idPr);
 			}
 			else if (choix.equals("rmPrerequis")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
-				long idObj= Long.parseLong(request.getParameter("idPrerequisRm"));
+				long idPr= Long.parseLong(request.getParameter("idPrerequisRm"));
 				FormationService formation = new FormationService();
-				formation.rmPrerequis(idform, idObj);
+				formation.rmPrerequis(idform, idPr);
 			}
 			else if(choix.equals("assoChapitre")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
@@ -75,21 +75,33 @@ public class UpdateFormation2Servlet extends HttpServlet {
 			}
 			else if (choix.equals("rmChapitre")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
-				long idObj= Long.parseLong(request.getParameter("idChapitreRm"));
+				long idChap= Long.parseLong(request.getParameter("idChapitreRm"));
 				FormationService formation = new FormationService();
-				formation.rmChapitre(idform, idObj);
+				formation.rmChapitre(idform, idChap);
 			}
 			else if(choix.equals("assoTheme")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
-				long idChap= Long.parseLong(request.getParameter("idTheme"));
+				long idTh= Long.parseLong(request.getParameter("idTheme"));
 				FormationService forma = new FormationService();
-				forma.assoTheme(idform, idChap);
+				forma.assoTheme(idform, idTh);
 			}
 			else if (choix.equals("rmTheme")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
-				long idObj= Long.parseLong(request.getParameter("idThemeRm"));
+				long idth= Long.parseLong(request.getParameter("idThemeRm"));
 				FormationService formation = new FormationService();
-				formation.rmTheme(idform, idObj);
+				formation.rmTheme(idform, idth);
+			}
+			else if(choix.equals("assoSession")) {
+				long idform= Long.parseLong(request.getParameter("idFormation"));
+				long idsess= Long.parseLong(request.getParameter("idSession"));
+				FormationService forma = new FormationService();
+				forma.assoSession(idform, idsess);
+			}
+			else if (choix.equals("rmSession")) {
+				long idform= Long.parseLong(request.getParameter("idFormationRm"));
+				long idsess= Long.parseLong(request.getParameter("idSessionRm"));
+				FormationService formation = new FormationService();
+				formation.rmSession(idform, idsess);
 			}
 
 			response.sendRedirect("index.html");

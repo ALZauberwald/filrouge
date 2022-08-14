@@ -10,12 +10,95 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import com.lip6.entities.Formation;
+import com.lip6.entities.Session;
 import com.lip6.entities.Theme;
 import com.lip6.util.JpaUtil;
 
 
 
 public class DAOTheme {
+	public void assoSoustheme(Long idTheme, Long idSoustheme) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Theme th= em.find(Theme.class, idTheme);
+				Theme sousthemeAAssocier= em.find(Theme.class, idSoustheme);
+				th.getSousthemes().add(sousthemeAAssocier);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeSoustheme(Long idTheme, Long idSoustheme) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Theme th= em.find(Theme.class, idTheme);
+				Theme sousthemeASupprimer= em.find(Theme.class, idSoustheme);
+				th.getSousthemes().remove(sousthemeASupprimer);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void assoFormation(Long idTheme, Long idFormation) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Theme th= em.find(Theme.class, idTheme);
+				Formation formationAAssocier= em.find(Formation.class, idFormation);
+				th.getFormation().add(formationAAssocier);
+				formationAAssocier.getTheme().add(th);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeFormation(Long idTheme, Long idFormation) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Theme th= em.find(Theme.class, idTheme);
+				Formation formationASupprimer= em.find(Formation.class, idFormation);
+				th.getFormation().remove(formationASupprimer);
+				formationASupprimer.getTheme().remove(th);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	
 	public Set<Theme> recupTheme(){
 		Set<Theme> setTheme = new HashSet<>();
