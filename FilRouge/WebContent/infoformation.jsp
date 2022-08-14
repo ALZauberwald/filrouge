@@ -12,7 +12,7 @@
 <jsp:useBean id="prerequisdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="chapitresdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="themesdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
-<%-- <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean> --%>
+<jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
 
 <body>
@@ -186,6 +186,35 @@
          <tr>
            	<td><button input type="submit" name="choix" value="rmTheme">Supprimer le theme</td>
          </tr> 
+            
+         <!-- Gestion des sessions -->  
+         <tr>
+           	<th>Vous voulez ajouter une session à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
+            	<td><i>Voici la liste des sessions disponibles</i>	
+            		<SELECT size="1">
+            			<% for (Object sess:sessionsdisponibles){%>
+            				<OPTION><%= sess %>	
+						<% } %> 
+					</SELECT> 
+            	</td>
+            	<td><i>Indiquez simplement le numéro de la session que vous souhaitez ajouter</i><input name="idSession" type="number" ></td>
+        <tr>
+           	<td><button input type="submit" name="choix" value="assoSession">Ajouter la session</td>
+        </tr>
+           	<th>Vous voulez supprimer une session de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
+           	<td><i>Voici la liste des sessions qui sont pour l'instant liés à cette formation</i>
+            	<SELECT size="1">
+            		<% for (com.lip6.entities.Session sess:form.getSessions()){ %>
+						<OPTION value="Session"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
+					<% } %> 
+				</SELECT> 
+           	</td>
+           	<td><i>Indiquez simplement le numéro de la session que vous souhaitez supprimer</i><input name="idSessionRm" type="number" >
+            	
+         </tr>
+         <tr>
+           	<td><button input type="submit" name="choix" value="rmSession">Supprimer la session</td>
+         </tr>    
             
 	</table>
 

@@ -20,6 +20,49 @@ import com.lip6.util.JpaUtil;
 
 
 public class DAOFormation {
+	public void assoSession(Long idForm, Long idSession) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Session sessAAssocier= em.find(Session.class, idSession);
+				fo.getSessions().add(sessAAssocier);
+				sessAAssocier.setFormation(fo);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeSession(Long idForm, Long idSession) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formation fo= em.find(Formation.class, idForm);
+				Session sessASupprimer= em.find(Session.class, idSession);
+				fo.getTheme().remove(sessASupprimer);
+				sessASupprimer.setFormation(null);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
 	public void assoTheme(Long idForm, Long idTheme) {
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	

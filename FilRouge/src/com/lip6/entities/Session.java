@@ -194,11 +194,7 @@ public class Session {
 
 	@Override
 	public String toString() {
-		return "Session [idSession=" + idSession + ", nomSession=" + nomSession + ", prix=" + prix + ", dateDebut="
-				+ dateDebut + ", dateFin=" + dateFin + ", lieu=" + lieu + ", formateurConfirme=" + formateurConfirme
-				+ ", typeSession=" + typeSession + ", installationFinie=" + installationFinie + ", salle=" + salle
-				+ ", evaluations=" + evaluations + ", formateur=" + formateur + ", stagiaires=" + stagiaires
-				+ ", client=" + client + ", formation=" + formation + "]";
+		return  idSession + "  |  "  + nomSession;
 	}
 	
 	

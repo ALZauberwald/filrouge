@@ -58,15 +58,15 @@ public class SearchFormationServlet extends HttpServlet {
 		ObjectifService objectifserv= new ObjectifService();
 		PrerequisService prerequisserv = new PrerequisService();
 		ChapitreService chapitreserv = new ChapitreService();
-		SessionService sessionserv = new SessionService();
 		ThemeService themeserv = new ThemeService();
+		SessionService sessionserv = new SessionService();
 		
 		request.setAttribute("form",formation.searchFormation(id));
 		request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());
 		request.setAttribute("prerequisdisponibles", prerequisserv.recupPrerequis());
 		request.setAttribute("chapitresdisponibles", chapitreserv.recupChapitres());
 		request.setAttribute("themesdisponibles", themeserv.recupTheme());
-		//request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
+		request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
 
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infoformation.jsp") ;
