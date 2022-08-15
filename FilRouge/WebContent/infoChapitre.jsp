@@ -8,6 +8,7 @@
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Chapitre" ></jsp:useBean>
+<jsp:useBean id="formationsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <body>
  
 <form action="UpdateChapitreServlet" method="POST">
@@ -21,8 +22,13 @@
          	<td><i>Durée du Chapitre</i> <%= form.getDureeChapitre()%>  </td>
          	<td><i>Détail du Chapitre</i> <%= form.getDetailChapitre() %>  </td>
          	
-
-         	 <td><i>formation à laquelle ce chapitre est rattaché </i></br> <%= form.getFormation().getNomFormation() %></td>  
+				<!-- Attention, ici si aucune formation n'est associ�e au chapitre, alors form.getFormation()renvoie null et met en defaut la page -->
+         	 <td><i>formation à laquelle ce chapitre est rattaché </i></br>  
+         	 <% if(form.getFormation()==null){%>
+         	Pas de formation associ�e<%}else{%>
+         	 <%com.lip6.entities.Formation fm =form.getFormation();%>
+         	 <%=fm.getNomFormation()%>
+         	 <%}%></td>   
 
 
            	
@@ -43,6 +49,46 @@
         </tr>
 	</table>
 </form>
-<br>
+
+
+<!-- affichage des modifications possibles (les associations)-->
+<form action="UpdateChapitre2Servlet" method="POST">
+	<table>
+		<!-- Gestion des formations -->  
+        <tr>
+           	<th>Vous voulez changer la formation associee � ce chapitre ?</th><input type="HIDDEN" name="idChapitre" type="number" value="<%= form.getIdChapitre()%>">    	
+            	<td><i>Voici la liste des formations disponibles</i>	
+            		<SELECT size="1">
+            			<% for (Object formation:formationsdisponibles){%>
+							<OPTION> <%= formation%>	
+						<% } %> 
+					</SELECT> 
+            	</td>
+            	<td><i>Indiquez simplement le numéro de la formation que vous souhaitez ajouter</i><input name="idFormation" type="number" ></td>
+        </tr>
+        <tr>
+           	<td><button input type="submit" name="choix" value="assoFormation">Ajouter la formation</td>
+        </tr>
+        <tr>
+           	<th>Vous voulez supprimer une formation de ce chapitre ?</th><input type="HIDDEN" name="idChapitreRm" type="number" value="<%= form.getIdChapitre()%>">
+           	<td><i>Voici la formation qui est pour l'instant li�e à ce chapitre</i>
+            	 <SELECT size="1">	
+						 <OPTION value="formation"> 
+						 <% if(form.getFormation()==null){%>
+						 <%}else{%>
+						 <%com.lip6.entities.Formation fm =form.getFormation();%>
+						 <%= fm.getIdFormation()%>  |  <%= fm.getNomFormation()%> 
+						 <%}%>
+				</SELECT>  
+           	</td>
+           	<td><i>Indiquez simplement le numéro de la formation que vous souhaitez supprimer</i><input name="idFormationRm" type="number" ></td>
+            	
+         </tr>
+         <tr>
+           	<td><button input type="submit" name="choix" value="rmFormation">Supprimer la formation</td>
+         </tr>
+		</br>
+	</table>
+</form>
 </body>
 </html>
