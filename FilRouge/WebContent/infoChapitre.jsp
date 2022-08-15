@@ -21,8 +21,7 @@
          	<td><i>Nom du Chapitre</i> <%= form.getNomChapitre() %>  </td>
          	<td><i>Dur√©e du Chapitre</i> <%= form.getDureeChapitre()%>  </td>
          	<td><i>D√©tail du Chapitre</i> <%= form.getDetailChapitre() %>  </td>
-         	
-				<!-- Attention, ici si aucune formation n'est associÈe au chapitre, alors form.getFormation()renvoie null et met en defaut la page -->
+      
          	 <td><i>formation √† laquelle ce chapitre est rattach√© </i></br>  
          	 <% if(form.getFormation()==null){%>
          	Pas de formation associÈe<%}else{%>
@@ -58,13 +57,13 @@
         <tr>
            	<th>Vous voulez changer la formation associee ‡ ce chapitre ?</th><input type="HIDDEN" name="idChapitre" type="number" value="<%= form.getIdChapitre()%>">    	
             	<td><i>Voici la liste des formations disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name ="idFormation">
             			<% for (Object formation:formationsdisponibles){%>
-							<OPTION> <%= formation%>	
+							<OPTION value ="<%= formation.toString().split("  |  ")[0]%>"> <%= formation%>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le num√©ro de la formation que vous souhaitez ajouter</i><input name="idFormation" type="number" ></td>
+            	
         </tr>
         <tr>
            	<td><button input type="submit" name="choix" value="assoFormation">Ajouter la formation</td>
@@ -72,21 +71,19 @@
         <tr>
            	<th>Vous voulez supprimer une formation de ce chapitre ?</th><input type="HIDDEN" name="idChapitreRm" type="number" value="<%= form.getIdChapitre()%>">
            	<td><i>Voici la formation qui est pour l'instant liÈe √† ce chapitre</i>
-            	 <SELECT size="1">	
-						 <OPTION value="formation"> 
+            	 <SELECT size="1" name ="idFormationRm">	
+						 <OPTION value="<%= form.toString().split("  |  ")[0]%>"> 
 						 <% if(form.getFormation()==null){%>
 						 <%}else{%>
 						 <%com.lip6.entities.Formation fm =form.getFormation();%>
 						 <%= fm.getIdFormation()%>  |  <%= fm.getNomFormation()%> 
 						 <%}%>
 				</SELECT>  
-           	</td>
-           	<td><i>Indiquez simplement le num√©ro de la formation que vous souhaitez supprimer</i><input name="idFormationRm" type="number" ></td>
-            	
-         </tr>
-         <tr>
+           	</td>        	
+       </tr>
+       <tr>
            	<td><button input type="submit" name="choix" value="rmFormation">Supprimer la formation</td>
-         </tr>
+       </tr> 
 		</br>
 	</table>
 </form>
