@@ -1,3 +1,4 @@
+<%@page import="com.lip6.services.ThemeService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -31,8 +32,14 @@
 			<tr>          
 	          	<td><i>Rechercher un theme</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner l'id du theme que vous recherchez</i> <input type="number" name="idTheme"></td>
+	         <tr>   
+		         <Select name ="idTheme">
+		            <%com.lip6.services.ThemeService thmserv= new ThemeService();%>
+					<%java.util.Set<com.lip6.entities.Theme> themesdisponibles = thmserv.recupTheme(); %>
+					<% for (Object theme:themesdisponibles){ %>
+	   				</br><option value ="<%= theme.toString().split("  |  ")[0]%>"><%= theme %> 
+					<% } %>
+				 </Select>     	
 	         </tr>        
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -48,8 +55,12 @@
 			<tr>          
 	         	<td><i>Supprimer un theme de la base de donnée.</i> 
 	        </tr>
-	        <tr>     	
-	           	<td><i>Veuillez renseigner l'id du theme que vous souhaitez supprimer</i> <input type="number" name="idTheme">  </td>       
+	        <tr>  
+	        	<Select name ="idTheme">
+					<% for (Object theme:themesdisponibles){ %>
+	   				</br><option value ="<%= theme.toString().split("  |  ")[0]%>"><%= theme %> 
+					<% } %>
+				</Select>   	     
 	        <tr>
 	            <td><input type="submit" name="submit"></td>
 	        </tr>
