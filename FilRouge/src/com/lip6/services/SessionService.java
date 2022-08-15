@@ -76,4 +76,13 @@ public class SessionService {
 		
 		daos.updateSession(session);
 	}
+
+	public void assoSalle(long idSess,long idSalle){
+		DAOSession daos= new DAOSession();
+		daos.assoSalle(idSess, idSalle);
+	}
+	public void removeSalle(long idSess,long idSalle){
+		DAOSession daos= new DAOSession();
+		daos.removeSalle(idSess, idSalle);
+	}
 }

@@ -60,7 +60,6 @@ public class DAOSession {
 			tx.begin();	
 			Session se= new Session(nomSession, prixSession, dateDebut,dateFin, lieuSession, typesession);
 			Evaluation eva=new Evaluation("prof");
-			
 			Formation form=em.find(Formation.class,idFormation);
 			se.getEvaluations().add(eva);	
 			se.setFormation(form);
@@ -142,6 +141,47 @@ public boolean updateSession(Session session) {
 	}
 
 	return success;
+}
+
+public void assoSalle(Long idSession, Long idSalle) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Salle salleASupprimer= em.find(Salle.class, idSalle);
+			Session se= em.find(Session.class, idSession);
+			se.setSalle(salleASupprimer);
+			salleASupprimer.getSessions().add(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+}
+public void removeSalle(Long idSession, Long idSalle) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Salle salleASupprimer= em.find(Salle.class, idSalle);
+			Session se= em.find(Session.class, idSession);
+			se.setSalle(null);
+			salleASupprimer.getSessions().remove(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
 }
 
 }

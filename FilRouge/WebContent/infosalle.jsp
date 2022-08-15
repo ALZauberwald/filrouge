@@ -15,6 +15,11 @@
 			<td><i>Id Salle</i> <input type="number" name="idSalle" value="<%= salle.getIdSalle()%>"></td>
 			<td><i>Adresse</i> <input type="text" name="adresse" value="<%=salle.getAdresse()%>">  </td>
 			<td><i>Nom Salle</i> <input type="text" name="nomSalle" value="<%=salle.getNomSalle()%>">  </td>
+			<td><i>Sessions</i> 
+             	<% for (com.lip6.entities.Session ses:salle.getSessions()){ %>
+   				</br><%= ses.getNomSession() %> 
+				<% } %>   
+			</td> 
 		</tr>
 		<tr>
 	            <td><input type="submit" name="submit"></td>

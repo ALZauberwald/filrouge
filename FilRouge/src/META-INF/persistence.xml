@@ -45,7 +45,6 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 				name="javax.persistence.schema-generation.drop-script-source"
 				value="META-INF/drop.sql" />
 
-			<property name="hibernate.globally_quoted_identifiers" value="true"/>
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />
 		</properties>
