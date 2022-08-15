@@ -34,16 +34,16 @@ http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
 			<!-- configuration de la création du schema de la BD -->
 			<property
 				name="javax.persistence.schema-generation.database.action"
-				value="drop-and-create" />
+				value="create" />
 			<property
 				name="javax.persistence.schema-generation.create-source"
 				value="metadata" />
-			<property
+			<!-- <property
 				name="javax.persistence.schema-generation.drop-source"
 				value="script" />
 			<property
 				name="javax.persistence.schema-generation.drop-script-source"
-				value="META-INF/drop.sql" />
+				value="META-INF/drop.sql" /> -->
 
 			<property name="hibernate.show_sql" value="true" />
 			<property name="hibernate.format_sql" value="true" />

@@ -3,9 +3,19 @@ package com.lip6.services;
 import java.util.Set;
 
 import com.lip6.daos.DAOChapitre;
+import com.lip6.daos.DAOTheme;
 import com.lip6.entities.Chapitre;
 
 public class ChapitreService {
+	public void assoFormation(long idChapitre,long idForm){
+		DAOChapitre daot= new DAOChapitre();
+		daot.assoFormation(idChapitre, idForm);
+	}
+	public void rmFormation(long idChapitre,long idForm){
+		DAOChapitre daot= new DAOChapitre();
+		daot.removeFormation(idChapitre, idForm);
+	}
+	
 	
 	public Set<Chapitre> recupChapitres(){
 		DAOChapitre daof= new DAOChapitre();

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lip6.services.ChapitreService;
+import com.lip6.services.FormationService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -46,6 +47,11 @@ public class SearchChapitreServlet extends HttpServlet {
 		
 		request.setAttribute("form",Chapitre.searchChapitre(id));
 		RequestDispatcher rd= request.getRequestDispatcher("infoChapitre.jsp") ;
+		
+		FormationService formationserv = new FormationService();
+		request.setAttribute("formationsdisponibles", formationserv.recupFormations());
+		
+		
 		rd.forward(request, response);
 	
 		
