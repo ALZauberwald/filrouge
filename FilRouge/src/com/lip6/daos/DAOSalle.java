@@ -44,8 +44,6 @@ public class DAOSalle {
 			tx.begin();	
 			sa= em.find(Salle.class, id);
 			
-			System.out.println(sa);
-			System.out.println(sa.getSessions());
 			tx.commit();
 			em.close();
 			
