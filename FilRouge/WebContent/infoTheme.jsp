@@ -79,7 +79,7 @@
          </tr>
 		</br>
 		<!-- Gestion des sousthemes -->  
-        <tr>
+        <%-- <tr>
            	<th>Vous voulez ajouter un sous-theme � ce theme ?</th><input type="HIDDEN" name="idTheme" type="number" value="<%= form.getIdTheme()%>">    	
             	<td><i>Voici la liste des themes disponibles</i>	
             		<SELECT size="1">
@@ -91,8 +91,26 @@
             	<td><i>Indiquez simplement le numéro du theme que vous souhaitez ajouter comme sous-theme</i><input name="idSoustheme" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoSoustheme">Ajouter le sous-theme</td>
+        </tr> --%>
+        
+        
+        
+        <tr>
+           	<th>Vous voulez ajouter un sous-theme � ce theme ?</th><input type="HIDDEN" name="idTheme" type="number" value="<%= form.getIdTheme()%>">    	
+            	<td><i>Voici la liste des themes disponibles</i>	
+            		<SELECT size="1" name = "idSoustheme">
+            			<% for (Object theme:themesdisponibles){%>
+							<OPTION VALUE="<%= theme.toString().split("  |  ")[0]%>"> <%= theme%>	
+						<% } %> 
+					</SELECT> 
+            	</td>
+            	
+        <tr>
+           	<td><button input type="submit" name="choix" value="assoSoustheme">Ajouter le sous-theme</td>
         </tr>
-           	<th>Vous voulez supprimer un sous-theme de ce theme ?</th><input type="HIDDEN" name="idThemeRm" type="number" value="<%= form.getIdTheme()%>">
+        
+        
+           	<%-- <th>Vous voulez supprimer un sous-theme de ce theme ?</th><input type="HIDDEN" name="idThemeRm" type="number" value="<%= form.getIdTheme()%>">
            	<td><i>Voici la liste des sous-themes qui sont pour l'instant liés à ce theme</i>
             	<SELECT size="1">
             		<% for (com.lip6.entities.Theme theme:form.getSousthemes()){%>
@@ -106,8 +124,20 @@
          <tr>
            	<td><button input type="submit" name="choix" value="rmSoustheme">Supprimer le sous-theme</td>
          </tr>
+		</br> --%>
+		<th>Vous voulez supprimer un sous-theme de ce theme ?</th><input type="HIDDEN" name="idThemeRm" type="number" value="<%= form.getIdTheme()%>">
+           	<td><i>Voici la liste des sous-themes qui sont pour l'instant liés à ce theme</i>
+            	<SELECT size="1" name = "idSousthemeRm">
+            		<% for (com.lip6.entities.Theme soustheme:form.getSousthemes()){%>
+						<OPTION value="<%= soustheme.toString().split("  |  ")[0]%>"> <%= soustheme.getIdTheme()%>  |  <%= soustheme.getNomTheme()%>
+					<% } %> 
+				</SELECT> 
+           	</td>            	
+         </tr>
+         <tr>
+           	<td><button input type="submit" name="choix" value="rmSoustheme">Supprimer le sous-theme</td>
+         </tr>
 		</br>
-		
 	</table>
 </form>
 </body>
