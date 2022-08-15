@@ -1,12 +1,14 @@
 package com.lip6.services;
 
+import java.util.Set;
+
 import com.lip6.daos.DAOFormateur;
 import com.lip6.entities.Formateur;
 
 public class FormateurService {
-	public void addFormateur(String nomStagiaire,String prenomStagiaire,String adresse,String tel,String mail,String dateEmbauche){
+	public void addFormateur(String nomFormateur,String prenomFormateur,String adresse,String tel,String mail,String dateEmbauche){
 		DAOFormateur fm = new DAOFormateur();
-		fm.addFormateur(nomStagiaire,prenomStagiaire,adresse,tel,mail,dateEmbauche);
+		fm.addFormateur(nomFormateur,prenomFormateur,adresse,tel,mail,dateEmbauche);
 		
 	}
 	public Formateur searchFormateur(String nom, String prenom) {
@@ -42,5 +44,17 @@ DAOFormateur daos = new DAOFormateur();
 		}
 		daos.updateFormateur(form);
 		
+	}
+	public Set<Formateur> recupFormateur(){ 
+		DAOFormateur daos = new DAOFormateur();
+		return daos.recupFormateur();
+	}
+	public void assoSession(long idFormateur, long idSess) {
+		DAOFormateur daos = new DAOFormateur();
+		daos.assoSession(idFormateur,idSess);
+	}
+	public void removeSession(long idFormateur, long idSess) {
+		DAOFormateur daos = new DAOFormateur();
+		daos.removeSession(idFormateur,idSess);
 	}
 }

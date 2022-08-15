@@ -23,7 +23,7 @@ public class Formateur extends Personne {
 		super();
 	}
 
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE},mappedBy = "formateur")
 	private Set<Session> sessions = new HashSet<>();
 	
 	public String getDateEmbauche() {
@@ -42,7 +42,19 @@ public class Formateur extends Personne {
 
 	@Override
 	public String toString() {
-		return "formateur = " + super.toString() + " dateEmbauche= " + dateEmbauche ;
+		return getId() + "  |  " + getNom();
 	}
+	
+	public static void assoSession(long idFormateur, long idSess) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static void removeSession(long idFormateur, long idSess) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 	
 }

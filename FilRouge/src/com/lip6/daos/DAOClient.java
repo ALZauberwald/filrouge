@@ -1,11 +1,15 @@
 package com.lip6.daos;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
-import com.lip6.entities.Client;
 import com.lip6.entities.Session;
+import com.lip6.entities.Client;
 import com.lip6.entities.Client;
 import com.lip6.util.JpaUtil;
 
@@ -101,6 +105,78 @@ public class DAOClient {
 		}
 
 		return success;
+	}
+	public Set<Client> recupClient(){
+		Set<Client> setClient = new HashSet<>();
+		try {
+			//JPQL --> renvoie la liste de toutes les Clients
+
+			String requete = "SELECT sa FROM Client sa"; 
+
+			
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();	
+			Query query = em.createQuery(requete); 
+			List<Client> results = query.getResultList();
+			// je passe chaque element de la liste dans le set
+
+			for (Client client : results) {
+				System.out.println(client);
+				setClient.add(client);
+
+			}
+			tx.commit();
+			
+			em.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return setClient;
+	}
+
+	public void assoSession(long idClient, long idSess) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Client clientAAssocier= em.find(Client.class, idClient);
+				Session se= em.find(Session.class, idSess);
+				se.getClient().add(clientAAssocier);
+				clientAAssocier.getSessions().add(se);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public void removeSession(long idClient, long idSess) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Client clientASupprimer= em.find(Client.class, idClient);
+				Session se= em.find(Session.class, idSess);
+				se.getClient().remove(clientASupprimer);
+				clientASupprimer.getSessions().remove(se);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

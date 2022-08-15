@@ -1,5 +1,7 @@
 package com.lip6.services;
 
+import java.util.Set;
+
 import com.lip6.daos.DAOStagiaire;
 import com.lip6.entities.Stagiaire;
 
@@ -39,5 +41,20 @@ public class StagiaireService {
 		}
 		daos.updateStagiaire(stag);
 	}
+	public Set<Stagiaire> recupStagiaire(){ 
+		DAOStagiaire daos = new DAOStagiaire();
+		return daos.recupStagiaire();
+	}
+	public void assoSession(long idStagiaire, long idSess) {
+		DAOStagiaire daos = new DAOStagiaire();
+		daos.assoSession(idStagiaire,idSess);
+	}
+	
+	public void removeSession(long idStagiaire, long idSess) {
+		DAOStagiaire daos = new DAOStagiaire();
+		daos.removeSession(idStagiaire,idSess);
+		
+	}
+	
 	
 }

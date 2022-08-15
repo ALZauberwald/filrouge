@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lip6.services.SessionService;
 import com.lip6.services.StagiaireService;
 
 /**
@@ -40,9 +41,12 @@ public class SearchStagiaireServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
-			
+		
+		SessionService sessserv = new SessionService();	
 		StagiaireService ss = new StagiaireService();
+		
 		request.setAttribute("stag",ss.searchStagiaire(nom,prenom));
+		request.setAttribute("sessionsdisponibles",sessserv.recupSession());
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infostagiaire.jsp") ;
 		rd.forward(request, response);

@@ -1,12 +1,14 @@
 package com.lip6.services;
 
+import java.util.Set;
+
 import com.lip6.daos.DAOClient;
 import com.lip6.entities.Client;
 
 public class ClientService {
-	public void addClient(long idSession,String nomStagiaire,String prenomStagiaire,String adresse,String tel,String mail,String numSiret){
+	public void addClient(long idSession,String nomClient,String prenomClient,String adresse,String tel,String mail,String numSiret){
 		DAOClient daos = new DAOClient();
-		daos.addClient(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail,numSiret);
+		daos.addClient(idSession,nomClient,prenomClient,adresse,tel,mail,numSiret);
 		
 	}
 
@@ -44,5 +46,19 @@ public class ClientService {
 			cl.setNumSiret(modif);
 		}
 		daos.updateClient(cl);
+	}
+	public Set<Client> recupClient(){ 
+		DAOClient daos = new DAOClient();
+		return daos.recupClient();
+	}
+	
+
+	public void assoSession(long idClient, long idSess) {
+		DAOClient daos = new DAOClient();
+		daos.assoSession(idClient,idSess);
+	}
+	public void removeSession(long idClient, long idSess) {
+		DAOClient daos = new DAOClient();
+		daos.removeSession(idClient,idSess);
 	}
 }

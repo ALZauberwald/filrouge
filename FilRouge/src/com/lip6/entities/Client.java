@@ -52,6 +52,10 @@ public class Client extends Personne {
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return getId() + "  |  " + getNom();
+	}
 
 }

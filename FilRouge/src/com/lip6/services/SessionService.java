@@ -85,4 +85,48 @@ public class SessionService {
 		DAOSession daos= new DAOSession();
 		daos.removeSalle(idSess, idSalle);
 	}
+
+	public void assoFormation(long idSess, long idFormation) {
+		DAOSession daos= new DAOSession();
+		daos.assoFormation(idSess, idFormation);
+		
+	}
+
+	public void removeFormation(long idSess, long idFormation) {
+		DAOSession daos= new DAOSession();
+		daos.removeFormation(idSess, idFormation);
+	}
+
+	public void assoFormateur(long idSess, long idFormateur) {
+		DAOSession daos= new DAOSession();
+		daos.assoFormateur(idSess, idFormateur);
+		
+	}
+
+	public void removeFormateur(long idSess, long idFormateur) {
+		DAOSession daos= new DAOSession();
+		daos.removeFormateur(idSess, idFormateur);
+		
+	}
+
+	public void assoStagiaire(long idSess, long idStagiaire) {
+		DAOSession daos= new DAOSession();
+		daos.assoStagiaire(idSess, idStagiaire);
+		
+	}
+
+	public void removeStagiaire(long idSess, long idStagiaire) {
+		DAOSession daos= new DAOSession();
+		daos.removeStagiaire(idSess, idStagiaire);
+	}
+	public void assoClient(long idSess, long idClient) {
+		DAOSession daos= new DAOSession();
+		daos.assoClient(idSess, idClient);
+		
+	}
+
+	public void removeClient(long idSess, long idClient) {
+		DAOSession daos= new DAOSession();
+		daos.removeClient(idSess, idClient);
+	}
 }

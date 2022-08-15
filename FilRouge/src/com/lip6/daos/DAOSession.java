@@ -9,10 +9,13 @@ import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import com.lip6.entities.Chapitre;
+import com.lip6.entities.Client;
 import com.lip6.entities.Evaluation;
+import com.lip6.entities.Formateur;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
+import com.lip6.entities.Stagiaire;
 import com.lip6.entities.TypeSession;
 import com.lip6.util.JpaUtil;
 
@@ -143,16 +146,16 @@ public boolean updateSession(Session session) {
 	return success;
 }
 
-public void assoSalle(Long idSession, Long idSalle) {
+public void assoSalle(Long idSess, Long idSalle) {
 	try {
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();
-			Salle salleASupprimer= em.find(Salle.class, idSalle);
-			Session se= em.find(Session.class, idSession);
-			se.setSalle(salleASupprimer);
-			salleASupprimer.getSessions().add(se);
+			Salle salleAAssocier= em.find(Salle.class, idSalle);
+			Session se= em.find(Session.class, idSess);
+			se.setSalle(salleAAssocier);
+			salleAAssocier.getSessions().add(se);
 		
 		tx.commit();
 		
@@ -163,14 +166,14 @@ public void assoSalle(Long idSession, Long idSalle) {
 		e.printStackTrace();
 	}
 }
-public void removeSalle(Long idSession, Long idSalle) {
+public void removeSalle(Long idSess, Long idSalle) {
 	try {
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();
 			Salle salleASupprimer= em.find(Salle.class, idSalle);
-			Session se= em.find(Session.class, idSession);
+			Session se= em.find(Session.class, idSess);
 			se.setSalle(null);
 			salleASupprimer.getSessions().remove(se);
 		
@@ -183,5 +186,196 @@ public void removeSalle(Long idSession, Long idSalle) {
 		e.printStackTrace();
 	}
 }
+
+
+
+public void assoFormation(long idSess, long idFormation) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Formation formationAAssocier= em.find(Formation.class, idFormation);
+			Session se= em.find(Session.class, idSess);
+			se.setFormation(formationAAssocier);
+			formationAAssocier.getSessions().add(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+public void removeFormation(long idSess, long idFormation) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Formation formationASupprimer= em.find(Formation.class, idFormation);
+			Session se= em.find(Session.class, idSess);
+			se.setFormation(null);
+			formationASupprimer.getSessions().remove(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+
+
+public void assoFormateur(long idSess, long idFormateur) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Formateur formateurAAssocier= em.find(Formateur.class, idFormateur);
+			Session se= em.find(Session.class, idSess);
+			se.setFormateur(formateurAAssocier);
+			formateurAAssocier.getSessions().add(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+public void removeFormateur(long idSess, long idFormateur) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Formateur formateurASupprimer= em.find(Formateur.class, idFormateur);
+			Session se= em.find(Session.class, idSess);
+			se.setFormateur(null);
+			formateurASupprimer.getSessions().remove(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+
+
+public void assoStagiaire(long idSess, long idStagiaire) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Stagiaire stagiaireAAssocier= em.find(Stagiaire.class, idStagiaire);
+			Session se= em.find(Session.class, idSess);
+			se.getStagiaires().add(stagiaireAAssocier);
+			stagiaireAAssocier.getSessions().add(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+
+
+public void removeStagiaire(long idSess, long idStagiaire) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Stagiaire stagiaireASupprimer= em.find(Stagiaire.class, idStagiaire);
+			Session se= em.find(Session.class, idSess);
+			se.getStagiaires().remove(stagiaireASupprimer);
+			stagiaireASupprimer.getSessions().remove(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+
+
+public void assoClient(long idSess, long idClient) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Client clientAAssocier= em.find(Client.class, idClient);
+			Session se= em.find(Session.class, idSess);
+			se.getClient().add(clientAAssocier);
+			clientAAssocier.getSessions().add(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+
+
+public void removeClient(long idSess, long idClient) {
+	try {
+		EntityManager em=JpaUtil.getEmf().createEntityManager();	
+		EntityTransaction tx = em.getTransaction();
+		
+		tx.begin();
+			Client clientASupprimer= em.find(Client.class, idClient);
+			Session se= em.find(Session.class, idSess);
+			se.getClient().remove(clientASupprimer);
+			clientASupprimer.getSessions().remove(se);
+		
+		tx.commit();
+		
+		em.close();
+		
+	} 
+	catch (Exception e) {
+		e.printStackTrace();
+	}
+	
+}
+
+
+
+
 
 }

@@ -41,5 +41,8 @@ public class Stagiaire extends Personne {
 	public void setSessions(Set<Session> sessions) {
 		this.sessions = sessions;
 	}
-	
+	@Override
+	public String toString() {
+		return getId() + "  |  " + getNom();
+	}
 }

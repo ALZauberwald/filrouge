@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Session"%>
+<%@page import="com.lip6.services.SessionService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -36,9 +38,16 @@
 			<tr>          
 	            <td><i>Rechercher une session</i> 
             </tr>
+            
             <tr>
-            	
-            	<td><i>Veuillez rentrer l'id de la session</i> <input type="number" name="idSession"></td>
+            	<SELECT name="idSession" >
+            	<h1>Voici la liste de toutes les sessions deja renseignees</h1>
+    		<%SessionService sessionserv= new SessionService();%>
+    		<%java.util.Set<Session> sessionsdisponibles = sessionserv.recupSession(); %>
+    		<% for (Object sess:sessionsdisponibles){ %>
+                   </br><OPTION Value="<%=sess.toString().split("  |  ")[0]%>"><%= sess %>
+                <% } %>
+                </SELECT>
             </tr>
             
             <tr>
