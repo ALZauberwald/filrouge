@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,9 +42,10 @@ public class SearchStagiaireServlet extends HttpServlet {
 		String prenom = request.getParameter("prenom");
 			
 		StagiaireService ss = new StagiaireService();
-		ss.searchStagiaire(nom,prenom);
-		response.sendRedirect("index.html");
+		request.setAttribute("stag",ss.searchStagiaire(nom,prenom));
 		
+		RequestDispatcher rd= request.getRequestDispatcher("infostagiaire.jsp") ;
+		rd.forward(request, response);
 	}
 
 }
