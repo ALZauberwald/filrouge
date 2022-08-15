@@ -9,19 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.services.FormateurService;
+import com.lip6.services.ClientService;
 
 /**
- * Servlet implementation class SearchFormateurServlet
+ * Servlet implementation class SearchClientServlet
  */
-@WebServlet("/SearchFormateurServlet")
-public class SearchFormateurServlet extends HttpServlet {
+@WebServlet("/SearchClientServlet")
+public class SearchClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchFormateurServlet() {
+    public SearchClientServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,10 +40,11 @@ public class SearchFormateurServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
+			
+		ClientService cs = new ClientService();
+		request.setAttribute("cli",cs.searchClient(nom,prenom));
 		
-		FormateurService fs = new FormateurService();
-		request.setAttribute("form",fs.searchFormateur(nom, prenom));
-		RequestDispatcher rd= request.getRequestDispatcher("infoformateur.jsp") ;
+		RequestDispatcher rd= request.getRequestDispatcher("infoclient.jsp") ;
 		rd.forward(request, response);
 	}
 

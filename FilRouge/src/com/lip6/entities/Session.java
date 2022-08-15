@@ -56,8 +56,11 @@ public class Session {
 },mappedBy = "sessions")
 	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
-	@ManyToMany(cascade = CascadeType.PERSIST)
-	@JoinTable(name ="Clients_par_Sessions", joinColumns=@JoinColumn(name = "id_Session"),inverseJoinColumns = @JoinColumn(name="id_Client"))
+	@ManyToMany(cascade ={CascadeType.PERSIST,
+			CascadeType.DETACH,
+			CascadeType.MERGE,
+			CascadeType.REFRESH
+},mappedBy = "sessions")
 	private Set<Client> clients = new HashSet<>();
 	
 	@ManyToOne

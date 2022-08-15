@@ -29,5 +29,39 @@
             </tr>
 		</table>
 	</form>
+		<br>
+	<form action="SearchClientServlet" method="POST">
+		<table>		
+			<tr>          
+	          	<td><i>Rechercher un Client</i> 
+	         </tr>
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le nom du client</i> <input type="text" name="nom"></td>
+	         </tr> 
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le prénom du client</i> <input type="text" name="prenom"></td>
+	         </tr>       
+	         <tr>
+	         	<td><input type="submit" name="submit"></td>
+	         </tr>
+		</table>
+	</form>
+	<br>
+	<form action="RemoveClientServlet" method="POST">
+		<table>		
+			<tr>          
+	          	<td><i>Remove un Client</i> 
+	         </tr>
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le nom du client</i> <input type="text" name="nom"></td>
+	         </tr> 
+	         <tr>        	
+	         	<td><i>Veuillez renseigner le prénom du client</i> <input type="text" name="prenom"></td>
+	         </tr>       
+	         <tr>
+	         	<td><input type="submit" name="submit"></td>
+	         </tr>
+		</table>
+	</form>
 </body>
 </html>

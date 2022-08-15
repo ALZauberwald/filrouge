@@ -35,12 +35,6 @@ public class Stagiaire extends Personne {
 	@JoinTable(name ="Stagiaires_par_Sessions", joinColumns=@JoinColumn(name = "id_Stagiaire"),inverseJoinColumns = @JoinColumn(name="id_Sessions"))
 	private Set<Session> sessions =  new HashSet<>();
 	
-//	public long getIdStagiaire() {
-//		return idStagiaire;
-//	}
-//	public void setIdStagiaire(long idStagiaire) {
-//		this.idStagiaire = idStagiaire;
-//	}
 	public Set<Session> getSessions() {
 		return sessions;
 	}

@@ -29,6 +29,10 @@ public class Formateur extends Personne {
 	public String getDateEmbauche() {
 		return dateEmbauche;
 	}
+	public void setDateEmbauche(String dateEmbauche) {
+		this.dateEmbauche = dateEmbauche;
+	}
+
 	public Set<Session> getSessions() {
 		return sessions;
 	}

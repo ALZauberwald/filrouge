@@ -1,27 +1,25 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
-
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lip6.services.FormateurService;
+import com.lip6.services.ClientService;
 
 /**
- * Servlet implementation class SearchFormateurServlet
+ * Servlet implementation class RemoveClientServlet
  */
-@WebServlet("/SearchFormateurServlet")
-public class SearchFormateurServlet extends HttpServlet {
+@WebServlet("/RemoveClientServlet")
+public class RemoveClientServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public SearchFormateurServlet() {
+    public RemoveClientServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -40,11 +38,10 @@ public class SearchFormateurServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nom = request.getParameter("nom");
 		String prenom = request.getParameter("prenom");
-		
-		FormateurService fs = new FormateurService();
-		request.setAttribute("form",fs.searchFormateur(nom, prenom));
-		RequestDispatcher rd= request.getRequestDispatcher("infoformateur.jsp") ;
-		rd.forward(request, response);
+			
+		ClientService cs = new ClientService();
+		cs.removeClient(nom, prenom);
+		response.sendRedirect("index.html");
 	}
 
 }
