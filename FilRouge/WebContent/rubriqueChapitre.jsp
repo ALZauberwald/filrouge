@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Chapitre"%>
 <%@page import="com.lip6.services.ChapitreService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -39,7 +41,8 @@
 	         </tr>
 	         <tr>   
 	         	<Select name ="idChapitre">
-		            <%ChapitreService chapitreserv= new ChapitreService();%>
+	         		<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    				<%ChapitreService chapitreserv= context.getBean("servChapitre",ChapitreService.class);%>
 					<%java.util.Set<Chapitre> chapitresdisponibles = chapitreserv.recupChapitres(); %>
 					<% for (Object chapitre:chapitresdisponibles){ %>
 	   				</br><option value ="<%= chapitre.toString().split("  |  ")[0]%>"><%= chapitre %> 

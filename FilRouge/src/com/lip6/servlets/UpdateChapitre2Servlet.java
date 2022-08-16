@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.daos.DAOFormation;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
@@ -14,6 +17,7 @@ import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
 import com.lip6.services.ChapitreService;
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
 import com.lip6.services.ThemeService;
 
@@ -45,16 +49,17 @@ public class UpdateChapitre2Servlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			String choix = request.getParameter("choix");
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			ChapitreService cpserv = context.getBean("servChapitre",ChapitreService.class);
+			
 			if(choix.equals("assoFormation")) {
 				long idChapitre= Long.parseLong(request.getParameter("idChapitre"));
 				long idForm= Long.parseLong(request.getParameter("idFormation"));
-				ChapitreService cpserv = new ChapitreService();
 				cpserv.assoFormation(idChapitre, idForm);
 			}
 			else if (choix.equals("rmFormation")) {
 				long idChapitre= Long.parseLong(request.getParameter("idChapitreRm"));
 				long idForm= Long.parseLong(request.getParameter("idFormationRm"));
-				ChapitreService cpserv = new ChapitreService();
 				cpserv.rmFormation(idChapitre, idForm);
 			}
 			

@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.ChapitreService;
 
 /**
@@ -40,8 +44,9 @@ public class AddChapitreServlet extends HttpServlet {
 		int dureechap =Integer.parseInt(request.getParameter("dureeChapitre"));
 		String detailchap =request.getParameter("detailChapitre");
 		
-		ChapitreService Chapitre= new ChapitreService();
-		Chapitre.createChapitre(nomchap, dureechap, detailchap);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ChapitreService chapitre = context.getBean("servChapitre",ChapitreService.class);
+		chapitre.createChapitre(nomchap, dureechap, detailchap);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

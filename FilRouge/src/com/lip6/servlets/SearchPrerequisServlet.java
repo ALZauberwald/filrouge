@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.PrerequisService;
+import com.lip6.services.SalleService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -42,9 +46,11 @@ public class SearchPrerequisServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idPrerequis"));
-		PrerequisService Prerequis= new PrerequisService();
 		
-		request.setAttribute("form",Prerequis.searchPrerequis(id));
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		PrerequisService prerequis = context.getBean("servPrerequis",PrerequisService.class);
+		
+		request.setAttribute("form",prerequis.searchPrerequis(id));
 		RequestDispatcher rd= request.getRequestDispatcher("infoPrerequis.jsp") ;
 		rd.forward(request, response);
 	

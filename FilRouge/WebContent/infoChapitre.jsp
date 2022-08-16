@@ -34,7 +34,7 @@
            	
            	
         <tr>
-           	<td><i>IdChapitre</i> <input name="idChapitre" type="number" value="<%= form.getIdChapitre() %>"></td>
+           	<td> <input  type ="hidden" name="idChapitre" type="number" value="<%= form.getIdChapitre() %>"></td>
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du Chapitre (<%= form.getNomChapitre()%>)

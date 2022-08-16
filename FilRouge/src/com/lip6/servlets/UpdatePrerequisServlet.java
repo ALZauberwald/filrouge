@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.PrerequisService;
 
 
@@ -43,8 +46,11 @@ public class UpdatePrerequisServlet extends HttpServlet {
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idPrerequis");
 			long id = Long.parseLong(idstr);
-			PrerequisService forma = new PrerequisService();
-			forma.updatePrerequis(champAModif, modif , id);
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			PrerequisService prerequis = context.getBean("servPrerequis",PrerequisService.class);
+			
+			prerequis.updatePrerequis(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}
 

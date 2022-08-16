@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Prerequis"%>
 <%@page import="com.lip6.services.PrerequisService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -35,7 +37,8 @@
 	         </tr>
 	         <tr> 
 	         	<Select name ="idPrerequis">
-		            <%PrerequisService prerequisserv= new PrerequisService();%>
+		            <%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    				<%PrerequisService prerequisserv= context.getBean("servPrerequis",PrerequisService.class);%>
 					<%java.util.Set<Prerequis> prerequisdisponibles = prerequisserv.recupPrerequis(); %>
 					<% for (Object prerequis:prerequisdisponibles){ %>
 	   				</br><option value ="<%= prerequis.toString().split("  |  ")[0]%>"><%= prerequis %> 

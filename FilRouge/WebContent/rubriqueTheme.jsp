@@ -1,4 +1,6 @@
 <%@page import="com.lip6.services.ThemeService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -34,7 +36,8 @@
 	         </tr>
 	         <tr>   
 		         <Select name ="idTheme">
-		            <%com.lip6.services.ThemeService thmserv= new ThemeService();%>
+		         	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    				<%ThemeService thmserv= context.getBean("servTheme",ThemeService.class);%>
 					<%java.util.Set<com.lip6.entities.Theme> themesdisponibles = thmserv.recupTheme(); %>
 					<% for (Object theme:themesdisponibles){ %>
 	   				</br><option value ="<%= theme.toString().split("  |  ")[0]%>"><%= theme %> 

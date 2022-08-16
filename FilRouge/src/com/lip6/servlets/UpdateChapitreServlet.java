@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ChapitreService;
+import com.lip6.services.PrerequisService;
 
 
 /**
@@ -43,8 +47,11 @@ public class UpdateChapitreServlet extends HttpServlet {
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idChapitre");
 			long id = Long.parseLong(idstr);
-			ChapitreService forma = new ChapitreService();
-			forma.updateChapitre(champAModif, modif , id);
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			ChapitreService chapitre = context.getBean("servChapitre",ChapitreService.class);
+			
+			chapitre.updateChapitre(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}
 

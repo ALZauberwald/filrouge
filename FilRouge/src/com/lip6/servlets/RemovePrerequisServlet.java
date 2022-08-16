@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.PrerequisService;
 
 @WebServlet("/RemovePrerequisServlet")
@@ -34,8 +37,11 @@ public class RemovePrerequisServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("idPrerequis"));
-		PrerequisService Prerequis= new PrerequisService();
-		Prerequis.removePrerequis(id);
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		PrerequisService prerequis = context.getBean("servPrerequis",PrerequisService.class);
+		
+		prerequis.removePrerequis(id);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

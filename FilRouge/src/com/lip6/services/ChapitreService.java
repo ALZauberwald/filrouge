@@ -2,43 +2,47 @@ package com.lip6.services;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.lip6.daos.DAOChapitre;
+import com.lip6.daos.DAOSalle;
 import com.lip6.daos.DAOTheme;
 import com.lip6.entities.Chapitre;
 
+@Service("servChapitre")
 public class ChapitreService {
+	@Autowired
+	@Qualifier("daoChapitre")
+	DAOChapitre daoChapitre;
+	
 	public void assoFormation(long idChapitre,long idForm){
-		DAOChapitre daot= new DAOChapitre();
-		daot.assoFormation(idChapitre, idForm);
+		daoChapitre.assoFormation(idChapitre, idForm);
 	}
 	public void rmFormation(long idChapitre,long idForm){
-		DAOChapitre daot= new DAOChapitre();
-		daot.removeFormation(idChapitre, idForm);
+		daoChapitre.removeFormation(idChapitre, idForm);
 	}
 	
 	
 	public Set<Chapitre> recupChapitres(){
-		DAOChapitre daof= new DAOChapitre();
-		return daof.recupChapitre();
+		return daoChapitre.recupChapitre();
 	}
 	
 	public void createChapitre(String chapitrename, int dureechapitre, String detailChapitre) {
-		DAOChapitre daof= new DAOChapitre();
-		daof.addChapitre(chapitrename, dureechapitre, detailChapitre);
+		daoChapitre.addChapitre(chapitrename, dureechapitre, detailChapitre);
 	}
 	public Chapitre searchChapitre(long id) {
-		DAOChapitre daos= new DAOChapitre();
-		return daos.searchChapitre(id);
+		return daoChapitre.searchChapitre(id);
 	}
 	public void removeChapitre(long id) {
-		DAOChapitre daos= new DAOChapitre();
-		daos.removeChapitre(id);
+		daoChapitre.removeChapitre(id);
 	}
 
 	public void updateChapitre(String champAModif, String modif , long id) {
-		DAOChapitre daos= new DAOChapitre();
+
 		//Récupération objet de la BDD
-		Chapitre chapitre= daos.searchChapitre(id);
+		Chapitre chapitre= daoChapitre.searchChapitre(id);
 		//modif
 		if(champAModif.contentEquals("nom")) {
 			chapitre.setNomChapitre(modif);
@@ -51,7 +55,7 @@ public class ChapitreService {
 			chapitre.setDetailChapitre(modif);
 		}
 		
-		daos.updateChapitre(chapitre);
+		daoChapitre.updateChapitre(chapitre);
 	}
 
 	

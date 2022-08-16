@@ -10,13 +10,15 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Chapitre;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Theme;
 import com.lip6.util.JpaUtil;
 
 
-
+@Repository("daoChapitre")
 public class DAOChapitre {
 	public void assoFormation(Long idChapitre, Long idFormation) {
 		try {

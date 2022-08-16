@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ObjectifService;
+import com.lip6.services.PrerequisService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -42,7 +46,9 @@ public class SearchObjectifServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idObjectif"));
-		ObjectifService objectif= new ObjectifService();
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ObjectifService objectif = context.getBean("servObjectif",ObjectifService.class);
 		
 		request.setAttribute("form",objectif.searchObjectif(id));
 		RequestDispatcher rd= request.getRequestDispatcher("infoobjectif.jsp") ;

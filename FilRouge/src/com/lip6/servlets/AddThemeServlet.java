@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.ThemeService;
 
 /**
@@ -38,8 +42,10 @@ public class AddThemeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nomth =request.getParameter("nomTheme");
 		
-		ThemeService Theme= new ThemeService();
-		Theme.createTheme(nomth);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ThemeService theme = context.getBean("servTheme",ThemeService.class);
+		
+		theme.createTheme(nomth);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

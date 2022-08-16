@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.daos.DAOFormation;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
 import com.lip6.services.ThemeService;
 
@@ -44,28 +48,28 @@ public class UpdateTheme2Servlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			String choix = request.getParameter("choix");
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			ThemeService them = context.getBean("servTheme",ThemeService.class);
+			
 			if(choix.equals("assoFormation")) {
 				long idTheme= Long.parseLong(request.getParameter("idTheme"));
 				long idForm= Long.parseLong(request.getParameter("idFormation"));
-				ThemeService them = new ThemeService();
 				them.assoFormation(idTheme, idForm);
 			}
 			else if (choix.equals("rmFormation")) {
 				long idTheme= Long.parseLong(request.getParameter("idThemeRm"));
 				long idForm= Long.parseLong(request.getParameter("idFormationRm"));
-				ThemeService them = new ThemeService();
 				them.rmFormation(idTheme, idForm);
 			}
 			else if(choix.equals("assoSoustheme")) {
 				long idTheme= Long.parseLong(request.getParameter("idTheme"));
 				long idSoustheme= Long.parseLong(request.getParameter("idSoustheme"));
-				ThemeService them = new ThemeService();
 				them.assoSoustheme(idTheme, idSoustheme);
 			}
 			else if (choix.equals("rmSoustheme")) {
 				long idTheme= Long.parseLong(request.getParameter("idThemeRm"));
 				long idSoustheme= Long.parseLong(request.getParameter("idSousthemeRm"));
-				ThemeService them = new ThemeService();
 				them.rmSoustheme(idTheme, idSoustheme);
 			}
 			

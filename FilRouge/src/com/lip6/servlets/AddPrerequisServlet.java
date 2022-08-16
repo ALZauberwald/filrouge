@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormationService;
 import com.lip6.services.PrerequisService;
 
@@ -38,8 +41,10 @@ public class AddPrerequisServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String nomobj =request.getParameter("nomPrerequis");
 		
-		PrerequisService Prerequis= new PrerequisService();
-		Prerequis.createPrerequis(nomobj);
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		PrerequisService prerequis = context.getBean("servPrerequis",PrerequisService.class);
+		
+		prerequis.createPrerequis(nomobj);
 		//redirection 
 		response.sendRedirect("index.html");
 	}
