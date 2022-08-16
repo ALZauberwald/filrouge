@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Objectif"%>
+<%@page import="com.lip6.services.ObjectifService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -31,8 +33,14 @@
 			<tr>          
 	          	<td><i>Rechercher un objectif</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner l'id de l'objectif que vous recherchez</i> <input type="number" name="idObjectif"></td>
+	         <tr>   
+	         	<Select name ="idObjectif">
+		            <%ObjectifService objectifserv= new ObjectifService();%>
+					<%java.util.Set<Objectif> objectifsdisponibles = objectifserv.recupObjectifs(); %>
+					<% for (Object objectif:objectifsdisponibles){ %>
+	   				</br><option value ="<%= objectif.toString().split("  |  ")[0]%>"><%= objectif %> 
+					<% } %>
+				 </Select>               	
 	         </tr>        
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -48,8 +56,12 @@
 			<tr>          
 	         	<td><i>Supprimer un objectif de la base de donnée.</i> 
 	        </tr>
-	        <tr>     	
-	           	<td><i>Veuillez renseigner l'id de l'objectif que vous souhaitez supprimer</i> <input type="number" name="idObjectif">  </td>       
+	        <tr>  
+	        	<Select name ="idObjectif">
+					<% for (Object objectif:objectifsdisponibles){ %>
+	   				</br><option value ="<%= objectif.toString().split("  |  ")[0]%>"><%= objectif %> 
+					<% } %>
+				</Select>   	       
 	        <tr>
 	            <td><input type="submit" name="submit"></td>
 	        </tr>

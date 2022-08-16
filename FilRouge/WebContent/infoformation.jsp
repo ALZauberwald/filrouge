@@ -78,25 +78,23 @@
         	<h2>Pour modifier une association</h2>
            	<th>Vous voulez ajouter un objectif à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des objectifs disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name = "idObjectif">
             			<% for (Object objectif:objectifsdisponibles){%>
-							<OPTION> <%= objectif%>	
+							<OPTION value ="<%= objectif.toString().split("  |  ")[0]%>"> <%= objectif%>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez ajouter</i><input name="idObjectif" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="asso">Ajouter l'objectif</td>
         </tr>
            	<th>Vous voulez supprimer un objectif de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
            	<td><i>Voici la liste des objectifs qui sont pour l'instant liés à cette formation</i>
-            	<SELECT size="1">
+            	<SELECT size="1" name ="idObjectifRm">
             		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){%>
-						<OPTION value="objectif"> <%= objectif.getIdObjectif()%>  |  <%= objectif.getNomObjectif()%>
+						<OPTION value="<%= objectif.toString().split("  |  ")[0]%>"> <%= objectif.getIdObjectif()%>  |  <%= objectif.getNomObjectif()%>
 					<% } %> 
 				</SELECT> 
            	</td>
-           	<td><i>Indiquez simplement le numéro de l'objectif que vous souhaitez supprimer</i><input name="idObjectifRm" type="number" >
             	
          </tr>
          <tr>
@@ -108,25 +106,23 @@
          <tr>
            	<th>Vous voulez ajouter un prerequis à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des prerequis disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name="idPrerequis">
             			<% for (Object prerequis:prerequisdisponibles){%>
-							<OPTION> <%= prerequis %>	
+							<OPTION value="<%= prerequis.toString().split("  |  ")[0]%>"> <%= prerequis %>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro du prerequis que vous souhaitez ajouter</i><input name="idPrerequis" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoPrerequis">Ajouter le prerequis</td>
         </tr>
            	<th>Vous voulez supprimer un prerequis de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
            	<td><i>Voici la liste des prerequis qui sont pour l'instant liés à cette formation</i>
-            	<SELECT size="1">
+            	<SELECT size="1" name="idPrerequisRm">
             		<% for (com.lip6.entities.Prerequis prerequis:form.getPrerequisFormation()){%>
-						<OPTION value="prerequis"> <%= prerequis.getIdPrerequis()%>  |  <%= prerequis.getNomPrerequis()%>
+						<OPTION value="<%= prerequis.toString().split("  |  ")[0]%>"> <%= prerequis.getIdPrerequis()%>  |  <%= prerequis.getNomPrerequis()%>
 					<% } %> 
 				</SELECT> 
-           	</td>
-           	<td><i>Indiquez simplement le numéro du prerequis que vous souhaitez supprimer</i><input name="idPrerequisRm" type="number" >        	
+           	</td>     	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmPrerequis">Supprimer le prerequis</td>
@@ -136,26 +132,23 @@
         <tr>
            	<th>Vous voulez ajouter un chapitre à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des chapitres disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name="idChapitre">
             			<% for (Object chapitre:chapitresdisponibles){%>
-							<OPTION> <%= chapitre %>	
+							<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre %>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro du chapitre que vous souhaitez ajouter</i><input name="idChapitre" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoChapitre">Ajouter le chapitre</td>
         </tr>
            	<th>Vous voulez supprimer un chapitre de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
            	<td><i>Voici la liste des chapitres qui sont pour l'instant liés à cette formation</i>
-            	<SELECT size="1">
+            	<SELECT size="1" name="idChapitreRm">
             		<% for (com.lip6.entities.Chapitre chapitre:form.getChapitres()){%>
-						<OPTION value="chapitre"> <%= chapitre.getIdChapitre()%>  |  <%= chapitre.getNomChapitre()%>
+						<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre.getIdChapitre()%>  |  <%= chapitre.getNomChapitre()%>
 					<% } %> 
 				</SELECT> 
-           	</td>
-           	<td><i>Indiquez simplement le numéro du chapitre que vous souhaitez supprimer</i><input name="idChapitreRm" type="number" >
-            	
+           	</td>          	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmChapitre">Supprimer le chapitre</td>
@@ -165,26 +158,23 @@
          <tr>
            	<th>Vous voulez ajouter un theme à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des themes disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name="idTheme">
             			<% for (Object theme:themesdisponibles){%>
-            				<OPTION><%= theme %>	
+            				<OPTION value="<%= theme.toString().split("  |  ")[0]%>"><%= theme %>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro du theme que vous souhaitez ajouter</i><input name="idTheme" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoTheme">Ajouter le theme</td>
         </tr>
            	<th>Vous voulez supprimer un theme de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
            	<td><i>Voici la liste des themes qui sont pour l'instant liés à cette formation</i>
-            	<SELECT size="1">
+            	<SELECT size="1" name="idThemeRm">
             		<% for (com.lip6.entities.Theme theme:form.getTheme()){%>
-						<OPTION value="Theme"> <%= theme.getIdTheme()%>  |  <%= theme.getNomTheme()%>
+						<OPTION value="<%= theme.toString().split("  |  ")[0]%>"> <%= theme.getIdTheme()%>  |  <%= theme.getNomTheme()%>
 					<% } %> 
 				</SELECT> 
-           	</td>
-           	<td><i>Indiquez simplement le numéro du theme que vous souhaitez supprimer</i><input name="idThemeRm" type="number" >
-            	
+           	</td>            	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmTheme">Supprimer le theme</td>
@@ -194,26 +184,23 @@
          <tr>
            	<th>Vous voulez ajouter une session à la formation ?</th><input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
             	<td><i>Voici la liste des sessions disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name="idSession">
             			<% for (Object sess:sessionsdisponibles){%>
-            				<OPTION><%= sess %>	
+            				<OPTION value="<%= sess.toString().split("  |  ")[0]%>"><%= sess %>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le numéro de la session que vous souhaitez ajouter</i><input name="idSession" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoSession">Ajouter la session</td>
         </tr>
            	<th>Vous voulez supprimer une session de la formation ?</th><input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-           	<td><i>Voici la liste des sessions qui sont pour l'instant liés à cette formation</i>
-            	<SELECT size="1">
+           	</br><td><i>Voici la liste des sessions qui sont pour l'instant liés à cette formation</i>
+            	<SELECT size="1" name="idSessionRm">
             		<% for (com.lip6.entities.Session sess:form.getSessions()){ %>
-						<OPTION value="Session"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
+						<OPTION value="<%= sess.toString().split("  |  ")[0]%>"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
 					<% } %> 
 				</SELECT> 
-           	</td>
-           	<td><i>Indiquez simplement le numéro de la session que vous souhaitez supprimer</i><input name="idSessionRm" type="number" >
-            	
+           	</td>            	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmSession">Supprimer la session</td>

@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Prerequis"%>
+<%@page import="com.lip6.services.PrerequisService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -31,8 +33,14 @@
 			<tr>          
 	          	<td><i>Rechercher un Prerequis</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner l'id du prerequis que vous recherchez</i> <input type="number" name="idPrerequis"></td>
+	         <tr> 
+	         	<Select name ="idPrerequis">
+		            <%PrerequisService prerequisserv= new PrerequisService();%>
+					<%java.util.Set<Prerequis> prerequisdisponibles = prerequisserv.recupPrerequis(); %>
+					<% for (Object prerequis:prerequisdisponibles){ %>
+	   				</br><option value ="<%= prerequis.toString().split("  |  ")[0]%>"><%= prerequis %> 
+					<% } %>
+				 </Select>     	       	
 	         </tr>        
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -48,8 +56,12 @@
 			<tr>          
 	         	<td><i>Supprimer un Prerequis de la base de donnée.</i> 
 	        </tr>
-	        <tr>     	
-	           	<td><i>Veuillez renseigner l'id du Prerequis que vous souhaitez supprimer</i> <input type="number" name="idPrerequis">  </td>       
+	        <tr> 
+	        	<Select name ="idPrerequis">
+					<% for (Object prerequis:prerequisdisponibles){ %>
+	   				</br><option value ="<%= prerequis.toString().split("  |  ")[0]%>"><%= prerequis %> 
+					<% } %>
+				</Select>     	      
 	        <tr>
 	            <td><input type="submit" name="submit"></td>
 	        </tr>

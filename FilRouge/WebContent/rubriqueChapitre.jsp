@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Chapitre"%>
+<%@page import="com.lip6.services.ChapitreService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -6,6 +8,8 @@
 	<meta charset="ISO-8859-1">
 	<title>Rubrique Chapitre</title>
 </head>
+
+<jsp:useBean id="formationsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
 <body>
 	<h1>Ajouter un Chapitre</h1>
@@ -33,8 +37,14 @@
 			<tr>          
 	          	<td><i>Rechercher un Chapitre</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner l'id du Chapitre que vous recherchez</i> <input type="number" name="idChapitre"></td>
+	         <tr>   
+	         	<Select name ="idChapitre">
+		            <%ChapitreService chapitreserv= new ChapitreService();%>
+					<%java.util.Set<Chapitre> chapitresdisponibles = chapitreserv.recupChapitres(); %>
+					<% for (Object chapitre:chapitresdisponibles){ %>
+	   				</br><option value ="<%= chapitre.toString().split("  |  ")[0]%>"><%= chapitre %> 
+					<% } %>
+				</Select>          	
 	         </tr>        
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -50,8 +60,12 @@
 			<tr>          
 	         	<td><i>Supprimer un Chapitre de la base de donnée.</i> 
 	        </tr>
-	        <tr>     	
-	           	<td><i>Veuillez renseigner l'id du Chapitre que vous souhaitez supprimer</i> <input type="number" name="idChapitre">  </td>       
+	        <tr>     
+	        	<Select name ="idChapitre">
+					<% for (Object chapitre:chapitresdisponibles){ %>
+	   				</br><option value ="<%= chapitre.toString().split("  |  ")[0]%>"><%= chapitre %> 
+					<% } %>
+				</Select> 	      
 	        <tr>
 	            <td><input type="submit" name="submit"></td>
 	        </tr>
