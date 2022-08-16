@@ -8,11 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Formateur;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Session;
 import com.lip6.util.JpaUtil;
-
+@Repository("daoFormateur")
 public class DAOFormateur {
 	public boolean addFormateur(String nom, String prenom, String adresse, String tel, String mail, String dateEmbauche) {
 		boolean success= false;

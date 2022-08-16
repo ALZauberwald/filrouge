@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.lip6.services.FormateurService;
 import com.lip6.services.StagiaireService;
 
 /**
@@ -36,6 +40,14 @@ public class AddStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        
 		long idSession = Long.parseLong(request.getParameter("idSession"));
 		String nomStagiaire =request.getParameter("nomStagiaire");
 		String prenomStagiaire = request.getParameter("prenomStagiaire");
@@ -43,7 +55,6 @@ public class AddStagiaireServlet extends HttpServlet {
 		String tel =request.getParameter("tel");
 		String mail = request.getParameter("mail");
 		
-		StagiaireService stagiaire= new StagiaireService();
 		stagiaire.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
 		//redirection 
 		response.sendRedirect("index.html");

@@ -2,6 +2,10 @@ package com.lip6.services;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.lip6.daos.DAOChapitre;
 import com.lip6.daos.DAOSalle;
 import com.lip6.daos.DAOSession;
@@ -9,29 +13,29 @@ import com.lip6.entities.Chapitre;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
-
+@Service("servSession")
 public class SessionService {
+	@Autowired
+	@Qualifier("daoSession")
+	DAOSession daoSession;
+	
 	public Set<Session> recupSession(){
-		DAOSession daof= new DAOSession();
-		return daof.recupSession();
+		DAOSession daos = new DAOSession();
+		return daos.recupSession();
 	}
 	
 	public void createSession(long idFormation,String nomSession, Float prix, String dateDebut,String dateFin, String lieu, TypeSession typesession ) {
-		DAOSession daos= new DAOSession();
-		daos.addSession(idFormation,nomSession,prix,dateDebut,dateFin,lieu,typesession);
+		daoSession.addSession(idFormation,nomSession,prix,dateDebut,dateFin,lieu,typesession);
 	}
 	public Session searchSession(long id) {
-		DAOSession daos= new DAOSession();
-		return daos.searchSession(id);
+		return daoSession.searchSession(id);
 	}
 	public void removeSession(long id) {
-		DAOSession daos= new DAOSession();
-		daos.removeSession(id);
+		daoSession.removeSession(id);
 	}
 	public void updateSession(String champAModif, String modif  , long id) {
-		DAOSession daos= new DAOSession();
 		//Récupération objet de la BDD
-		Session session= daos.searchSession(id);
+		Session session= daoSession.searchSession(id);
 		System.out.println(session.getSalle()+"*************************************");
 		//modif
 		if(champAModif.contentEquals("nomSession")) {
@@ -74,59 +78,49 @@ public class SessionService {
 			session.setSalle(sa);
 		}
 		
-		daos.updateSession(session);
+		daoSession.updateSession(session);
 	}
 
 	public void assoSalle(long idSess,long idSalle){
-		DAOSession daos= new DAOSession();
-		daos.assoSalle(idSess, idSalle);
+		daoSession.assoSalle(idSess, idSalle);
 	}
 	public void removeSalle(long idSess,long idSalle){
-		DAOSession daos= new DAOSession();
-		daos.removeSalle(idSess, idSalle);
+		daoSession.removeSalle(idSess, idSalle);
 	}
 
 	public void assoFormation(long idSess, long idFormation) {
-		DAOSession daos= new DAOSession();
-		daos.assoFormation(idSess, idFormation);
+		daoSession.assoFormation(idSess, idFormation);
 		
 	}
 
 	public void removeFormation(long idSess, long idFormation) {
-		DAOSession daos= new DAOSession();
-		daos.removeFormation(idSess, idFormation);
+		daoSession.removeFormation(idSess, idFormation);
 	}
 
 	public void assoFormateur(long idSess, long idFormateur) {
-		DAOSession daos= new DAOSession();
-		daos.assoFormateur(idSess, idFormateur);
+		daoSession.assoFormateur(idSess, idFormateur);
 		
 	}
 
 	public void removeFormateur(long idSess, long idFormateur) {
-		DAOSession daos= new DAOSession();
-		daos.removeFormateur(idSess, idFormateur);
+		daoSession.removeFormateur(idSess, idFormateur);
 		
 	}
 
 	public void assoStagiaire(long idSess, long idStagiaire) {
-		DAOSession daos= new DAOSession();
-		daos.assoStagiaire(idSess, idStagiaire);
+		daoSession.assoStagiaire(idSess, idStagiaire);
 		
 	}
 
 	public void removeStagiaire(long idSess, long idStagiaire) {
-		DAOSession daos= new DAOSession();
-		daos.removeStagiaire(idSess, idStagiaire);
+		daoSession.removeStagiaire(idSess, idStagiaire);
 	}
 	public void assoClient(long idSess, long idClient) {
-		DAOSession daos= new DAOSession();
-		daos.assoClient(idSess, idClient);
+		daoSession.assoClient(idSess, idClient);
 		
 	}
 
 	public void removeClient(long idSess, long idClient) {
-		DAOSession daos= new DAOSession();
-		daos.removeClient(idSess, idClient);
+		daoSession.removeClient(idSess, idClient);
 	}
 }

@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormateurService;
 import com.lip6.services.SessionService;
 
@@ -39,13 +42,19 @@ public class SearchFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+        SessionService session = context.getBean("servSession",SessionService.class);
+        
 		long idFormateur = Long.parseLong(request.getParameter("idFormateur"));
 		
-		SessionService sessserv = new SessionService();	
-		FormateurService fs = new FormateurService();
-		
 		request.setAttribute("form",fs.searchFormateur(idFormateur));
-		request.setAttribute("sessionsdisponibles",sessserv.recupSession());
+		request.setAttribute("sessionsdisponibles",session.recupSession());
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infoformateur.jsp") ;
 		rd.forward(request, response);

@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.entities.Session;
 import com.lip6.services.ClientService;
 import com.lip6.services.FormateurService;
@@ -46,21 +49,27 @@ public class SearchSessionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        SessionService session = context.getBean("servSession",SessionService.class);
+        ClientService cs = context.getBean("servClient",ClientService.class);
+        FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+        SalleService salle = context.getBean("servSalle",SalleService.class);
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        
 		long id = Long.parseLong(request.getParameter("idSession"));
-		SessionService session= new SessionService();
-		SalleService salleserv = new SalleService();
 		FormationService formserv = new FormationService();
-		FormateurService formateurserv = new FormateurService();
-		ClientService cliserv = new ClientService();
-		StagiaireService stagserv = new StagiaireService();
-
+		
 		request.setAttribute("sess",session.searchSession(id));
-		request.setAttribute("sallesdisponibles",salleserv.recupSalle());
+		request.setAttribute("sallesdisponibles",salle.recupSalle());
 		request.setAttribute("formationsdisponibles",formserv.recupFormations());
-		request.setAttribute("formateursdisponibles",formateurserv.recupFormateur());
-		request.setAttribute("clientsdisponibles",cliserv.recupClient());
-		request.setAttribute("stagiairesdisponibles",stagserv.recupStagiaire());
+		request.setAttribute("formateursdisponibles",fs.recupFormateur());
+		request.setAttribute("clientsdisponibles",cs.recupClient());
+		request.setAttribute("stagiairesdisponibles",stagiaire.recupStagiaire());
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infosession.jsp") ;
 		rd.forward(request, response);

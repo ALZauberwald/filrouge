@@ -8,6 +8,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Chapitre;
 import com.lip6.entities.Client;
 import com.lip6.entities.Evaluation;
@@ -18,7 +20,7 @@ import com.lip6.entities.Session;
 import com.lip6.entities.Stagiaire;
 import com.lip6.entities.TypeSession;
 import com.lip6.util.JpaUtil;
-
+@Repository("daoSession")
 public class DAOSession {
 	public Set<Session> recupSession(){
 		Set<Session> setSession = new HashSet<>();

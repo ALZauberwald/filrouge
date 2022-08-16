@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ClientService;
 
 /**
@@ -36,11 +39,18 @@ public class UpdateClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        ClientService cs = context.getBean("servClient",ClientService.class);
+        
 		long idClient = Long.parseLong(request.getParameter("idClient"));
 		String champAModif = request.getParameter("champAModif");
 		String modif = request.getParameter("modif");
 		
-		ClientService cs = new ClientService();
 		cs.updateClient(idClient,champAModif,modif);
 		response.sendRedirect("index.html");
 	}

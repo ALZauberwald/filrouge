@@ -8,11 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Session;
 import com.lip6.entities.Client;
 import com.lip6.entities.Client;
 import com.lip6.util.JpaUtil;
-
+@Repository("daoClient")
 public class DAOClient {
 	public boolean addClient(long idSession,String nom, String prenom, String adresse, String tel, String mail, String numSiret) {
 		boolean success= false;

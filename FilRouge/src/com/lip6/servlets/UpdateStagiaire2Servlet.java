@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.entities.Stagiaire;
 import com.lip6.services.StagiaireService;
 
@@ -37,18 +40,24 @@ public class UpdateStagiaire2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSession")) {
 			long idStagiaire= Long.parseLong(request.getParameter("idStagiaire"));
 			long idSess= Long.parseLong(request.getParameter("idSession"));
-			StagiaireService Stagiaire = new StagiaireService();
-			Stagiaire.assoSession(idStagiaire,idSess );
+			stagiaire.assoSession(idStagiaire,idSess );
 		}
 		else if (choix.equals("rmSession")) {
 			long idStagiaire= Long.parseLong(request.getParameter("idStagiaireRm"));
 			long idSess= Long.parseLong(request.getParameter("idSessRm"));
-			StagiaireService Stagiaire = new StagiaireService();
-			Stagiaire.removeSession(idStagiaire,idSess );
+			stagiaire.removeSession(idStagiaire,idSess );
 		}
 		response.sendRedirect("index.html");
 	}

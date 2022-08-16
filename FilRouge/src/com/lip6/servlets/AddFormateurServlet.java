@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.lip6.services.ClientService;
 import com.lip6.services.FormateurService;
 
 /**
@@ -36,13 +40,21 @@ public class AddFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+		
 		String nom =request.getParameter("nomFormateur");
 		String prenom = request.getParameter("prenomFormateur");
 		String adresse = request.getParameter("adresse");
 		String tel =request.getParameter("tel");
 		String mail = request.getParameter("mail");
 		String dateEmbauche=request.getParameter("dateEmbauche");
-		FormateurService fs = new FormateurService();
+		
 		fs.addFormateur(nom, prenom,  adresse,tel, mail,dateEmbauche);
 		response.sendRedirect("index.html");
 	}

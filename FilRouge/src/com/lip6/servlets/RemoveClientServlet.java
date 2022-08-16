@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ClientService;
 
 /**
@@ -36,8 +39,14 @@ public class RemoveClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		long idClient = Long.parseLong(request.getParameter("idClient"));			
-		ClientService cs = new ClientService();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        ClientService cs = context.getBean("servClient",ClientService.class);
+		long idClient = Long.parseLong(request.getParameter("idClient"));
 		cs.removeClient(idClient);
 		response.sendRedirect("index.html");
 	}

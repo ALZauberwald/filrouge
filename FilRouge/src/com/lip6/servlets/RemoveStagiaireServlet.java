@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormateurService;
 import com.lip6.services.StagiaireService;
 
@@ -37,10 +40,17 @@ public class RemoveStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        
 		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		
-		StagiaireService ss = new StagiaireService();
-		ss.removeStagiaire(idStagiaire);
+		stagiaire.removeStagiaire(idStagiaire);
 		response.sendRedirect("index.html");
 	}
 
