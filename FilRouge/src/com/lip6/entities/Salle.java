@@ -21,7 +21,7 @@ public class Salle {
 	private long idSalle;
 	private String adresse;
 	private String nomSalle;
-	@OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH})
+	@OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE},mappedBy = "salle")
 	private Set <Session> sessions = new HashSet<>();
 	
 	public Salle(String adresse, String nomSalle) {
@@ -107,8 +107,7 @@ public class Salle {
 
 	@Override
 	public String toString() {
-		return "idSalle=" + idSalle + " | adresse=" + adresse
-				+ " | nomSalle=" + nomSalle;
+		return idSalle + "  |  " + nomSalle;
 	}
 	
 	

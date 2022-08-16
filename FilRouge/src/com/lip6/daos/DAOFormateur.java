@@ -1,12 +1,16 @@
 package com.lip6.daos;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
 import com.lip6.entities.Formateur;
+import com.lip6.entities.Formation;
 import com.lip6.entities.Session;
-import com.lip6.entities.Personne;
 import com.lip6.util.JpaUtil;
 
 public class DAOFormateur {
@@ -31,34 +35,33 @@ public class DAOFormateur {
 		}
 		return success;
 	}
-	public Formateur searchFormateur(String nom , String prenom) {
+	public Formateur searchFormateur(Long idFormateur) {
 		Formateur form = new Formateur();
-		String requete = "SELECT id FROM Personne p WHERE Type='Formateur' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
+		try {
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
-		tx.begin();	
-		Query query = em.createQuery(requete);
-		
-		form = em.find(Formateur.class,query.getSingleResult());
+		tx.begin();		
+		form = em.find(Formateur.class,idFormateur);
 		
 		tx.commit();
 		
 		em.close();
 		System.out.println(form);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return form;
 	}
-	public boolean removeFormateur(String nom , String prenom) {
+	public boolean removeFormateur(Long idFormateur) {
 		boolean success = false;
 		try {
-		String requete = "SELECT id FROM Personne p WHERE Type='Formateur' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();	
-		Query query = em.createQuery(requete);
 		
-		Formateur form = em.find(Formateur.class,query.getSingleResult());
+		Formateur form = em.find(Formateur.class,idFormateur);
 		em.remove(form);
 		tx.commit();
 		
@@ -69,6 +72,7 @@ public class DAOFormateur {
 			e.printStackTrace();
 		}
 		return success;
+	
 	}
 	public boolean updateFormateur(Formateur formateur) {
 		
@@ -95,5 +99,76 @@ public class DAOFormateur {
 
 		return success;
 	}
+	public Set<Formateur> recupFormateur(){
+		Set<Formateur> setFormateur = new HashSet<>();
+		try {
+			//JPQL --> renvoie la liste de toutes les formations
+
+			String requete = "SELECT sa FROM Formateur sa"; 
+
+			
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();	
+			Query query = em.createQuery(requete); 
+			List<Formateur> results = query.getResultList();
+			// je passe chaque element de la liste dans le set
+
+			for (Formateur formateur : results) {
+				System.out.println(formateur);
+				setFormateur.add(formateur);
+
+			}
+			tx.commit();
+			
+			em.close();
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return setFormateur;
+	}
+	public void assoSession(long idFormateur, long idSess) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formateur formateurAAssocier= em.find(Formateur.class, idFormateur);
+				Session se= em.find(Session.class, idSess);
+				se.setFormateur(formateurAAssocier);
+				formateurAAssocier.getSessions().add(se);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void removeSession(long idFormateur, long idSess) {
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+				Formateur formateurASupprimer= em.find(Formateur.class, idFormateur);
+				Session se= em.find(Session.class, idSess);
+				se.setFormateur(null);
+				formateurASupprimer.getSessions().remove(se);
+			
+			tx.commit();
+			
+			em.close();
+			
+		} 
+		catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 
 }

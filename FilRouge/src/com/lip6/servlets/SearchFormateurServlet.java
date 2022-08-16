@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lip6.services.FormateurService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class SearchFormateurServlet
@@ -38,11 +39,14 @@ public class SearchFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		long idFormateur = Long.parseLong(request.getParameter("idFormateur"));
 		
+		SessionService sessserv = new SessionService();	
 		FormateurService fs = new FormateurService();
-		request.setAttribute("form",fs.searchFormateur(nom, prenom));
+		
+		request.setAttribute("form",fs.searchFormateur(idFormateur));
+		request.setAttribute("sessionsdisponibles",sessserv.recupSession());
+		
 		RequestDispatcher rd= request.getRequestDispatcher("infoformateur.jsp") ;
 		rd.forward(request, response);
 	}

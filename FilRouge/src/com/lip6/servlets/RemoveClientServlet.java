@@ -36,11 +36,9 @@ public class RemoveClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
-			
+		long idClient = Long.parseLong(request.getParameter("idClient"));			
 		ClientService cs = new ClientService();
-		cs.removeClient(nom, prenom);
+		cs.removeClient(idClient);
 		response.sendRedirect("index.html");
 	}
 

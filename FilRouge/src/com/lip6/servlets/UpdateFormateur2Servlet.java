@@ -7,19 +7,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lip6.entities.Formateur;
 import com.lip6.services.FormateurService;
 
 /**
- * Servlet implementation class RemoveFormateurServlet
+ * Servlet implementation class UpdateFormateur2Servlet
  */
-@WebServlet("/RemoveFormateurServlet")
-public class RemoveFormateurServlet extends HttpServlet {
+@WebServlet("/UpdateFormateur2Servlet")
+public class UpdateFormateur2Servlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public RemoveFormateurServlet() {
+    public UpdateFormateur2Servlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,10 +37,19 @@ public class RemoveFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long idFormateur = Long.parseLong(request.getParameter("idFormateur"));
-		
-		FormateurService fs = new FormateurService();
-		fs.removeFormateur(idFormateur);
+		String choix = request.getParameter("choix");
+		if(choix.equals("assoSession")) {
+			long idFormateur= Long.parseLong(request.getParameter("idFormateur"));
+			long idSess= Long.parseLong(request.getParameter("idSession"));
+			FormateurService formateur = new FormateurService();
+			formateur.assoSession(idFormateur,idSess );
+		}
+		else if (choix.equals("rmSession")) {
+			long idFormateur= Long.parseLong(request.getParameter("idFormateurRm"));
+			long idSess= Long.parseLong(request.getParameter("idSessRm"));
+			FormateurService formateur = new FormateurService();
+			formateur.removeSession(idFormateur,idSess );
+		}
 		response.sendRedirect("index.html");
 	}
 

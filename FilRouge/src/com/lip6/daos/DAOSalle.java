@@ -71,7 +71,7 @@ public class DAOSalle {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return success=true;
+		return success;
 	}
 	public boolean updateSalle(Salle salle) {
 		

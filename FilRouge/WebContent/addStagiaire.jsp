@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Stagiaire"%>
+<%@page import="com.lip6.services.StagiaireService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -31,15 +33,18 @@
 	<form action="SearchStagiaireServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Rechercher un Stagiaire</i> 
-	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le nom du stagiaire</i> <input type="text" name="nom"></td>
-	         </tr> 
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le prénom du stagiaire</i> <input type="text" name="prenom"></td>
-	         </tr>       
-	         <tr>
+	          	<td><i>Rechercher un Stagiaire</i> </td>
+	        <h1>Voici la liste de tous les stagiaires deja renseignes</h1>
+	        
+            	<SELECT name="idStagiaire" >
+    		<%StagiaireService stagiaireserv= new StagiaireService();%>
+    		<%java.util.Set<Stagiaire> stagiairesdisponibles = stagiaireserv.recupStagiaire(); %>
+    		<% for (Object stag:stagiairesdisponibles){ %>
+                   </br><OPTION Value="<%=stag.toString().split("  |  ")[0]%>"><%= stag %>
+                <% } %>
+                </SELECT>
+            </tr>
+            <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>
 		</table>
@@ -48,14 +53,15 @@
 	<form action="RemoveStagiaireServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Remove un Stagiaire</i> 
-	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le nom du stagiaire</i> <input type="text" name="nom"></td>
-	         </tr> 
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le prénom du stagiaire</i> <input type="text" name="prenom"></td>
-	         </tr>       
+	          	<td><i>Remove un Stagiaire</i></td>
+	        	
+            	<h1>Voici la liste de tous les stagiaires deja renseignes</h1>
+	        	<SELECT name="idStagiaire" >
+    			<% for (Object stag:stagiairesdisponibles){ %>
+                   </br><OPTION Value="<%=stag.toString().split("  |  ")[0]%>"><%= stag %>
+                <% } %>
+                </SELECT>
+      		</tr>
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>

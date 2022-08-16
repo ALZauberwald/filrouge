@@ -36,13 +36,12 @@ public class UpdateFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		Long idFormateur= Long.parseLong(request.getParameter("idFormateur"));
 		String champAModif = request.getParameter("champAModif");
 		String modif = request.getParameter("modif");
 		
 		FormateurService fs = new FormateurService();
-		fs.updateFormateur(nom , prenom,champAModif,modif);
+		fs.updateFormateur(idFormateur,champAModif,modif);
 		response.sendRedirect("index.html");
 	}
 

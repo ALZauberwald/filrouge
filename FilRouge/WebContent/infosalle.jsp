@@ -33,26 +33,23 @@
          <tr>
            	<th>Vous voulez ajouter une session √† une salle ?</th><input type="HIDDEN" name="idSalle" type="number" value="<%= salle.getIdSalle()%>">    	
             	<td><i>Voici la liste des sessions disponibles</i>	
-            		<SELECT size="1">
+            		<SELECT size="1" name="idSession">
             			<% for (Object sess:sessionsdisponibles){%>
-            				<OPTION><%= sess %>	
+            				<OPTION VALUE="<%= sess.toString().split("  |  ")[0]%>"><%= sess %>	
 						<% } %> 
 					</SELECT> 
             	</td>
-            	<td><i>Indiquez simplement le num√©ro de la session que vous souhaitez ajouter</i><input name="idSession" type="number" ></td>
         <tr>
            	<td><button input type="submit" name="choix" value="assoSession">Ajouter la session</td>
         </tr>
-           	<th>Vous voulez supprimer la salle d'une session ?</th><input type="HIDDEN" name="idSalleRm" type="number" value="<%= salle.getIdSalle()%>">
+           	<th>Vous voulez supprimer la session d'une salle ?</th><input type="HIDDEN" name="idSalleRm" type="number" value="<%= salle.getIdSalle()%>">
            	<td><i>Voici la liste des sessions qui sont pour l'instant liÈes ‡ cette salle</i>
-            	<SELECT size="1">
+            	<SELECT size="1" name="idSessionRm">
              		<% for (com.lip6.entities.Session sess:salle.getSessions()){ %>
-						<OPTION value="Session"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
+						<OPTION value="<%=sess.toString().split("  |  ")[0]%>"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
 					<% } %>  
 				</SELECT>
-           	</td>
-           	<td><i>Indiquez simplement le num√©ro de la session que vous souhaitez supprimer</i><input name="idSessionRm" type="number" >
-            	
+           	</td>    	
          </tr>
          <tr>
            	<td><button input type="submit" name="choix" value="rmSession">Supprimer la session</td>
