@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormationService;
 import com.lip6.services.SalleService;
 
@@ -37,17 +40,24 @@ public class UpdateSalle2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        SalleService salle = context.getBean("servSalle",SalleService.class);
+		
+		
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSession")) {
 			long idsalle= Long.parseLong(request.getParameter("idSalle"));
 			long idsess= Long.parseLong(request.getParameter("idSession"));
-			SalleService sa = new SalleService();
-			sa.assoSession(idsalle, idsess);
+			salle.assoSession(idsalle, idsess);
 		}
 		else if (choix.equals("rmSession")) {
 			long idsalle= Long.parseLong(request.getParameter("idSalleRm"));
 			long idsess= Long.parseLong(request.getParameter("idSessionRm"));
-			SalleService salle = new SalleService();
 			salle.removeSession(idsalle, idsess);
 		}
 		response.sendRedirect("index.html");

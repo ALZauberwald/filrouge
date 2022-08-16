@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.SessionService;
 import com.lip6.services.StagiaireService;
 
@@ -39,13 +42,18 @@ public class SearchStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        SessionService session = context.getBean("servSession",SessionService.class);
 		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		
-		SessionService sessserv = new SessionService();	
-		StagiaireService ss = new StagiaireService();
-		
-		request.setAttribute("stag",ss.searchStagiaire(idStagiaire));
-		request.setAttribute("sessionsdisponibles",sessserv.recupSession());
+		request.setAttribute("stag",stagiaire.searchStagiaire(idStagiaire));
+		request.setAttribute("sessionsdisponibles",session.recupSession());
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infostagiaire.jsp") ;
 		rd.forward(request, response);

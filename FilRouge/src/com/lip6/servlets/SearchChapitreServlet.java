@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ChapitreService;
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -43,12 +47,14 @@ public class SearchChapitreServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idChapitre"));
-		ChapitreService Chapitre= new ChapitreService();
 		
-		request.setAttribute("form",Chapitre.searchChapitre(id));
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ChapitreService chapitre = context.getBean("servChapitre",ChapitreService.class);
+		
+		request.setAttribute("form",chapitre.searchChapitre(id));
 		RequestDispatcher rd= request.getRequestDispatcher("infoChapitre.jsp") ;
 		
-		FormationService formationserv = new FormationService();
+		FormationService formationserv = context.getBean("servFormation",FormationService.class);
 		request.setAttribute("formationsdisponibles", formationserv.recupFormations());
 		
 		

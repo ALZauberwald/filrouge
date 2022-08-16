@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Objectif"%>
 <%@page import="com.lip6.services.ObjectifService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -35,7 +37,8 @@
 	         </tr>
 	         <tr>   
 	         	<Select name ="idObjectif">
-		            <%ObjectifService objectifserv= new ObjectifService();%>
+		         	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+	    			<%ObjectifService objectifserv= context.getBean("servObjectif",ObjectifService.class);%>
 					<%java.util.Set<Objectif> objectifsdisponibles = objectifserv.recupObjectifs(); %>
 					<% for (Object objectif:objectifsdisponibles){ %>
 	   				</br><option value ="<%= objectif.toString().split("  |  ")[0]%>"><%= objectif %> 

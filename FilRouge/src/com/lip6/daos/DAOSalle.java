@@ -8,10 +8,12 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.util.JpaUtil;
-
+@Repository("daoSalle")
 public class DAOSalle {
 	public boolean addSalle(String adresse , String nomSalle  ) {
 		

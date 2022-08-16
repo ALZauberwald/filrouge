@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.lip6.services.ObjectifService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.ThemeService;
 
 
@@ -43,7 +48,11 @@ public class UpdateThemeServlet extends HttpServlet {
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idTheme");
 			long id = Long.parseLong(idstr);
-			ThemeService thserv = new ThemeService();
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			ThemeService thserv = context.getBean("servTheme",ThemeService.class);
+			
+
 			thserv.updateTheme(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}

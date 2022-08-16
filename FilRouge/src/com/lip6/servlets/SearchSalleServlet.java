@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.SalleService;
 import com.lip6.services.SessionService;
 
@@ -39,10 +42,18 @@ public class SearchSalleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        SalleService salle = context.getBean("servSalle",SalleService.class);
+        SessionService sessionserv = context.getBean("servSession",SessionService.class);
+        
 		long id = Long.parseLong(request.getParameter("idSalle"));
-		SalleService salle = new SalleService();
-		SessionService sessionserv = new SessionService();
+		
 		
 		request.setAttribute("salle",salle.searchSalle(id));
 		request.setAttribute("sessionsdisponibles", sessionserv.recupSession());

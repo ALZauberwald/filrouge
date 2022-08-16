@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.SalleService;
 
 /**
@@ -36,9 +39,17 @@ public class RemoveSalleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        
+		for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        
+        SalleService salle = context.getBean("servSalle",SalleService.class);
 		long id = Long.parseLong(request.getParameter("idSalle"));
-		SalleService salle = new SalleService();
 		salle.removeSalle(id);
 		response.sendRedirect("index.html");
 	}

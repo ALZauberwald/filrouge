@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ChapitreService;
+import com.lip6.services.PrerequisService;
 
 @WebServlet("/RemoveChapitreServlet")
 public class RemoveChapitreServlet extends HttpServlet {
@@ -34,8 +38,11 @@ public class RemoveChapitreServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("idChapitre"));
-		ChapitreService Chapitre= new ChapitreService();
-		Chapitre.removeChapitre(id);
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ChapitreService chapitre = context.getBean("servChapitre",ChapitreService.class);
+
+		chapitre.removeChapitre(id);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

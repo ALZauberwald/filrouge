@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.StagiaireService;
 
 /**
@@ -36,12 +39,19 @@ public class UpdateStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        
 		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		String champAModif = request.getParameter("champAModif");
 		String modif = request.getParameter("modif");
 		
-		StagiaireService ss = new StagiaireService();
-		ss.updateStagiaire(idStagiaire,champAModif,modif);
+		stagiaire.updateStagiaire(idStagiaire,champAModif,modif);
 		response.sendRedirect("index.html");
 	}
 

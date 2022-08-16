@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormateurService;
 
 /**
@@ -36,9 +39,16 @@ public class RemoveFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+        
 		Long idFormateur = Long.parseLong(request.getParameter("idFormateur"));
 		
-		FormateurService fs = new FormateurService();
 		fs.removeFormateur(idFormateur);
 		response.sendRedirect("index.html");
 	}

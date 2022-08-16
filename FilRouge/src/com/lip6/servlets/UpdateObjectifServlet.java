@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ObjectifService;
+import com.lip6.services.PrerequisService;
 
 
 /**
@@ -43,8 +47,11 @@ public class UpdateObjectifServlet extends HttpServlet {
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idObjectif");
 			long id = Long.parseLong(idstr);
-			ObjectifService forma = new ObjectifService();
-			forma.updateObjectif(champAModif, modif , id);
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			ObjectifService obj = context.getBean("servObjectif",ObjectifService.class);
+			
+			obj.updateObjectif(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}
 

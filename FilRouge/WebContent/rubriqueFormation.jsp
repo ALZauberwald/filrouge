@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Formation"%>
 <%@page import="com.lip6.services.FormationService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -49,8 +51,8 @@
             </tr>
             <tr>
             	<Select name ="idFormation">
-		            <!-- <td><i>Id de la formation Ã  rechercher</i> <input type="number" name="idFormation">  </td> -->
-		            <%FormationService formaserv= new FormationService();%>
+		            <%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    				<%FormationService formaserv= context.getBean("servFormation",FormationService.class);%>
 					<%java.util.Set<Formation> formationsdisponibles = formaserv.recupFormations(); %>
 					<% for (Object formation:formationsdisponibles){ %>
 	   				</br><option value ="<%= formation.toString().split("  |  ")[0]%>"><%= formation %> 

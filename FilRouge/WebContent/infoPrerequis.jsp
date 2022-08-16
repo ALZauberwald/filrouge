@@ -20,7 +20,7 @@
          	<td><i>Nom du Prerequis</i> <%= form.getNomPrerequis() %>  </td>
            	
         <tr>
-           	<td><i>IdPrerequis</i> <input name="idPrerequis" type="number" value="<%= form.getIdPrerequis() %>"></td>
+           	<td> <input type ="hidden" name="idPrerequis" type="number" value="<%= form.getIdPrerequis() %>"></td>
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du Prerequis (<%= form.getNomPrerequis()%>)

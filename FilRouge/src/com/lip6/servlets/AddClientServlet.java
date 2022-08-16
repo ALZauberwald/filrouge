@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ClientService;
+import com.lip6.services.SalleService;
 
 /**
  * Servlet implementation class AddClientServlet
@@ -36,6 +40,14 @@ public class AddClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        ClientService cs = context.getBean("servClient",ClientService.class);
+		
 		Long id = Long.parseLong(request.getParameter("idSession"));
 		String nom =request.getParameter("nomClient");
 		String prenom = request.getParameter("prenomClient");
@@ -43,7 +55,8 @@ public class AddClientServlet extends HttpServlet {
 		String tel =request.getParameter("tel");
 		String mail = request.getParameter("mail");
 		String numSiret=request.getParameter("numSiret");
-		ClientService cs = new ClientService();
+		
+		
 		cs.addClient(id,nom, prenom,  adresse,tel, mail,numSiret);
 		response.sendRedirect("index.html");
 	}

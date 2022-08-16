@@ -35,6 +35,7 @@
         </tr>
 	
 	<!-- affichage des modifications possibles (les champs)-->
+			<td><input type ="hidden" name="idTheme" type="number" value="<%= form.getIdTheme() %>"></td>
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du theme (<%= form.getNomTheme()%>)

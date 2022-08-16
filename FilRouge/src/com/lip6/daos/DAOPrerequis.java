@@ -10,11 +10,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Prerequis;
 import com.lip6.util.JpaUtil;
 
 
-
+@Repository("daoPrerequis")
 public class DAOPrerequis {
 	
 	public Set<Prerequis> recupPrerequis(){

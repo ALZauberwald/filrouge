@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Evaluation;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Objectif;
@@ -23,7 +25,7 @@ import com.lip6.entities.Theme;
 import com.lip6.util.JpaUtil;
 
 
-
+@Repository("daoFormation")
 public class DAOFormation {
 	public Set<Formation> recupFormation(){
 		Set<Formation> setFormation = new HashSet<>();

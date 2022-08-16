@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 
 /**
  * Servlet implementation class AddFormServlet
@@ -40,7 +44,9 @@ public class AddFormServlet extends HttpServlet {
 		String objform =request.getParameter("formationobjectif");
 		String prereform =request.getParameter("formationprerequis");
 		
-		FormationService formation= new FormationService();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		FormationService formation = context.getBean("servFormation",FormationService.class);
+		
 		formation.createFormation(nomform, detform, objform, prereform);
 		//redirection 
 		response.sendRedirect("index.html");

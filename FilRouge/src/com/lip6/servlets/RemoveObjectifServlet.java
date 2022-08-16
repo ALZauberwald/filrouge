@@ -7,7 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ObjectifService;
+import com.lip6.services.PrerequisService;
 
 @WebServlet("/RemoveObjectifServlet")
 public class RemoveObjectifServlet extends HttpServlet {
@@ -34,8 +38,11 @@ public class RemoveObjectifServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("idObjectif"));
-		ObjectifService Objectif= new ObjectifService();
-		Objectif.removeObjectif(id);
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ObjectifService objectif = context.getBean("servObjectif",ObjectifService.class);
+		
+		objectif.removeObjectif(id);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

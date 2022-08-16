@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.ClientService;
 import com.lip6.services.SessionService;
 
@@ -37,18 +40,25 @@ public class UpdateClient2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        ClientService cs = context.getBean("servClient",ClientService.class);
+		
+		
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSession")) {
 			long idClient= Long.parseLong(request.getParameter("idClient"));
 			long idSess= Long.parseLong(request.getParameter("idSession"));
-			ClientService client = new ClientService();
-			client.assoSession(idClient,idSess );
+			cs.assoSession(idClient,idSess );
 		}
 		else if (choix.equals("rmSession")) {
 			long idClient= Long.parseLong(request.getParameter("idClientRm"));
 			long idSess= Long.parseLong(request.getParameter("idSessRm"));
-			ClientService client = new ClientService();
-			client.removeSession(idClient,idSess );
+			cs.removeSession(idClient,idSess );
 		}
 		response.sendRedirect("index.html");
 	}

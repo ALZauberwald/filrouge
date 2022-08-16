@@ -2,27 +2,31 @@ package com.lip6.services;
 
 import java.util.Set;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.lip6.daos.DAOStagiaire;
 import com.lip6.entities.Stagiaire;
-
+@Service("servStagiaire")
 public class StagiaireService {
+	@Autowired
+	@Qualifier("daoStagiaire")
+	DAOStagiaire daoStagiaire;
+	
 	public void addStagiaire(long idSession, String nomStagiaire,String prenomStagiaire,String adresse,String tel,String mail){
-		DAOStagiaire st = new DAOStagiaire();
-		st.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
+		daoStagiaire.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
 		
 	}
 	public Stagiaire searchStagiaire(long idStagiaire) {
-		DAOStagiaire st = new DAOStagiaire();
-		return st.searchStagiaire(idStagiaire);
+		return daoStagiaire.searchStagiaire(idStagiaire);
 	}
 	public void removeStagiaire(long idStagiaire) {
-		DAOStagiaire daos = new DAOStagiaire();
-		daos.removeStagiaire(idStagiaire);
+		daoStagiaire.removeStagiaire(idStagiaire);
 	}
 	public void updateStagiaire(long id, String champAModif, String modif) {
-		DAOStagiaire daos = new DAOStagiaire();
 		
-		Stagiaire stag = daos.searchStagiaire(id);
+		Stagiaire stag = daoStagiaire.searchStagiaire(id);
 		
 		if(champAModif.contentEquals("nom")) {
 			stag.setNom(modif);
@@ -39,20 +43,18 @@ public class StagiaireService {
 		else if(champAModif.contentEquals("mail")) {
 			stag.setMail(modif);
 		}
-		daos.updateStagiaire(stag);
+		daoStagiaire.updateStagiaire(stag);
 	}
 	public Set<Stagiaire> recupStagiaire(){ 
-		DAOStagiaire daos = new DAOStagiaire();
-		return daos.recupStagiaire();
+		DAOStagiaire daoStagiaire = new DAOStagiaire();
+		return daoStagiaire.recupStagiaire();
 	}
 	public void assoSession(long idStagiaire, long idSess) {
-		DAOStagiaire daos = new DAOStagiaire();
-		daos.assoSession(idStagiaire,idSess);
+		daoStagiaire.assoSession(idStagiaire,idSess);
 	}
 	
 	public void removeSession(long idStagiaire, long idSess) {
-		DAOStagiaire daos = new DAOStagiaire();
-		daos.removeSession(idStagiaire,idSess);
+		daoStagiaire.removeSession(idStagiaire,idSess);
 		
 	}	
 }

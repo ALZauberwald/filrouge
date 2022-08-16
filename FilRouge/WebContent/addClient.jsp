@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Client"%>
 <%@page import="com.lip6.services.ClientService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -40,7 +42,8 @@
 	         <h1>Voici la liste de tous les Clients deja renseignes</h1>
 	        <tr>
             	<SELECT name="idClient" >
-    		<%ClientService clientserv= new ClientService();%>
+            <%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    		<%ClientService clientserv= context.getBean("servClient",ClientService.class);%>
     		<%java.util.Set<Client> clientsdisponibles = clientserv.recupClient(); %>
     		<% for (Object client:clientsdisponibles){ %>
                    </br><OPTION Value="<%=client.toString().split("  |  ")[0]%>"><%= client %>

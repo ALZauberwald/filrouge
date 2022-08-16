@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
+import com.lip6.services.PrerequisService;
 import com.lip6.services.ThemeService;
 
 @WebServlet("/RemoveThemeServlet")
@@ -34,7 +38,10 @@ public class RemoveThemeServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Long.parseLong(request.getParameter("idTheme"));
-		ThemeService theme= new ThemeService();
+		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ThemeService theme = context.getBean("servTheme",ThemeService.class);
+
 		theme.removeTheme(id);
 		//redirection 
 		response.sendRedirect("index.html");

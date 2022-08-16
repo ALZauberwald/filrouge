@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.daos.DAOFormation;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
 
 /**
@@ -48,7 +52,9 @@ public class UpdateFormationServlet extends HttpServlet {
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idFormation");
 			long id = Long.parseLong(idstr);
-			FormationService forma = new FormationService();
+			
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			FormationService forma = context.getBean("servFormation",FormationService.class);
 			forma.updateFormation(champAModif, modif , id);
 			response.sendRedirect("index.html");
 	}

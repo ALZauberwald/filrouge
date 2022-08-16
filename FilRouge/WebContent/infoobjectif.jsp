@@ -20,7 +20,7 @@
          	<td><i>Nom de l'objectif</i> <%= form.getNomObjectif() %>  </td>
            	
         <tr>
-           	<td><i>IdObjectif</i> <input name="idObjectif" type="number" value="<%= form.getIdObjectif() %>"></td>
+           	<td> <input type ="hidden" name="idObjectif" type="number" value="<%= form.getIdObjectif() %>"></td>
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom de l'objectif (<%= form.getNomObjectif()%>)

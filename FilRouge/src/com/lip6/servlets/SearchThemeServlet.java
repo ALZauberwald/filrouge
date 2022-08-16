@@ -11,7 +11,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
 import com.lip6.services.ThemeService;
 
@@ -44,12 +48,13 @@ public class SearchThemeServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idTheme"));
-		ThemeService theme= new ThemeService();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ThemeService theme = context.getBean("servTheme",ThemeService.class);
 		
-		FormationService formationserv = new FormationService();
+		FormationService formationserv = context.getBean("servFormation",FormationService.class);
 		request.setAttribute("formationsdisponibles", formationserv.recupFormations());
 		
-		ThemeService themeserv = new ThemeService();
+		ThemeService themeserv = context.getBean("servTheme",ThemeService.class);
 		request.setAttribute("themesdisponibles", themeserv.recupTheme());
 		
 		request.setAttribute("form",theme.searchTheme(id));

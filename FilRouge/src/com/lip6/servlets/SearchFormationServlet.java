@@ -13,6 +13,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.entities.Objectif;
 import com.lip6.entities.Session;
 import com.lip6.services.ChapitreService;
@@ -54,12 +57,14 @@ public class SearchFormationServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		long id = Long.parseLong(request.getParameter("idFormation"));
 		
-		FormationService formation= new FormationService();	
-		ObjectifService objectifserv= new ObjectifService();
-		PrerequisService prerequisserv = new PrerequisService();
-		ChapitreService chapitreserv = new ChapitreService();
-		ThemeService themeserv = new ThemeService();
-		SessionService sessionserv = new SessionService();
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		FormationService formation = context.getBean("servFormation",FormationService.class);
+		ObjectifService objectifserv = context.getBean("servObjectif",ObjectifService.class);
+		PrerequisService prerequisserv = context.getBean("servPrerequis",PrerequisService.class);
+		ChapitreService chapitreserv = context.getBean("servChapitre",ChapitreService.class);
+		ThemeService themeserv = context.getBean("servTheme",ThemeService.class);
+		SessionService sessionserv = context.getBean("servSession",SessionService.class);
 		
 		request.setAttribute("form",formation.searchFormation(id));
 		request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());

@@ -8,11 +8,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.stereotype.Repository;
+
 import com.lip6.entities.Stagiaire;
 import com.lip6.entities.Session;
 import com.lip6.entities.Stagiaire;
 import com.lip6.util.JpaUtil;
-
+@Repository("daoStagiaire")
 public class DAOStagiaire {
 	public boolean addStagiaire(long idSession, String nom, String prenom, String adresse, String tel, String mail) {
 		boolean success= false;

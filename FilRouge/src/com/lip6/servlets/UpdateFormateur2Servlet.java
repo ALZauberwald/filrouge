@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.entities.Formateur;
 import com.lip6.services.FormateurService;
 
@@ -37,18 +40,24 @@ public class UpdateFormateur2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+		
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSession")) {
 			long idFormateur= Long.parseLong(request.getParameter("idFormateur"));
 			long idSess= Long.parseLong(request.getParameter("idSession"));
-			FormateurService formateur = new FormateurService();
-			formateur.assoSession(idFormateur,idSess );
+			fs.assoSession(idFormateur,idSess );
 		}
 		else if (choix.equals("rmSession")) {
 			long idFormateur= Long.parseLong(request.getParameter("idFormateurRm"));
 			long idSess= Long.parseLong(request.getParameter("idSessRm"));
-			FormateurService formateur = new FormateurService();
-			formateur.removeSession(idFormateur,idSess );
+			fs.removeSession(idFormateur,idSess );
 		}
 		response.sendRedirect("index.html");
 	}

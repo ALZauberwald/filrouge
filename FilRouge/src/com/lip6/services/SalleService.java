@@ -1,42 +1,47 @@
 package com.lip6.services;
 
 import java.util.Set;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Service;
+
 import com.lip6.daos.DAOSalle;
 import com.lip6.entities.Salle;
-
+@Service("servSalle")
 public class SalleService {
+	@Autowired
+	@Qualifier("daoSalle")
+	DAOSalle daoSalle;
+	
+	
 	public void addSalle(String adresse , String nomSalle ) {
-		DAOSalle daos=new DAOSalle();
-		daos.addSalle(adresse, nomSalle);
+		
+		daoSalle.addSalle(adresse, nomSalle);
 	}
 	
 	public Salle searchSalle(long id) {
-		DAOSalle daos=new DAOSalle();
-		return daos.searchSalle(id);
+		return daoSalle.searchSalle(id);
 		
 	}
 	
 	public void removeSalle(long id) {
-		DAOSalle daos=new DAOSalle();
-		daos.removeSalle(id);
+		daoSalle.removeSalle(id);
 	}
 	public void updateSalle(long id,String adresse , String nomSalle ) {
-		DAOSalle daos=new DAOSalle();
-		Salle sa = daos.searchSalle(id);
+		Salle sa = daoSalle.searchSalle(id);
 		sa.setAdresse(adresse);
 		sa.setNomSalle(nomSalle);
-		daos.updateSalle(sa);
+		daoSalle.updateSalle(sa);
 	}
 	public Set<Salle> recupSalle(){
-		DAOSalle daos= new DAOSalle();
-		return daos.recupSalle();
+		DAOSalle daoSalle= new DAOSalle();
+		return daoSalle.recupSalle();
 	}
 	public void assoSession(long idSalle,long idSe){
-		DAOSalle daos= new DAOSalle();
-		daos.assoSession(idSalle, idSe);
+		daoSalle.assoSession(idSalle, idSe);
 	}
 	public void removeSession(long idSalle,long idSe){
-		DAOSalle daos= new DAOSalle();
-		daos.removeSession(idSalle, idSe);
+		daoSalle.removeSession(idSalle, idSe);
 	}
 }

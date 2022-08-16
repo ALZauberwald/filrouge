@@ -7,12 +7,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.daos.DAOFormation;
 import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
 import com.lip6.services.FormationService;
+import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
 
 /**
@@ -43,65 +47,58 @@ public class UpdateFormation2Servlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			String choix = request.getParameter("choix");
+			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+			FormationService forma = context.getBean("servFormation",FormationService.class);
+			
 			if(choix.equals("asso")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
 				long idObj= Long.parseLong(request.getParameter("idObjectif"));
-				FormationService forma = new FormationService();
 				forma.assoObjectif(idform, idObj);
 			}
 			else if (choix.equals("rm")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
 				long idObj= Long.parseLong(request.getParameter("idObjectifRm"));
-				FormationService formation = new FormationService();
-				formation.rmObjectif(idform, idObj);
+				forma.rmObjectif(idform, idObj);
 			}
 			else if(choix.equals("assoPrerequis")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
 				long idPr= Long.parseLong(request.getParameter("idPrerequis"));
-				FormationService forma = new FormationService();
 				forma.assoPrerequis(idform, idPr);
 			}
 			else if (choix.equals("rmPrerequis")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
 				long idPr= Long.parseLong(request.getParameter("idPrerequisRm"));
-				FormationService formation = new FormationService();
-				formation.rmPrerequis(idform, idPr);
+				forma.rmPrerequis(idform, idPr);
 			}
 			else if(choix.equals("assoChapitre")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
 				long idChap= Long.parseLong(request.getParameter("idChapitre"));
-				FormationService forma = new FormationService();
 				forma.assoChapitre(idform, idChap);
 			}
 			else if (choix.equals("rmChapitre")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
 				long idChap= Long.parseLong(request.getParameter("idChapitreRm"));
-				FormationService formation = new FormationService();
-				formation.rmChapitre(idform, idChap);
+				forma.rmChapitre(idform, idChap);
 			}
 			else if(choix.equals("assoTheme")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
 				long idTh= Long.parseLong(request.getParameter("idTheme"));
-				FormationService forma = new FormationService();
 				forma.assoTheme(idform, idTh);
 			}
 			else if (choix.equals("rmTheme")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
 				long idth= Long.parseLong(request.getParameter("idThemeRm"));
-				FormationService formation = new FormationService();
-				formation.rmTheme(idform, idth);
+				forma.rmTheme(idform, idth);
 			}
 			else if(choix.equals("assoSession")) {
 				long idform= Long.parseLong(request.getParameter("idFormation"));
 				long idsess= Long.parseLong(request.getParameter("idSession"));
-				FormationService forma = new FormationService();
 				forma.assoSession(idform, idsess);
 			}
 			else if (choix.equals("rmSession")) {
 				long idform= Long.parseLong(request.getParameter("idFormationRm"));
 				long idsess= Long.parseLong(request.getParameter("idSessionRm"));
-				FormationService formation = new FormationService();
-				formation.rmSession(idform, idsess);
+				forma.rmSession(idform, idsess);
 			}
 
 			response.sendRedirect("index.html");
