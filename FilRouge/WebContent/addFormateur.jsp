@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Formateur"%>
 <%@page import="com.lip6.services.FormateurService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -41,9 +43,10 @@
 	         <tr>
             	<SELECT name="idFormateur" >
             	<h1>Voici la liste de touts formateurs déjà renseignés</h1>
-    		<%FormateurService formserv= new FormateurService();%>
-    		<%java.util.Set<Formateur> formateurdisponibles = formserv.recupFormateur(); %>
-    		<% for (Object form:formateurdisponibles){ %>
+            	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    			<%FormateurService formserv= context.getBean("servFormateur",FormateurService.class);%>
+    			<%java.util.Set<Formateur> formateurdisponibles = formserv.recupFormateur(); %>
+    			<% for (Object form:formateurdisponibles){ %>
                    </br><OPTION Value="<%=form.toString().split("  |  ")[0]%>"><%= form %>
                 <% } %>
                 </SELECT>
