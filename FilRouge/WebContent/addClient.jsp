@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Client"%>
+<%@page import="com.lip6.services.ClientService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -35,12 +37,16 @@
 			<tr>          
 	          	<td><i>Rechercher un Client</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le nom du client</i> <input type="text" name="nom"></td>
-	         </tr> 
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le prénom du client</i> <input type="text" name="prenom"></td>
-	         </tr>       
+	         <h1>Voici la liste de tous les Clients deja renseignes</h1>
+	        <tr>
+            	<SELECT name="idClient" >
+    		<%ClientService clientserv= new ClientService();%>
+    		<%java.util.Set<Client> clientsdisponibles = clientserv.recupClient(); %>
+    		<% for (Object client:clientsdisponibles){ %>
+                   </br><OPTION Value="<%=client.toString().split("  |  ")[0]%>"><%= client %>
+                <% } %>
+                </SELECT>
+            </tr>      
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>
@@ -52,12 +58,14 @@
 			<tr>          
 	          	<td><i>Remove un Client</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le nom du client</i> <input type="text" name="nom"></td>
-	         </tr> 
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le prénom du client</i> <input type="text" name="prenom"></td>
-	         </tr>       
+	         <h1>Voici la liste de tous les Clients deja renseignes</h1>
+	        <tr>
+            	<SELECT name="idClient" >
+    			<% for (Object client:clientsdisponibles){ %>
+                   </br><OPTION Value="<%=client.toString().split("  |  ")[0]%>"><%= client %>
+                <% } %>
+                </SELECT>
+            </tr>           
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>

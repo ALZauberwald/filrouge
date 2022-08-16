@@ -11,18 +11,19 @@ public class FormateurService {
 		fm.addFormateur(nomFormateur,prenomFormateur,adresse,tel,mail,dateEmbauche);
 		
 	}
-	public Formateur searchFormateur(String nom, String prenom) {
+	public Formateur searchFormateur(Long idFormateur) {
 		DAOFormateur fm = new DAOFormateur();
-		return fm.searchFormateur(nom, prenom);
+		return fm.searchFormateur(idFormateur);
 	}
-	public void removeFormateur(String nom, String prenom) {
+		
+	public void removeFormateur(Long idFormateur) {
 		DAOFormateur fm = new DAOFormateur();
-		fm.removeFormateur(nom, prenom);
+		fm.removeFormateur(idFormateur);
 	}
-	public void updateFormateur(String nom, String prenom, String champAModif, String modif) {
+	public void updateFormateur(Long idFormateur, String champAModif, String modif) {
 DAOFormateur daos = new DAOFormateur();
 		
-		Formateur form = daos.searchFormateur(nom, prenom);
+		Formateur form = daos.searchFormateur(idFormateur);
 		
 		if(champAModif.contentEquals("nom")) {
 			form.setNom(modif);
@@ -39,7 +40,7 @@ DAOFormateur daos = new DAOFormateur();
 		else if(champAModif.contentEquals("mail")) {
 			form.setMail(modif);
 		}
-		else if(champAModif.contentEquals("siret")) {
+		else if(champAModif.contentEquals("embauche")) {
 			form.setDateEmbauche(modif);
 		}
 		daos.updateFormateur(form);
@@ -57,4 +58,5 @@ DAOFormateur daos = new DAOFormateur();
 		DAOFormateur daos = new DAOFormateur();
 		daos.removeSession(idFormateur,idSess);
 	}
+	
 }

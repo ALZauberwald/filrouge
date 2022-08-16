@@ -36,13 +36,12 @@ public class UpdateStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		String champAModif = request.getParameter("champAModif");
 		String modif = request.getParameter("modif");
 		
 		StagiaireService ss = new StagiaireService();
-		ss.updateStagiaire(nom , prenom,champAModif,modif);
+		ss.updateStagiaire(idStagiaire,champAModif,modif);
 		response.sendRedirect("index.html");
 	}
 

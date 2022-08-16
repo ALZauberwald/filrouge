@@ -28,8 +28,7 @@
 		<tr>
         	<h2>Pour modifier un champ</h2>
            	
-           	<td><i><%=form.getNom()%></i><input type="HIDDEN" name="nom" type="text" value="<%= form.getNom()%>"></td>
-           	<td><i><%=form.getPrenom() %></i><input type="HIDDEN" name="prenom" type="text" value="<%= form.getPrenom()%>"> </i></td>
+           	<td><i><%=form.getId()%></i><input type="HIDDEN" name="idFormateur" type="number" value="<%= form.getId()%>"></td>
            	
            	<td><i>Veuillez choisir le champ Ã  modifier</i>
            		<SELECT name="champAModif" size="1">
@@ -38,7 +37,7 @@
 					<OPTION value="adresse"> adresse du formateur (<%= form.getAdresse()%>)
 					<OPTION value="tel"> Téléphone du formateur (<%= form.getTel()%>)
 					<OPTION value="mail"> Mail du formateur (<%= form.getMail()%>)
-					<OPTION value="embauche"> Numéro de Siret du formateur (<%= form.getDateEmbauche()%>)
+					<OPTION value="embauche"> Date d'embauche du formateur (<%= form.getDateEmbauche()%>)
 				</SELECT> 
        		<td><i>Veuillez rentrer la valeur du champ Ã  modifier</i> <input name="modif" type="text" /></td>
         </tr>

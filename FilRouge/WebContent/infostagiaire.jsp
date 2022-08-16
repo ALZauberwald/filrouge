@@ -27,8 +27,7 @@
 		<tr>
         	<h2>Pour modifier un champ</h2>
            	
-           	<td><i><%=stag.getNom()%></i><input type="HIDDEN" name="nom" type="text" value="<%= stag.getNom()%>"></td>
-           	<td><i><%=stag.getPrenom() %></i><input type="HIDDEN" name="prenom" type="text" value="<%= stag.getPrenom()%>"> </i></td>
+           	<td><i><%=stag.getId() %></i><input type="HIDDEN" name="idStagiaire" type="number" value="<%= stag.getId()%>"> </i></td>
            	
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">

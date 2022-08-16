@@ -11,18 +11,18 @@ public class StagiaireService {
 		st.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
 		
 	}
-	public Stagiaire searchStagiaire(String nom, String prenom) {
+	public Stagiaire searchStagiaire(long idStagiaire) {
 		DAOStagiaire st = new DAOStagiaire();
-		return st.searchStagiaire(nom,prenom);
+		return st.searchStagiaire(idStagiaire);
 	}
-	public void removeStagiaire(String nom, String prenom) {
-		DAOStagiaire st = new DAOStagiaire();
-		st.removeStagiaire(nom,prenom);
+	public void removeStagiaire(long idStagiaire) {
+		DAOStagiaire daos = new DAOStagiaire();
+		daos.removeStagiaire(idStagiaire);
 	}
-	public void updateStagiaire(String nom,String prenom, String champAModif, String modif) {
+	public void updateStagiaire(long id, String champAModif, String modif) {
 		DAOStagiaire daos = new DAOStagiaire();
 		
-		Stagiaire stag = daos.searchStagiaire(nom, prenom);
+		Stagiaire stag = daos.searchStagiaire(id);
 		
 		if(champAModif.contentEquals("nom")) {
 			stag.setNom(modif);
@@ -54,7 +54,5 @@ public class StagiaireService {
 		DAOStagiaire daos = new DAOStagiaire();
 		daos.removeSession(idStagiaire,idSess);
 		
-	}
-	
-	
+	}	
 }

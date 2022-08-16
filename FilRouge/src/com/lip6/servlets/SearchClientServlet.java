@@ -39,13 +39,12 @@ public class SearchClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		Long idClient = Long.parseLong(request.getParameter("idClient"));
 		
 		SessionService sessserv = new SessionService();		
 		ClientService cs = new ClientService();
 		
-		request.setAttribute("cli",cs.searchClient(nom,prenom));
+		request.setAttribute("cli",cs.searchClient(idClient));
 		request.setAttribute("sessionsdisponibles",sessserv.recupSession());
 		
 		RequestDispatcher rd= request.getRequestDispatcher("infoclient.jsp") ;

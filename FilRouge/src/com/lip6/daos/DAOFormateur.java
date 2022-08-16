@@ -35,34 +35,33 @@ public class DAOFormateur {
 		}
 		return success;
 	}
-	public Formateur searchFormateur(String nom , String prenom) {
+	public Formateur searchFormateur(Long idFormateur) {
 		Formateur form = new Formateur();
-		String requete = "SELECT id FROM Personne p WHERE Type='Formateur' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
+		try {
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
-		tx.begin();	
-		Query query = em.createQuery(requete);
-		
-		form = em.find(Formateur.class,query.getSingleResult());
+		tx.begin();		
+		form = em.find(Formateur.class,idFormateur);
 		
 		tx.commit();
 		
 		em.close();
 		System.out.println(form);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return form;
 	}
-	public boolean removeFormateur(String nom , String prenom) {
+	public boolean removeFormateur(Long idFormateur) {
 		boolean success = false;
 		try {
-		String requete = "SELECT id FROM Personne p WHERE Type='Formateur' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();	
-		Query query = em.createQuery(requete);
 		
-		Formateur form = em.find(Formateur.class,query.getSingleResult());
+		Formateur form = em.find(Formateur.class,idFormateur);
 		em.remove(form);
 		tx.commit();
 		
@@ -73,6 +72,7 @@ public class DAOFormateur {
 			e.printStackTrace();
 		}
 		return success;
+	
 	}
 	public boolean updateFormateur(Formateur formateur) {
 		
@@ -169,5 +169,6 @@ public class DAOFormateur {
 			e.printStackTrace();
 		}
 	}
+	
 
 }

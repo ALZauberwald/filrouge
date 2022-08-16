@@ -12,20 +12,22 @@ public class ClientService {
 		
 	}
 
-	public Client searchClient(String nom, String prenom) {
+
+	public Client searchClient(Long idClient) {
 		DAOClient daos = new DAOClient();
-		return daos.searchClient(nom, prenom);
+		return daos.searchClient(idClient);
+	}
+
+
+	public void removeClient(long idClient) {
+		DAOClient daos = new DAOClient();
+		daos.removeClient(idClient);
 	}
 	
-	public void removeClient(String nom, String prenom) {
-		DAOClient daos = new DAOClient();
-		daos.removeClient(nom, prenom);
-	}
-	
-	public void updateClient(String nom, String prenom , String champAModif , String modif) {
+	public void updateClient(long idClient , String champAModif , String modif) {
 		DAOClient daos = new DAOClient();
 		
-		Client cl = daos.searchClient(nom, prenom);
+		Client cl = daos.searchClient(idClient);
 		
 		if(champAModif.contentEquals("nom")) {
 			cl.setNom(modif);
@@ -61,4 +63,6 @@ public class ClientService {
 		DAOClient daos = new DAOClient();
 		daos.removeSession(idClient,idSess);
 	}
+
+
 }

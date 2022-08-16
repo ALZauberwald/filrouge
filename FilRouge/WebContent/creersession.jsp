@@ -64,11 +64,13 @@
 	            <td><i>Supprimer une session de la base de donnée.</i> 
             </tr>
             <tr>
-            	
-            	<td><i>Veuillez rentrer l'id de la session</i> <input type="number" name="idSession">  </td>
-	       
-            
-            <tr>
+            	<SELECT name="idSession" >
+            	<h1>Voici la liste de toutes les sessions deja renseignees</h1>
+    			<% for (Object sess:sessionsdisponibles){ %>
+                   </br><OPTION Value="<%=sess.toString().split("  |  ")[0]%>"><%= sess %>
+                <% } %>
+                </SELECT>
+            </tr>
             <td><input type="submit" name="submit"></td>
             </tr>
 </table>

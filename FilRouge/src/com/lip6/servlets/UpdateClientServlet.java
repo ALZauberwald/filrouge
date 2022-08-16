@@ -36,13 +36,12 @@ public class UpdateClientServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		long idClient = Long.parseLong(request.getParameter("idClient"));
 		String champAModif = request.getParameter("champAModif");
 		String modif = request.getParameter("modif");
 		
 		ClientService cs = new ClientService();
-		cs.updateClient(nom , prenom,champAModif,modif);
+		cs.updateClient(idClient,champAModif,modif);
 		response.sendRedirect("index.html");
 	}
 

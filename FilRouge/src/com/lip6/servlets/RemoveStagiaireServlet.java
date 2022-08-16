@@ -37,11 +37,10 @@ public class RemoveStagiaireServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		
 		StagiaireService ss = new StagiaireService();
-		ss.removeStagiaire(nom,prenom);
+		ss.removeStagiaire(idStagiaire);
 		response.sendRedirect("index.html");
 	}
 

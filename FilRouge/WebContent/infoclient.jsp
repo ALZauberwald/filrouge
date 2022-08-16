@@ -27,8 +27,7 @@
 		</tr>
 		<tr>
         	<h2>Pour modifier un champ</h2>
-           	<td><i><%=cli.getNom()%></i><input type="HIDDEN" name="nom" type="text" value="<%= cli.getNom()%>"></td>
-           	<td><i><%=cli.getPrenom() %></i><input type="HIDDEN" name="prenom" type="text" value="<%= cli.getPrenom()%>"> </i></td>
+        	<td><i><%=cli.getId() %></i><input type="HIDDEN" name="idClient" type="number" value="<%= cli.getId()%>"> </i></td>
            	
            	<td><i>Veuillez choisir le champ à modifier</i>
            		<SELECT name="champAModif" size="1">

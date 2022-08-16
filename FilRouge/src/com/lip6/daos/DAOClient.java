@@ -38,19 +38,16 @@ public class DAOClient {
 		}
 		return success;
 	}
-
-	public Client searchClient(String nom , String prenom) {
+	public Client searchClient(Long idClient) {
 		Client cl = new Client();
 		try {
-		String requete = "SELECT id FROM Personne p WHERE Type='Client' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
 		
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();	
-		Query query = em.createQuery(requete);
 		
-		cl = em.find(Client.class,query.getSingleResult());
+		cl = em.find(Client.class,idClient);
 		
 		tx.commit();
 		
@@ -61,17 +58,16 @@ public class DAOClient {
 		}
 		return cl;
 	}
-	public boolean removeClient(String nom , String prenom) {
+
+	public boolean removeClient(long idClient) {
 		boolean success = false;
 		try {
-		String requete = "SELECT id FROM Personne p WHERE Type='Client' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();	
-		Query query = em.createQuery(requete);
 		
-		Client stag = em.find(Client.class,query.getSingleResult());
+		Client stag = em.find(Client.class,idClient);
 		em.remove(stag);
 		tx.commit();
 		
@@ -178,5 +174,7 @@ public class DAOClient {
 			e.printStackTrace();
 		}
 	}
+
+
 
 }

@@ -36,11 +36,10 @@ public class RemoveFormateurServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String nom = request.getParameter("nom");
-		String prenom = request.getParameter("prenom");
+		Long idFormateur = Long.parseLong(request.getParameter("idFormateur"));
 		
 		FormateurService fs = new FormateurService();
-		fs.removeFormateur(nom,prenom);
+		fs.removeFormateur(idFormateur);
 		response.sendRedirect("index.html");
 	}
 

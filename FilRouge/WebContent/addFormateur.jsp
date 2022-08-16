@@ -1,3 +1,5 @@
+<%@page import="com.lip6.entities.Formateur"%>
+<%@page import="com.lip6.services.FormateurService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -36,12 +38,16 @@
 			<tr>          
 	          	<td><i>Rechercher un formateur</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le nom du formateur</i> <input type="text" name="nom"></td>
-	         </tr> 
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le prénom du formateur</i> <input type="text" name="prenom"></td>
-	         </tr>       
+	         <tr>
+            	<SELECT name="idFormateur" >
+            	<h1>Voici la liste de touts formateurs déjà renseignés</h1>
+    		<%FormateurService formserv= new FormateurService();%>
+    		<%java.util.Set<Formateur> formateurdisponibles = formserv.recupFormateur(); %>
+    		<% for (Object form:formateurdisponibles){ %>
+                   </br><OPTION Value="<%=form.toString().split("  |  ")[0]%>"><%= form %>
+                <% } %>
+                </SELECT>
+            </tr>      
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>
@@ -55,12 +61,14 @@
 			<tr>          
 	          	<td><i>Supprimer un formateur</i> 
 	         </tr>
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le nom du formateur</i> <input type="text" name="nom"></td>
-	         </tr> 
-	         <tr>        	
-	         	<td><i>Veuillez renseigner le prénom du formateur</i> <input type="text" name="prenom"></td>
-	         </tr>       
+<tr>
+            	<SELECT name="idFormateur" >
+            	<h1>Voici la liste de touts formateurs déjà renseignés</h1>
+    			<% for (Object form:formateurdisponibles){ %>
+                   </br><OPTION Value="<%=form.toString().split("  |  ")[0]%>"><%= form %>
+                <% } %>
+                </SELECT>
+            </tr> 
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>

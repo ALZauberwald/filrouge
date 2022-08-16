@@ -44,7 +44,7 @@
         </tr>
            	<th>Vous voulez supprimer la session d'une salle ?</th><input type="HIDDEN" name="idSalleRm" type="number" value="<%= salle.getIdSalle()%>">
            	<td><i>Voici la liste des sessions qui sont pour l'instant liées à cette salle</i>
-            	<SELECT size="1" name="idSessRm">
+            	<SELECT size="1" name="idSessionRm">
              		<% for (com.lip6.entities.Session sess:salle.getSessions()){ %>
 						<OPTION value="<%=sess.toString().split("  |  ")[0]%>"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
 					<% } %>  

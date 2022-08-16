@@ -38,39 +38,46 @@ public class DAOStagiaire {
 		}
 		return success;
 	}
-	public Stagiaire searchStagiaire(String nom , String prenom) {
+	public Stagiaire searchStagiaire(long id) {
 		Stagiaire stag = new Stagiaire();
-		String requete = "SELECT id FROM Personne p WHERE Type='Stagiaire' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
-		EntityManager em=JpaUtil.getEmf().createEntityManager();	
-		EntityTransaction tx = em.getTransaction();
-		
-		tx.begin();	
-		Query query = em.createQuery(requete);
-		
-		stag = em.find(Stagiaire.class,query.getSingleResult());
-		
-		tx.commit();
-		
-		em.close();
-		System.out.println(stag);
-		return stag;
+		try {
+			EntityManager em=JpaUtil.getEmf().createEntityManager();	
+			EntityTransaction tx = em.getTransaction();
+			
+			tx.begin();
+			
+			stag = em.find(Stagiaire.class, id);
+			
+			
+			tx.commit();
+			
+			em.close();
+			System.out.println(stag);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+			return stag;
 	}
-	public boolean removeStagiaire(String nom , String prenom) {
+	public boolean removeStagiaire(long idStagiaire) {
 		boolean success = false;
-		String requete = "SELECT id FROM Personne p WHERE Type='Stagiaire' AND p.nom ='"  + nom +"' AND p.prenom ='"+ prenom +"'";
+		try{
 		EntityManager em=JpaUtil.getEmf().createEntityManager();	
 		EntityTransaction tx = em.getTransaction();
 		
 		tx.begin();	
-		Query query = em.createQuery(requete);
 		
-		Stagiaire stag = em.find(Stagiaire.class,query.getSingleResult());
+		Stagiaire stag = em.find(Stagiaire.class,idStagiaire);
 		em.remove(stag);
 		tx.commit();
 		
 		em.close();
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
 		return success;
 	}
+
+
 	public boolean updateStagiaire(Stagiaire stagiaire) {
 		
 		boolean success=false;
@@ -166,5 +173,4 @@ public class DAOStagiaire {
 			e.printStackTrace();
 		}
 	}
-
-}
+	}
