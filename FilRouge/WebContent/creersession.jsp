@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Session"%>
 <%@page import="com.lip6.services.SessionService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -42,9 +44,10 @@
             <tr>
             	<SELECT name="idSession" >
             	<h1>Voici la liste de toutes les sessions deja renseignees</h1>
-    		<%SessionService sessionserv= new SessionService();%>
-    		<%java.util.Set<Session> sessionsdisponibles = sessionserv.recupSession(); %>
-    		<% for (Object sess:sessionsdisponibles){ %>
+            	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    			<%SessionService sessionserv= context.getBean("servSession",SessionService.class);%>
+    			<%java.util.Set<Session> sessionsdisponibles = sessionserv.recupSession(); %>
+    			<% for (Object sess:sessionsdisponibles){ %>
                    </br><OPTION Value="<%=sess.toString().split("  |  ")[0]%>"><%= sess %>
                 <% } %>
                 </SELECT>

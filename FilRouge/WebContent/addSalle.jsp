@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Salle"%>
 <%@page import="com.lip6.services.SalleService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -34,9 +36,10 @@
             <tr>
             	<SELECT name="idSalle" >
             	<h1>Voici la liste de toutes les salles deja renseignees</h1>
-    		<%SalleService salleserv= new SalleService();%>
-    		<%java.util.Set<Salle> sallesdisponibles = salleserv.recupSalle(); %>
-    		<% for (Object salle:sallesdisponibles){ %>
+            	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    			<%SalleService salleserv= context.getBean("servSalle",SalleService.class);%>
+    			<%java.util.Set<Salle> sallesdisponibles = salleserv.recupSalle(); %>
+    			<% for (Object salle:sallesdisponibles){ %>
                    </br><OPTION Value="<%=salle.toString().split("  |  ")[0]%>"><%= salle %>
                 <% } %>
                 </SELECT>

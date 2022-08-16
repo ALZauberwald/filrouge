@@ -1,5 +1,7 @@
 <%@page import="com.lip6.entities.Stagiaire"%>
 <%@page import="com.lip6.services.StagiaireService"%>
+<%@page import="org.springframework.context.ApplicationContext"%>
+<%@page import="org.springframework.web.context.support.WebApplicationContextUtils" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -37,9 +39,10 @@
 	        <h1>Voici la liste de tous les stagiaires deja renseignes</h1>
 	        
             	<SELECT name="idStagiaire" >
-    		<%StagiaireService stagiaireserv= new StagiaireService();%>
-    		<%java.util.Set<Stagiaire> stagiairesdisponibles = stagiaireserv.recupStagiaire(); %>
-    		<% for (Object stag:stagiairesdisponibles){ %>
+            	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
+    			<%StagiaireService stagiaireserv= context.getBean("servStagiaire",StagiaireService.class);%>
+    			<%java.util.Set<Stagiaire> stagiairesdisponibles = stagiaireserv.recupStagiaire(); %>
+    			<% for (Object stag:stagiairesdisponibles){ %>
                    </br><OPTION Value="<%=stag.toString().split("  |  ")[0]%>"><%= stag %>
                 <% } %>
                 </SELECT>

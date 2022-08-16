@@ -17,12 +17,7 @@
 <!--   
    <context:component-scan base-package="com.lip6.services.*" />
     <context:annotation-config/> -->
-    <bean id="serviceSalle" class="com.lip6.services.SalleService"/>
-    <bean id="serviceClient" class="com.lip6.services.ClientService"/>
-    <bean id="serviceFormateur" class="com.lip6.services.FormateurService"/>
-    <bean id="serviceSession" class="com.lip6.services.SessionService"/>
-    <bean id="serviceStagiaire" class="com.lip6.services.StagiaireService"/>
-    <bean id="servicePrerequis" class="com.lip6.services.PrerequisService"/>
+
 </beans>
 
    
