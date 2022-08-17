@@ -119,7 +119,7 @@
 					</SELECT> 
             	</td>
         <tr>
-           	<td><button input type="submit" name="choix" value="assoFormation">Ajouter la session</td>
+           	<td><button input type="submit" name="choix" value="assoFormation">Ajouter la formation</td>
         </tr>
            	<th>Vous voulez supprimer la formation d'une session ?</th><input type="HIDDEN" name="idSessRm" type="number" value="<%= sess.getIdSession()%>">
            	<td><i>Voici la liste des formations liées à cette session</i>

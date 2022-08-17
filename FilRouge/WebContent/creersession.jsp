@@ -12,7 +12,7 @@
 </head>
 <body>
 <h1>Partie admin</h1>
-<form action="CreerSessionServlet" method="POST">
+<form action="AddSessionServlet" method="POST">
 <table>
 			
 			<tr>          

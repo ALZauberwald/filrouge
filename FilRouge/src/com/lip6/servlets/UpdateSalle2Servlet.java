@@ -40,7 +40,7 @@ public class UpdateSalle2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		
 		String[] allBeanNames = context.getBeanDefinitionNames();
         for(String beanName : allBeanNames) {
