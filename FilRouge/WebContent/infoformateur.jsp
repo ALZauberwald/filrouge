@@ -9,6 +9,11 @@
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Formateur" ></jsp:useBean>
 <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet"></jsp:useBean>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateFormateurServlet" method="POST">
 	<table>
 		<tr>
@@ -28,9 +33,9 @@
 		<tr>
         	<h2>Pour modifier un champ</h2>
            	
-           	<td><i><%=form.getId()%></i><input type="HIDDEN" name="idFormateur" type="number" value="<%= form.getId()%>"></td>
+           	<input type="HIDDEN" name="idFormateur" type="number" value="<%= form.getId()%>">
            	
-           	<td><i>Veuillez choisir le champ à modifier</i>
+           	<td><i>Veuillez choisir le champ à modifier</i></br>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du formateur (<%=form.getNom() %>)
 					<OPTION value="prenom"> Prenom du formateur (<%= form.getPrenom()%>)
@@ -39,7 +44,8 @@
 					<OPTION value="mail"> Mail du formateur (<%= form.getMail()%>)
 					<OPTION value="embauche"> Date d'embauche du formateur (<%= form.getDateEmbauche()%>)
 				</SELECT> 
-       		<td><i>Veuillez rentrer la valeur du champ à modifier</i> <input name="modif" type="text" /></td>
+			</td>
+       		<td><i>Veuillez rentrer la valeur du champ à modifier</i></br> <input name="modif" type="text" /></td>
         </tr>
         <tr>
              <td><input type="submit" name="submit"></td>
@@ -78,5 +84,6 @@
 	</table>
 
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

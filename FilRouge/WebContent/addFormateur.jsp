@@ -11,11 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<form action="AddFormateurServlet" method="POST">
 		<table>
 			
 			<tr>          
-	            <td><i>Ajouter une session à la base de donnée.</i> 
+	            <h1>Ajouter un nouveau formateur</h1> 
             </tr>
             <tr> 
             	<td><i>Veuillez rentrer le nom</i> <input type="text" name="nomFormateur">  </td>
@@ -33,16 +38,16 @@
 		</table>
 	</form>
 	<br>
-	<h1>Rechercher un formateur existant</h1>
 	<br>
 	<form action="SearchFormateurServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Rechercher un formateur</i> 
+	          	<h1>Chercher un formateur existant</h1> 
 	         </tr>
 	         <tr>
+	         <td>
             	<SELECT name="idFormateur" >
-            	<h1>Voici la liste de touts formateurs déjà renseignés</h1>
+            	
             	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
     			<%FormateurService formserv= context.getBean("servFormateur",FormateurService.class);%>
     			<%java.util.Set<Formateur> formateurdisponibles = formserv.recupFormateur(); %>
@@ -50,6 +55,7 @@
                    </br><OPTION Value="<%=form.toString().split("  |  ")[0]%>"><%= form %>
                 <% } %>
                 </SELECT>
+            </td>
             </tr>      
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -57,25 +63,27 @@
 		</table>
 	</form>
 	<br>
-	<h1>Supprimer un formateur existant</h1>
 	<br>
 	<form action="RemoveFormateurServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Supprimer un formateur</i> 
+	          	<h1>Supprimer un formateur existant</h1>
 	         </tr>
-<tr>
+			<tr>
+			<td>
             	<SELECT name="idFormateur" >
-            	<h1>Voici la liste de touts formateurs déjà renseignés</h1>
+            	
     			<% for (Object form:formateurdisponibles){ %>
                    </br><OPTION Value="<%=form.toString().split("  |  ")[0]%>"><%= form %>
                 <% } %>
                 </SELECT>
+            </td>
             </tr> 
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>
 		</table>
 	</form>
+	<%@include file="footer.jsp" %>
 </body>
 </html>

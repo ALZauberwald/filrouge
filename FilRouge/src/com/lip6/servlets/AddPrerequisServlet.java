@@ -46,7 +46,7 @@ public class AddPrerequisServlet extends HttpServlet {
 		
 		prerequis.createPrerequis(nomobj);
 		//redirection 
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

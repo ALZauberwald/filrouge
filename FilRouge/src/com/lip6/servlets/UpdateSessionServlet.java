@@ -57,7 +57,7 @@ public class UpdateSessionServlet extends HttpServlet {
 			String idstr = request.getParameter("idSession");
 			long id = Long.parseLong(idstr);
 			session.updateSession(champAModif, modif , id);
-			response.sendRedirect("index.html");
+			response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

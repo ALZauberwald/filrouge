@@ -54,7 +54,6 @@ public class FormateurService {
 		
 	}
 	public Set<Formateur> recupFormateur(){ 
-		DAOFormateur daoFormateur = new DAOFormateur();
 		return daoFormateur.recupFormateur();
 	}
 	public void assoSession(long idFormateur, long idSess) {

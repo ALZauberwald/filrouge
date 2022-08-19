@@ -47,7 +47,7 @@ public class AddObjectifServlet extends HttpServlet {
 		
 		objectif.createObjectif(nomobj);
 		//redirection 
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

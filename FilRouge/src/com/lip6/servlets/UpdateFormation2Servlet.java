@@ -101,7 +101,7 @@ public class UpdateFormation2Servlet extends HttpServlet {
 				forma.rmSession(idform, idsess);
 			}
 
-			response.sendRedirect("index.html");
+			response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

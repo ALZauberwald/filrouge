@@ -9,6 +9,11 @@
 <jsp:useBean id="stag" scope="request" class="com.lip6.entities.Stagiaire" ></jsp:useBean>
 <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet"></jsp:useBean>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateStagiaireServlet" method="POST">
 	<table>
 		<tr>
@@ -27,18 +32,18 @@
 		<tr>
         	<h2>Pour modifier un champ</h2>
            	
-           	<td><i><%=stag.getId() %></i><input type="HIDDEN" name="idStagiaire" type="number" value="<%= stag.getId()%>"> </i></td>
+           	<input type="HIDDEN" name="idStagiaire" type="number" value="<%= stag.getId()%>">
            	
-           	<td><i>Veuillez choisir le champ à modifier</i>
+           	<td><i>Veuillez choisir le champ à modifier</i></br>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du stagiaire (<%=stag.getNom() %>)
 					<OPTION value="prenom"> Prenom du stagiaire (<%= stag.getPrenom()%>)
 					<OPTION value="adresse"> adresse du stagiaire (<%= stag.getAdresse()%>)
 					<OPTION value="tel"> T�l�phone du stagiaire (<%= stag.getTel()%>)
-					<OPTION value="mail"> Mail du stagiaire (<%= stag.getMail()%>)
-					
+					<OPTION value="mail"> Mail du stagiaire (<%= stag.getMail()%>)	
 				</SELECT> 
-       		<td><i>Veuillez rentrer la valeur du champ à modifier</i> <input name="modif" type="text" /></td>
+			</td>
+       		<td><i>Veuillez rentrer la valeur du champ à modifier</i></br> <input name="modif" type="text" /></td>
         </tr>
         <tr>
              <td><input type="submit" name="submit"></td>
@@ -77,5 +82,6 @@
 	</table>
 
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

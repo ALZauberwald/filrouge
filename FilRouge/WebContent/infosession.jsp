@@ -13,7 +13,11 @@
 <jsp:useBean id="clientsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <jsp:useBean id="stagiairesdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <body>
- 
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateSessionServlet" method="POST">
 <table>
 			
@@ -21,28 +25,31 @@
 	            <td><i>Modifier une session dans la base de donnée.</i> 
             </tr>
             <tr>
-            	<td><i>Id Session</i> <%= sess.getIdSession()%></td>
-             	<td><i>nomSession</i> <%= sess.getNomSession() %>  </td>
-             	<td><i>Nom Formation</i>
+            	<td><i>Id Session</i></br> <%= sess.getIdSession()%></td>
+             	<td><i>nomSession</i></br> <%= sess.getNomSession() %>  </td>
+             	<td><i>Nom Formation</i></br>
              	<%if (sess.getFormation()==null){%>
       				NA
       			<%}else{%>      			
              	<% com.lip6.entities.Formation form=sess.getFormation();%>
    					<%=form.getNomFormation() %>
 				<% }%>
-	            <td><i>prix</i> <%= sess.getPrix() %>  </td>
-	            <td><i>dateDebut</i> <%= sess.getDateDebut() %> </td>
-	            <td><i>lieu</i> <%= sess.getLieu() %>  </td>
-	            <td><i>formateurConfirmé</i> <%= sess.isFormateurConfirme() %>  </td>
-	            <td><i>Formateur</i>
+	            <td><i>prix</i></br> <%= sess.getPrix() %>  </td>
+	            <td><i>dateDebut</i></br> <%= sess.getDateDebut() %> </td>
+	            <td><i>dateFin</i></br> <%= sess.getDateFin() %> </td>
+	            <td><i>lieu</i></br> <%= sess.getLieu() %>  </td>
+	            <td><i>formateurConfirmé</i></br> <%= sess.isFormateurConfirme() %>  </td>
+	            </tr>
+	            <tr>
+	            <td><i>Formateur</i></br>
 	            <%if (sess.getFormateur()==null){%>
       				NA
       			<%}else{%>      			
              	<% com.lip6.entities.Formateur form=sess.getFormateur();%>
    					<%=form.getNom() %> <%=form.getPrenom()%>
 				<% }%>
-	            <td><i>typeSession</i> <%= sess.getTypeSession() %>  </td>
-	            <td><i>installationFinie</i> <%= sess.isInstallationFinie() %></td>  
+	            <td><i>typeSession</i></br> <%= sess.getTypeSession() %>  </td>
+	            <td><i>installationFinie</i></br> <%= sess.isInstallationFinie() %></td>  
 	            <td><i>Salle</i> 
 	            <%if (sess.getSalle()==null){%>
       				NA
@@ -67,8 +74,19 @@
 	            
              </tr>
             <tr>
-            	<td><i>IdSession</i> <input name="idSession" type="number" value="<%= sess.getIdSession()%>"></td>
-            	<td><i>Veuillez rentrer le champ à modifier</i> <input name = "champAModif" type ="text" /></td>
+            	<input name="idSession" type="hidden" type="number" value="<%= sess.getIdSession()%>">
+            	<td><i>Veuillez rentrer le champ à modifier</i></br>
+            	<SELECT name="champAModif" size="1">
+					<OPTION value="nomSession"> Nom de la session (<%= sess.getNomSession()%>)
+					<OPTION value="prix"> Prix de la session (<%= sess.getPrix()%>)
+					<OPTION value="dateDebut"> Date de début de la session (<%= sess.getDateDebut()%>)
+					<OPTION value="dateFin"> Date de fin de la session (<%= sess.getDateFin()%>)
+					<OPTION value="lieu"> Ville de la session (<%= sess.getLieu()%>)
+					<OPTION value="formateurConfirme"> Status formateur de la session (<%= sess.isFormateurConfirme()%>)
+					<OPTION value="typeSession"> Type de session (<%= sess.getTypeSession()%>)
+					<OPTION value="installationFinie"> Status installation session (<%= sess.isInstallationFinie()%>)
+				</SELECT>  
+				</td>
             	<td><i>Veuillez rentrer la valeur du champ à modifier</i> <input name="modif" type="text" /></td>
             </tr>
             <tr>
@@ -223,5 +241,6 @@
 	</table>
 
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

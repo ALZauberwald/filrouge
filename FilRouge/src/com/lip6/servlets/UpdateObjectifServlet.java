@@ -52,7 +52,7 @@ public class UpdateObjectifServlet extends HttpServlet {
 			ObjectifService obj = context.getBean("servObjectif",ObjectifService.class);
 			
 			obj.updateObjectif(champAModif, modif , id);
-			response.sendRedirect("index.html");
+			response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

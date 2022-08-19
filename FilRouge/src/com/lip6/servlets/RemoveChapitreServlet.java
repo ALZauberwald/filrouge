@@ -44,7 +44,7 @@ public class RemoveChapitreServlet extends HttpServlet {
 
 		chapitre.removeChapitre(id);
 		//redirection 
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

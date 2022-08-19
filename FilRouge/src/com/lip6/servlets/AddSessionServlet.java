@@ -70,7 +70,7 @@ public class AddSessionServlet extends HttpServlet {
 		
 		session.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,dateFin,lieuSession,type);
 		//redirection 
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

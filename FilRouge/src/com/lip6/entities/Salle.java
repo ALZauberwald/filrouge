@@ -13,8 +13,8 @@ import javax.persistence.OneToMany;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-@Component("classeSalle")
-@Scope("prototype")
+//@Component("classeSalle")
+//@Scope("prototype")
 @Entity
 public class Salle {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)

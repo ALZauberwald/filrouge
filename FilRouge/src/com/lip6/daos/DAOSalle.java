@@ -17,9 +17,9 @@ import com.lip6.entities.Session;
 import com.lip6.util.JpaUtil;
 @Repository("daoSalle")
 public class DAOSalle {
-	@Autowired
-	@Qualifier("classeSalle")
-	Salle salle;
+//	@Autowired
+//	@Qualifier("classeSalle")
+//	Salle salle;
 	public boolean addSalle(String adresse , String nomSalle  ) {
 		
 		boolean success=false;
@@ -27,10 +27,11 @@ public class DAOSalle {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			tx.begin();	
-			salle.setAdresse(adresse);
-			salle.setNomSalle(nomSalle);
-			
-			em.merge(salle);
+			Salle salle = new Salle(adresse,nomSalle);
+//			salle.setAdresse(adresse);
+//			salle.setNomSalle(nomSalle);
+			em.persist(salle);
+//			em.merge(salle);
 							
 			tx.commit();
 			
@@ -43,7 +44,7 @@ public class DAOSalle {
 		return success;
 	}
 	public Salle searchSalle(long id) {
-		
+		Salle salle = new Salle();
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();

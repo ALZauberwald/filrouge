@@ -50,7 +50,7 @@ public class RemoveFormateurServlet extends HttpServlet {
 		Long idFormateur = Long.parseLong(request.getParameter("idFormateur"));
 		
 		fs.removeFormateur(idFormateur);
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

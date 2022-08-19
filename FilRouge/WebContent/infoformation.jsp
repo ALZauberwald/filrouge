@@ -16,7 +16,11 @@
 
 
 <body>
- 
+ <%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateFormationServlet" method="POST">
 	<table>
 	<!-- affichage du contenu de la formation -->          
@@ -209,6 +213,6 @@
 	</table>
 
 </form>
-<br>
+<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -11,12 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>Partie admin</h1>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="AddSessionServlet" method="POST">
 <table>
 			
 			<tr>          
-	            <td><i>Ajouter une session à la base de donnée.</i> 
+	            <h1>Ajouter une nouvelle session </h1>
             </tr>
             <tr>
             	<td><i>Veuillez choisir la formation</i><input type="number" name="formation"></td> 
@@ -38,12 +42,13 @@
 <table>
 			
 			<tr>          
-	            <td><i>Rechercher une session</i> 
+	            <h1>Rechercher une session existante</h1>
             </tr>
             
             <tr>
+            <td>
             	<SELECT name="idSession" >
-            	<h1>Voici la liste de toutes les sessions deja renseignees</h1>
+            	
             	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
     			<%SessionService sessionserv= context.getBean("servSession",SessionService.class);%>
     			<%java.util.Set<Session> sessionsdisponibles = sessionserv.recupSession(); %>
@@ -51,6 +56,7 @@
                    </br><OPTION Value="<%=sess.toString().split("  |  ")[0]%>"><%= sess %>
                 <% } %>
                 </SELECT>
+            </td>
             </tr>
             
             <tr>
@@ -61,23 +67,25 @@
 <br>
 
 <form action="RemoveSessionServlet" method="POST">
-<table>
+	<table>
 			
 			<tr>          
-	            <td><i>Supprimer une session de la base de donnée.</i> 
+	            <h1>Supprimer une session existante</h1>
             </tr>
             <tr>
+            <td>
             	<SELECT name="idSession" >
-            	<h1>Voici la liste de toutes les sessions deja renseignees</h1>
+            	
     			<% for (Object sess:sessionsdisponibles){ %>
                    </br><OPTION Value="<%=sess.toString().split("  |  ")[0]%>"><%= sess %>
                 <% } %>
                 </SELECT>
+            </td>
             </tr>
             <td><input type="submit" name="submit"></td>
             </tr>
-</table>
-
+	</table>
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

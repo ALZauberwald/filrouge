@@ -60,7 +60,7 @@ public class UpdateSalle2Servlet extends HttpServlet {
 			long idsess= Long.parseLong(request.getParameter("idSessionRm"));
 			salle.removeSession(idsalle, idsess);
 		}
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

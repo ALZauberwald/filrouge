@@ -9,6 +9,11 @@
 <jsp:useBean id="cli" scope="request" class="com.lip6.entities.Client" ></jsp:useBean>
 <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet"></jsp:useBean>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateClientServlet" method="POST">
 	<table>
 		<tr>
@@ -27,9 +32,9 @@
 		</tr>
 		<tr>
         	<h2>Pour modifier un champ</h2>
-        	<td><i><%=cli.getId() %></i><input type="HIDDEN" name="idClient" type="number" value="<%= cli.getId()%>"> </i></td>
+        	<input type="HIDDEN" name="idClient" type="number" value="<%= cli.getId()%>">
            	
-           	<td><i>Veuillez choisir le champ à modifier</i>
+           	<td><i>Veuillez choisir le champ à modifier</i></br>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du client (<%=cli.getNom() %>)
 					<OPTION value="prenom"> Prenom du client (<%= cli.getPrenom()%>)
@@ -38,7 +43,8 @@
 					<OPTION value="mail"> Mail du client (<%= cli.getMail()%>)
 					<OPTION value="siret"> Num�ro de Siret du Client (<%= cli.getNumSiret()%>)
 				</SELECT> 
-       		<td><i>Veuillez rentrer la valeur du champ à modifier</i> <input name="modif" type="text" /></td>
+			</td>
+       		<td><i>Veuillez rentrer la valeur du champ à modifier</i></br> <input name="modif" type="text" /></td>
         </tr>
         <tr>
              <td><input type="submit" name="submit"></td>
@@ -77,5 +83,6 @@
 	</table>
 
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

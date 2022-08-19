@@ -11,6 +11,11 @@
 </head>
 
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<h1>Ajouter un Theme</h1>
 	<form action="AddThemeServlet" method="POST">
 		<table>			
@@ -69,5 +74,6 @@
 	        </tr>
 		</table>
 	</form>
+	<%@include file="footer.jsp" %>
 </body>
 </html>

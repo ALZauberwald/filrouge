@@ -52,7 +52,7 @@ public class UpdateClientServlet extends HttpServlet {
 		String modif = request.getParameter("modif");
 		
 		cs.updateClient(idClient,champAModif,modif);
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

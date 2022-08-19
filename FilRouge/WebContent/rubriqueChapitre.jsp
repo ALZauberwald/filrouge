@@ -14,6 +14,11 @@
 <jsp:useBean id="formationsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<h1>Ajouter un Chapitre</h1>
 	<form action="AddChapitreServlet" method="POST">
 		<table>			
@@ -74,5 +79,6 @@
 	        </tr>
 		</table>
 	</form>
+	<%@include file="footer.jsp" %>
 </body>
 </html>
