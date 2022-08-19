@@ -177,6 +177,22 @@ public boolean removeTheme(long id) {
 			
 			tx.begin();	
 				Theme th= em.find(Theme.class, id);
+				
+					th.setFormation(null);
+				
+					String requete = "SELECT fm FROM Formation fm, Theme WHERE idTheme= "+id; 
+					Query query = em.createQuery(requete); 
+					List<Formation> results = query.getResultList();
+					for (Formation formation : results) {
+						formation.getTheme().remove(th);
+					}
+					String requete2 = "SELECT st FROM Theme st, Theme"; 
+					Query query2 = em.createQuery(requete2); 
+					List<Theme> results2 = query2.getResultList();
+					for (Theme ssth : results2) {
+						ssth.getSousthemes().remove(th);
+					}
+				
 				em.remove(th);
 			tx.commit();
 			em.close();

@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+xmlns="http://java.sun.com/xml/ns/javaee" 
+xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" 
+id="WebApp_ID" version="3.0">
+
   <display-name>FilRouge</display-name>
+  
   <absolute-ordering />
+  
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>
   </welcome-file-list>
+  
   <!-- dans le cas ou on souhaite charger uniquement l'XML dans le contexte de la servlet 
 	si on veut cumuler avec les annotations, on passe par la class config et un import resources-->
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
 	<!-- <context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>/WEB-INF/applicationContext.xml</param-value>
@@ -17,12 +25,32 @@
    <context-param>
 		<param-name>contextClass</param-name>
 		<param-value>
- org.springframework.web.context.support.AnnotationConfigWebApplicationContext
-  </param-value>
+ 			org.springframework.web.context.support.AnnotationConfigWebApplicationContext
+  		</param-value>
 	</context-param>
+	
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<!-- <param-value>com.lip6.services, com.lip6.daos</param-value> -->
 		<param-value>com.lip6.configuration</param-value>
 	</context-param> 
+	
+	
+	<!-- Change Jersey servlet from “com.sun.jersey.spi.container.servlet.ServletContainer” 
+	to “com.sun.jersey.spi.spring.container.servlet.SpringServlet“. -->
+	<servlet>
+    	<servlet-name>Jersey REST Service</servlet-name>
+    	<servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>
+    	<init-param>
+      		<param-name>jersey.config.server.provider.packages</param-name>
+      		<param-value>com.lip6.soaservices.*</param-value>
+    	</init-param>
+    <load-on-startup>1</load-on-startup>
+  	</servlet>
+  	
+  <servlet-mapping>
+    <servlet-name>Jersey REST Service</servlet-name>
+    <url-pattern>/rest/*</url-pattern>
+  </servlet-mapping>
+	
 </web-app>

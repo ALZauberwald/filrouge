@@ -71,6 +71,7 @@ public class DAOObjectif {
 	public Objectif searchObjectif(long id) {
 		Objectif ob = new Objectif();
 		try {
+			System.out.println("3.25-----------------------------icic le daoobjectif, avant la creation de lem");
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			
@@ -82,6 +83,7 @@ public class DAOObjectif {
 		catch (Exception e) {
 			e.printStackTrace();
 		}
+		System.out.println("3.5------------------------ici le dao objectif");
 		return ob;	
 	}
 	
