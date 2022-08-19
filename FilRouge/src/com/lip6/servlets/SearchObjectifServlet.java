@@ -16,6 +16,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.services.ObjectifService;
 import com.lip6.services.PrerequisService;
+import com.lip6.soaservices.ObjectifSOAService;
 
 /**
  * Servlet implementation class SearchSessionServlet
@@ -49,8 +50,10 @@ public class SearchObjectifServlet extends HttpServlet {
 		
 		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 		ObjectifService objectif = context.getBean("servObjectif",ObjectifService.class);
-		
+		ObjectifSOAService objsoa= new ObjectifSOAService();
+		System.out.println("11111111111111111111111111 jarrive juste avant l'appel de sao.searchobjectif, dans la servlet searchobjectif id ="+id);
 		request.setAttribute("form",objectif.searchObjectif(id));
+		System.out.println("44444444444444444 jarrive juste apres l'appel de sao.searchobjectif, dans la servlet searchobjectif");
 		RequestDispatcher rd= request.getRequestDispatcher("infoobjectif.jsp") ;
 		rd.forward(request, response);
 	

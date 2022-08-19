@@ -139,8 +139,18 @@ public boolean removeChapitre(long id) {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-				Chapitre ob= em.find(Chapitre.class, id);
-				em.remove(ob);
+				Chapitre cp= em.find(Chapitre.class, id);
+				
+				cp.setFormation(null);
+				
+				String requete = "SELECT fm FROM Formation fm, Chapitre WHERE idChapitre= "+id; 
+				Query query = em.createQuery(requete); 
+				List<Formation> results = query.getResultList();
+				for (Formation formation : results) {
+					formation.getChapitres().remove(cp);
+				}
+				
+				em.remove(cp);
 			tx.commit();
 			em.close();
 			

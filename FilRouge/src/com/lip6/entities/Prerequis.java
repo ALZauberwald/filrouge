@@ -9,6 +9,12 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+
+@Component ("classeprerequis")
+@Scope ("prototype")
 @Entity
 public class Prerequis {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)

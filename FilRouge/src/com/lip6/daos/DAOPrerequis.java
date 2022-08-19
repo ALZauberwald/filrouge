@@ -10,6 +10,8 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.lip6.entities.Prerequis;
@@ -18,6 +20,9 @@ import com.lip6.util.JpaUtil;
 
 @Repository("daoPrerequis")
 public class DAOPrerequis {
+	@Autowired
+    @Qualifier("classeprerequis")
+    Prerequis prerequis;
 	
 	public Set<Prerequis> recupPrerequis(){
 		Set<Prerequis> setPrerequis = new HashSet<>();
@@ -55,8 +60,8 @@ public class DAOPrerequis {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-				Prerequis ob= new Prerequis(Prerequisname);								
-				em.persist(ob);
+				prerequis.setNomPrerequis(Prerequisname);							
+				em.merge(prerequis);
 			tx.commit();
 			
 			em.close();
@@ -70,20 +75,19 @@ public class DAOPrerequis {
 	
 
 	public Prerequis searchPrerequis(long id) {
-		Prerequis ob = new Prerequis();
 		try {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-				ob= em.find(Prerequis.class, id);
+				prerequis= em.find(Prerequis.class, id);
 			tx.commit();
 			em.close();		
 		} 
 		catch (Exception e) {
 			e.printStackTrace();
 		}
-		return ob;	
+		return prerequis;	
 	}
 	
 public boolean removePrerequis(long id) {	
@@ -93,8 +97,8 @@ public boolean removePrerequis(long id) {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-				Prerequis ob= em.find(Prerequis.class, id);
-				em.remove(ob);
+				Prerequis pr= em.find(Prerequis.class, id);
+				em.remove(pr);
 			tx.commit();
 			em.close();
 			

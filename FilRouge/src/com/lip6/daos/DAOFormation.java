@@ -328,7 +328,38 @@ public boolean removeFormation(long id) {
 			EntityTransaction tx = em.getTransaction();
 			
 			tx.begin();	
-			Formation fm= em.find(Formation.class, id);
+			Formation fm= em.find(Formation.class, id);	
+				//suppression des associations avant de supprimer l'objet en base de donnée
+				fm.setChapitres(null);
+				fm.setObjectifsFormation(null);
+				fm.setPrerequisFormation(null);
+				fm.setSessions(null);
+				fm.setTheme(null);
+				
+				String requetecp = "SELECT cp FROM Formation fm, Chapitre cp WHERE idFormation="+id; 
+				Query querycp = em.createQuery(requetecp); 
+				List<Chapitre> resultscp = querycp.getResultList();
+				for (Chapitre chapitre : resultscp) {
+					chapitre.setFormation(null);
+				}
+				//pas besoin, lien unidirectionnel
+				//String requeteob = "SELECT ob FROM Formation fm, Objectif ob WHERE idFormation="+id;
+				
+				//pas besoin, lien unidirectionnel
+				//String requetepr = "SELECT pr FROM Formation fm, Prerequis pr WHERE idFormation="+id; 
+				
+				String requetese = "SELECT se FROM Formation fm, Session se WHERE idFormation="+id; 
+				Query queryse = em.createQuery(requetese); 
+				List<Session> resultsse = queryse.getResultList();
+				for (Session sess : resultsse) {
+					sess.setFormation(null);
+				}
+				String requeteth = "SELECT th FROM Formation fm, Theme th WHERE idFormation="+id; 
+				Query queryth = em.createQuery(requeteth); 
+				List<Theme> resultsth = queryth.getResultList();
+				for (Theme thme : resultsth) {
+					thme.getFormation().remove(fm);
+				}			
 			em.remove(fm);
 			tx.commit();
 			em.close();
