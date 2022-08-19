@@ -69,8 +69,15 @@ public class DAOClient {
 		
 		tx.begin();	
 		
-		Client stag = em.find(Client.class,idClient);
-		em.remove(stag);
+		Client cl = em.find(Client.class,idClient);
+		cl.setSessions(null);
+		String requetecl = "SELECT se FROM Personne , Session se WHERE Type='Client' AND id="+idClient; 
+        Query querycl = em.createQuery(requetecl); 
+        List<Session> resultscl = querycl.getResultList();
+        for (Session sess : resultscl) {
+            sess.getClient().remove(cl);
+        }
+		em.remove(cl);
 		tx.commit();
 		
 		em.close();

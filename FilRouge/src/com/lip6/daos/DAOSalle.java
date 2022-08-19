@@ -63,23 +63,33 @@ public class DAOSalle {
 		
 	}
 	public boolean removeSalle(long id) {
-		boolean success=false;
-		try {
-			EntityManager em=JpaUtil.getEmf().createEntityManager();	
-			EntityTransaction tx = em.getTransaction();
-			
-			tx.begin();	
-			Salle sa= em.find(Salle.class, id);
-			em.remove(sa);
-			tx.commit();
-			
-			em.close();
-			
-			success=true;
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return success;
+		  boolean success=false;
+	        try {
+	            EntityManager em=JpaUtil.getEmf().createEntityManager();
+	            EntityTransaction tx = em.getTransaction();
+
+	            tx.begin();
+	                Salle sa= em.find(Salle.class, id);
+
+	                sa.setSessions(null);
+
+	                String requete = "SELECT se FROM Session se, Salle WHERE idSalle= "+id; 
+	                Query query = em.createQuery(requete); 
+	                List<Session> results = query.getResultList();
+	                for (Session session : results) {
+	                    session.setSalle(null);
+	                }
+
+	                em.remove(sa);
+	            tx.commit();
+	            em.close();
+
+	            success=true;
+	        } 
+	        catch (Exception e) {
+	            e.printStackTrace();
+	        }
+	        return success;
 	}
 	public boolean updateSalle(Salle salle) {
 		

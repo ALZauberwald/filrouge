@@ -71,6 +71,13 @@ public class DAOStagiaire {
 		tx.begin();	
 		
 		Stagiaire stag = em.find(Stagiaire.class,idStagiaire);
+		stag.setSessions(null);
+		String requetest = "SELECT se FROM Personne st, Session se WHERE Type='Stagiaire' AND id="+idStagiaire; 
+        Query queryst = em.createQuery(requetest); 
+        List<Session> resultsst = queryst.getResultList();
+        for (Session sess : resultsst) {
+            sess.getStagiaires().remove(stag);
+        }
 		em.remove(stag);
 		tx.commit();
 		

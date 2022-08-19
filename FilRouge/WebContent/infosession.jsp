@@ -52,7 +52,7 @@
 	            <td><i>installationFinie</i></br> <%= sess.isInstallationFinie() %></td>  
 	            <td><i>Salle</i> 
 	            <%if (sess.getSalle()==null){%>
-      				NA
+      				</br>NA
       		<%}else{%>      			
              	<% com.lip6.entities.Salle sa=sess.getSalle();%>
    				</br>Adresse :<%= sa.getAdresse() %>
