@@ -1,65 +1,58 @@
+
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Test</title>
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<title>Insert title here</title>
 </head>
 <body>
-<h1>Trouver une formation &#224 distance ou en pr&#233sentiel</h1>
-	<form action="KeyWordServlet" method="post">
-		<table>
-		    <tr>  
-		    <th>Partie client</th>          
-		        <td><i>Quelle formation recherchez-vous?</i><input type="text" name="keyword">  </td>       
-		    </tr>
-		    <tr>
-		        <td><input type="submit" name="submit">  </td> 
-		    </tr>    
-		</table>
-	</form>
-
-	
-	
-
-	 <br><br>
-
-
-		<h1><a href="creersession.jsp">Rubrique Session</a></h1>
-	<br><br>
-	
-	<br><br>
-		<h1><a href="addSalle.jsp">Rubrique Salle</a></h1>
-	<br><br> 
-	<br><br>
-		<h1><a href="addStagiaire.jsp">Rubrique stagiaire</a></h1>
-	<br><br> 
-	<br><br>
-		<h1><a href="addFormateur.jsp">Rubrique formateur</a></h1>
-	<br><br> 
-	<br><br>
-		<h1><a href="addClient.jsp">Rubrique client</a></h1>
-	<br><br>
-	
-
-		 <h1><a href="rubriquePrerequis.jsp">Creer, rechercher, supprimer ou mettre ÃƒÂ  jour un prerequis</a></h1>
-
-	<br><br>
-	
-	 <br><br>
-		<h1><a href="rubriqueObjectif.jsp">Creer, rechercher, supprimer ou mettre ÃƒÂ  jour un objectif</a></h1>
-	<br><br> 
-	
-	<br><br>
-		<h1><a href="rubriqueChapitre.jsp">Creer, rechercher, supprimer ou mettre ÃƒÂ  jour un chapitre</a></h1>
-	<br><br> 
-	
-	<br><br>
-		<h1><a href="rubriqueTheme.jsp">Creer, rechercher, supprimer ou mettre aÂ  jour un theme</a></h1>
-	<br><br>  
-	
-	<br><br>
-		<h1><a href="rubriqueFormation.jsp">Creer, rechercher, supprimer ou mettre aÂ  jour une formation</a></h1>
-	<br><br>
-    	
+<header class="cd-main-header">
+		<div class="logo">
+			<a  href="index.html" title="formation informatique" >
+				<img src="./images/ibLogo.jpg" alt="Accueil ib formation" width="100">
+			</a>
+		</div>
+		<div class="topnav">
+	  		<a class="active" href="#home">Home</a>
+	  		<a href="#formations">Formations</a>
+	  		<a href="#contact">Contact</a>
+	  		<a href="#client">Espace client</a>
+	  		<a href="#quisommenous">Qui sommes-nous</a>
+	  		<input type="text" placeholder="Search..">
+	  		
+	  		<form  action = "accueilAdmin.jsp" method="POST">
+				<h2>Connexion admin</h2>
+				<table>
+			    	<tr>       
+			    	    <td><i>Username</i></td><td><input type="text" name="username">  </td>       
+			    	</tr>
+			    	<tr>       
+			        	<td><i>password</i></td><td><input type="password" name="password">  </td>       
+			    	</tr>
+			    	<tr>
+			        	<td><input type="submit" name="submit" value="Connexion">  </td> 
+			    	</tr>    
+				</table>
+			</form>
+			
+		</div>
+</header>
+<div class="epais">
+<form class="example" action="accueilAdmin.jsp">
+  <input type="text" placeholder="Thème, référence, mot clé..." name="search">
+  <button type="submit"><i class="fa fa-search"></i></button>
+</form>
+</div>
+<footer>
+	<div>
+	<ul><h1>Linkedin </h1>
+		<li><a href="https://www.linkedin.com/in/caillej"/>Jérémy Caillé</a></li>
+		
+		<li><a href="https://www.linkedin.com/in/alexandre-laurent-/"/>Alexandre Laurent</a></li>
+	</ul>
+	</div>
+</footer>
 </body>
 </html>

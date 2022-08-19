@@ -12,7 +12,11 @@
 <jsp:useBean id="themesdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 
 <body>
- 
+ <%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateThemeServlet" method="POST">
 	<table>		
 		<!-- affichage du contenu du theme -->
@@ -106,5 +110,6 @@
 		</br>
 	</table>
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

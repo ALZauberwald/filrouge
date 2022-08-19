@@ -48,7 +48,7 @@ public class RemoveClientServlet extends HttpServlet {
         ClientService cs = context.getBean("servClient",ClientService.class);
 		long idClient = Long.parseLong(request.getParameter("idClient"));
 		cs.removeClient(idClient);
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

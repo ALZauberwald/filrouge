@@ -7,6 +7,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.services.SalleService;
 import com.lip6.services.SessionService;
 
@@ -37,14 +40,21 @@ public class UpdateSalleServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        SalleService salle = context.getBean("servSalle",SalleService.class);
+		
+		
 		long idSalle = Long.parseLong(request.getParameter("idSalle"));
 		String adresse = request.getParameter("adresse");
 		String nomSalle = request.getParameter("nomSalle");
 
-		SalleService salle = new SalleService();
 		salle.updateSalle(idSalle, adresse , nomSalle);
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

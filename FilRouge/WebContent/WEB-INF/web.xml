@@ -34,8 +34,7 @@ id="WebApp_ID" version="3.0">
 		<!-- <param-value>com.lip6.services, com.lip6.daos</param-value> -->
 		<param-value>com.lip6.configuration</param-value>
 	</context-param> 
-	
-	
+
 	<!-- Change Jersey servlet from “com.sun.jersey.spi.container.servlet.ServletContainer” 
 	to “com.sun.jersey.spi.spring.container.servlet.SpringServlet“. -->
 	<servlet>
@@ -52,5 +51,5 @@ id="WebApp_ID" version="3.0">
     <servlet-name>Jersey REST Service</servlet-name>
     <url-pattern>/rest/*</url-pattern>
   </servlet-mapping>
-	
+
 </web-app>

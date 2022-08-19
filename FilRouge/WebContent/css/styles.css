@@ -1,0 +1,120 @@
+@charset "ISO-8859-1";
+
+.logo {
+    float: left;
+    padding: 15px 0;
+}
+div {
+    display: block;
+}
+.logo a {
+    font-size: 28px;
+    display: block;
+    padding: 0 0 0 20px;
+}
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #ffffff;
+  overflow: hidden;
+  margin-left: 150px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #000040;
+  text-align: center;
+  padding: 14px 22px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #ff8000;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #ffffff;
+  color: green;
+}
+
+.topnav > input[type=text] {
+  	border: 1px solid grey;
+ 	padding: 13px;
+  	margin-top: 8px;
+  	margin-right: 16px;
+	font-size: 17px;
+}
+.topnav > form {
+	float:right;
+  	margin-top: 0px;
+  	margin-right: 16px;
+  	font-size: 10px;
+}
+
+
+/* Style the search field */
+form.example input[type=text] {
+  padding: 10px;
+  margin-top:120px;
+  margin-left: 200px;
+  font-size: 17px;
+  border: 1px solid red;
+  float: left;
+  width: 30%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: red;
+  color: white;
+  font-size: 17px;
+  border: 1px solid red;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  margin-top:120px;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+footer {
+	bottom:0px;
+	height:150px ;
+	background-color:#c0c0c0;
+	margin-top:150px;
+	width:100%;
+	overflow: hidden;
+}
+footer >div{
+	
+	margin-left:150px;
+	color: #fff;
+	
+}
+.epais{
+	min-height: 200px;
+}
+.center{
+	text-align: center;
+}

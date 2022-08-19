@@ -35,7 +35,7 @@ public class SalleService {
 		daoSalle.updateSalle(sa);
 	}
 	public Set<Salle> recupSalle(){
-		DAOSalle daoSalle= new DAOSalle();
+		
 		return daoSalle.recupSalle();
 	}
 	public void assoSession(long idSalle,long idSe){

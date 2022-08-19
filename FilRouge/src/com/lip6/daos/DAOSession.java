@@ -111,6 +111,41 @@ public boolean removeSession(long id) {
 		
 		tx.begin();	
 		Session se= em.find(Session.class, id);
+		se.setClient(null);
+		se.setFormateur(null);
+		se.setSalle(null);
+		se.setStagiaires(null);
+		se.setFormation(null);
+		String requetesa = "SELECT sa FROM Salle sa, Session se WHERE  idSession="+id; 
+        Query querysa = em.createQuery(requetesa); 
+        List<Salle> resultssa = querysa.getResultList();
+        for (Salle salle : resultssa) {
+            salle.getSessions().remove(se);
+        }
+        String requetest = "SELECT st FROM Personne st, Session se WHERE Type='Stagiaire' AND idSession="+id; 
+        Query queryst = em.createQuery(requetest); 
+        List<Stagiaire> resultsst = queryst.getResultList();
+        for (Stagiaire stag : resultsst) {
+            stag.getSessions().remove(se);
+        }
+        String requetecl = "SELECT cl FROM Personne cl, Session se WHERE Type='Client' AND idSession="+id; 
+        Query querycl = em.createQuery(requetecl); 
+        List<Client> resultscl = querycl.getResultList();
+        for (Client cl: resultscl) {
+            cl.getSessions().remove(se);
+        }
+        String requeteformateur = "SELECT fo FROM Personne fo, Session se WHERE Type='Formateur' AND idSession="+id; 
+        Query queryformateur = em.createQuery(requeteformateur); 
+        List<Formateur> resultsformateur = queryformateur.getResultList();
+        for (Formateur fo : resultsformateur) {
+            fo.getSessions().remove(se);
+        }
+        String requeteformation = "SELECT fo FROM Formation fo, Session se WHERE  idSession="+id; 
+        Query queryformation = em.createQuery(requeteformation); 
+        List<Formation> resultsformation = queryformation.getResultList();
+        for (Formation form : resultsformation) {
+            form.getSessions().remove(se);
+        }
 		em.remove(se);
 		tx. commit();
 		em.close();

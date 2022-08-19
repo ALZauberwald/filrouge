@@ -54,7 +54,6 @@ public class Client extends Personne {
 	}
 	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
 		return getId() + "  |  " + getNom();
 	}
 

@@ -60,7 +60,7 @@ public class UpdateClient2Servlet extends HttpServlet {
 			long idSess= Long.parseLong(request.getParameter("idSessRm"));
 			cs.removeSession(idClient,idSess );
 		}
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

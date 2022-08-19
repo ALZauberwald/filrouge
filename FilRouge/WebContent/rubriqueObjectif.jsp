@@ -12,6 +12,11 @@
 </head>
 
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<h1>Ajouter un objectif</h1>
 	<form action="AddObjectifServlet" method="POST">
 		<table>			
@@ -70,5 +75,6 @@
 	        </tr>
 		</table>
 	</form>
+	<%@include file="footer.jsp" %>
 </body>
 </html>

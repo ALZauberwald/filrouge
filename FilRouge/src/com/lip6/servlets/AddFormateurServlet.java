@@ -56,7 +56,7 @@ public class AddFormateurServlet extends HttpServlet {
 		String dateEmbauche=request.getParameter("dateEmbauche");
 		
 		fs.addFormateur(nom, prenom,  adresse,tel, mail,dateEmbauche);
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

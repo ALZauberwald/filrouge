@@ -51,7 +51,7 @@ public class UpdatePrerequisServlet extends HttpServlet {
 			PrerequisService prerequis = context.getBean("servPrerequis",PrerequisService.class);
 			
 			prerequis.updatePrerequis(champAModif, modif , id);
-			response.sendRedirect("index.html");
+			response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

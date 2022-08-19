@@ -17,14 +17,14 @@ import com.lip6.services.SessionService;
 /**
  * Servlet implementation class CreerSession
  */
-@WebServlet("/CreerSessionServlet")
-public class CreerSessionServlet extends HttpServlet {
+@WebServlet("/AddSessionServlet")
+public class AddSessionServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CreerSessionServlet() {
+    public AddSessionServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -70,7 +70,7 @@ public class CreerSessionServlet extends HttpServlet {
 		
 		session.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,dateFin,lieuSession,type);
 		//redirection 
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

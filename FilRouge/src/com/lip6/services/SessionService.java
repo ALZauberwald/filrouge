@@ -20,8 +20,7 @@ public class SessionService {
 	DAOSession daoSession;
 	
 	public Set<Session> recupSession(){
-		DAOSession daos = new DAOSession();
-		return daos.recupSession();
+		return daoSession.recupSession();
 	}
 	
 	public void createSession(long idFormation,String nomSession, Float prix, String dateDebut,String dateFin, String lieu, TypeSession typesession ) {
@@ -47,10 +46,13 @@ public class SessionService {
 		else if(champAModif.contentEquals("dateDebut")) {
 			session.setDateDebut(modif);
 		}
+		else if(champAModif.contentEquals("dateFin")) {
+			session.setDateFin(modif);
+		}
 		else if(champAModif.contentEquals("lieu")) {
 			session.setLieu(modif);
 		}
-		else if(champAModif.contentEquals("formateurConfirmé")) {
+		else if(champAModif.contentEquals("formateurConfirme")) {
 			if(modif.contentEquals("true")){
 				session.setFormateurConfirme(true);
 			}
@@ -71,11 +73,6 @@ public class SessionService {
 			}
 			else
 				session.setInstallationFinie(false);
-		}
-		else if(champAModif.contentEquals("idSalle")) {
-			DAOSalle daosSalle= new DAOSalle();
-			Salle sa=daosSalle.searchSalle(Long.parseLong(modif));
-			session.setSalle(sa);
 		}
 		
 		daoSession.updateSession(session);

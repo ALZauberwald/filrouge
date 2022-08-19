@@ -56,7 +56,7 @@ public class UpdateFormationServlet extends HttpServlet {
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			FormationService forma = context.getBean("servFormation",FormationService.class);
 			forma.updateFormation(champAModif, modif , id);
-			response.sendRedirect("index.html");
+			response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

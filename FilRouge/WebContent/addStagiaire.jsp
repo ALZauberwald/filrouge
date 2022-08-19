@@ -11,11 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<form action="AddStagiaireServlet" method="POST">
 		<table>
 			
 			<tr>          
-	            <td><i>Ajouter une session à la base de donnée.</i> 
+	           <h1>Ajouter un nouveau stagiaire</h1> 
             </tr>
             <tr>
             	<td><i>Id de la session</i><input type="number" name="idSession"></td> 
@@ -34,10 +39,11 @@
 	<br>
 	<form action="SearchStagiaireServlet" method="POST">
 		<table>		
-			<tr>          
-	          	<td><i>Rechercher un Stagiaire</i> </td>
-	        <h1>Voici la liste de tous les stagiaires deja renseignes</h1>
-	        
+			<tr>
+	        <h1>Chercher un stagiaire existant</h1>
+	        </tr>
+	        <tr>
+	        <td>
             	<SELECT name="idStagiaire" >
             	<%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
     			<%StagiaireService stagiaireserv= context.getBean("servStagiaire",StagiaireService.class);%>
@@ -46,6 +52,7 @@
                    </br><OPTION Value="<%=stag.toString().split("  |  ")[0]%>"><%= stag %>
                 <% } %>
                 </SELECT>
+            </td>
             </tr>
             <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -56,19 +63,22 @@
 	<form action="RemoveStagiaireServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Remove un Stagiaire</i></td>
-	        	
-            	<h1>Voici la liste de tous les stagiaires deja renseignes</h1>
+	        	<h1>Supprimer un stagiaire existant</h1>
+	        </tr>
+	        <tr>
+            	<td>
 	        	<SELECT name="idStagiaire" >
     			<% for (Object stag:stagiairesdisponibles){ %>
                    </br><OPTION Value="<%=stag.toString().split("  |  ")[0]%>"><%= stag %>
                 <% } %>
                 </SELECT>
+                </td>
       		</tr>
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>
 		</table>
 	</form>
+	<%@include file="footer.jsp" %>
 </body>
 </html>

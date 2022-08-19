@@ -64,6 +64,14 @@ public class DAOFormateur {
 		tx.begin();	
 		
 		Formateur form = em.find(Formateur.class,idFormateur);
+
+		form.setSessions(null);
+		String requetefo = "SELECT se FROM Personne , Session se WHERE Type='Formateur' AND id="+idFormateur; 
+        Query queryfo = em.createQuery(requetefo); 
+        List<Session> resultsfo = queryfo.getResultList();
+        for (Session sess : resultsfo) {
+            sess.setFormateur(null);
+        }
 		em.remove(form);
 		tx.commit();
 		

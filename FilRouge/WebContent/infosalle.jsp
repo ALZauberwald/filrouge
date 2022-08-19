@@ -9,12 +9,18 @@
 <jsp:useBean id="salle" scope="request" class="com.lip6.entities.Salle" ></jsp:useBean>
 <jsp:useBean id="sessionsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateSalleServlet" method="POST">
 	<table>
 		<tr>
-			<td><i>Id Salle</i> <input type="number" name="idSalle" value="<%= salle.getIdSalle()%>"></td>
-			<td><i>Adresse</i> <input type="text" name="adresse" value="<%=salle.getAdresse()%>">  </td>
-			<td><i>Nom Salle</i> <input type="text" name="nomSalle" value="<%=salle.getNomSalle()%>">  </td>
+			<td><i>Id Salle</i> </br><%= salle.getIdSalle()%></td>
+			<input type="hidden" type="number" name="idSalle" value="<%= salle.getIdSalle()%>"></td>
+			<td><i>Adresse</i></br> <input type="text" name="adresse" value="<%=salle.getAdresse()%>">  </td>
+			<td><i>Nom Salle</i></br> <input type="text" name="nomSalle" value="<%=salle.getNomSalle()%>">  </td>
 			<td><i>Sessions</i> 
              	<% for (com.lip6.entities.Session ses:salle.getSessions()){ %>
    				</br><%= ses.getNomSession() %> 
@@ -58,5 +64,6 @@
 	</table>
 
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>

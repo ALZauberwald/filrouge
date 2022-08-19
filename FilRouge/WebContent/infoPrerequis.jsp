@@ -9,7 +9,12 @@
 </head>
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Prerequis" ></jsp:useBean>
 <body>
- 
+ <%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
+	<div class="epais">
 <form action="UpdatePrerequisServlet" method="POST">
 	<table>		
 		<tr>          
@@ -32,6 +37,7 @@
         </tr>
 	</table>
 </form>
-<br>
+</div>
+<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -46,7 +46,6 @@ public class StagiaireService {
 		daoStagiaire.updateStagiaire(stag);
 	}
 	public Set<Stagiaire> recupStagiaire(){ 
-		DAOStagiaire daoStagiaire = new DAOStagiaire();
 		return daoStagiaire.recupStagiaire();
 	}
 	public void assoSession(long idStagiaire, long idSess) {

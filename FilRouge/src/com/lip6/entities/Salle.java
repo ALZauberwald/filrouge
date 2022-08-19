@@ -10,14 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
 
+//@Component("classeSalle")
+//@Scope("prototype")
 @Entity
 public class Salle {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long idSalle;
 	private String adresse;
 	private String nomSalle;
-	@OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH,CascadeType.REMOVE},mappedBy = "salle")
+	@OneToMany(cascade= {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST,CascadeType.REFRESH},mappedBy = "salle")
 	private Set <Session> sessions = new HashSet<>();
 	
 	public Salle(String adresse, String nomSalle) {

@@ -54,7 +54,7 @@ public class UpdateThemeServlet extends HttpServlet {
 			
 
 			thserv.updateTheme(champAModif, modif , id);
-			response.sendRedirect("index.html");
+			response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

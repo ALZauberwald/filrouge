@@ -13,6 +13,11 @@
 
 
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<%-- <h1>Voici la liste de toutes les formations deja renseignees</h1>
 	<%FormationService formaserv= new FormationService();%>
 	<%java.util.Set<Formation> formationsdisponibles = formaserv.recupFormations(); %>
@@ -87,5 +92,6 @@
             </tr>
     	</table>
   	</form>
+  	<%@include file="footer.jsp" %>
 </body>
 </html>

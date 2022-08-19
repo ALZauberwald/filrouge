@@ -60,9 +60,9 @@ public class SearchSessionServlet extends HttpServlet {
         FormateurService fs = context.getBean("servFormateur",FormateurService.class);
         SalleService salle = context.getBean("servSalle",SalleService.class);
         StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
-        
+        FormationService formserv = context.getBean("servFormation",FormationService.class);
 		long id = Long.parseLong(request.getParameter("idSession"));
-		FormationService formserv = new FormationService();
+		
 		
 		request.setAttribute("sess",session.searchSession(id));
 		request.setAttribute("sallesdisponibles",salle.recupSalle());

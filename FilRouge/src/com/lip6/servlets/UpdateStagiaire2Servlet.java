@@ -59,7 +59,7 @@ public class UpdateStagiaire2Servlet extends HttpServlet {
 			long idSess= Long.parseLong(request.getParameter("idSessRm"));
 			stagiaire.removeSession(idStagiaire,idSess );
 		}
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

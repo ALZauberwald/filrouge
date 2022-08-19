@@ -7,6 +7,7 @@ import java.util.Set;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.ws.rs.Path;
 
 import org.springframework.stereotype.Repository;
 
@@ -14,6 +15,7 @@ import com.lip6.entities.Stagiaire;
 import com.lip6.entities.Session;
 import com.lip6.entities.Stagiaire;
 import com.lip6.util.JpaUtil;
+
 @Repository("daoStagiaire")
 public class DAOStagiaire {
 	public boolean addStagiaire(long idSession, String nom, String prenom, String adresse, String tel, String mail) {
@@ -69,6 +71,13 @@ public class DAOStagiaire {
 		tx.begin();	
 		
 		Stagiaire stag = em.find(Stagiaire.class,idStagiaire);
+		stag.setSessions(null);
+		String requetest = "SELECT se FROM Personne st, Session se WHERE Type='Stagiaire' AND id="+idStagiaire; 
+        Query queryst = em.createQuery(requetest); 
+        List<Session> resultsst = queryst.getResultList();
+        for (Session sess : resultsst) {
+            sess.getStagiaires().remove(stag);
+        }
 		em.remove(stag);
 		tx.commit();
 		

@@ -11,11 +11,16 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 	<form action="AddClientServlet" method="POST">
 		<table>
 			
 			<tr>          
-	            <td><i>Ajouter une session à la base de donnée.</i> 
+	            <h1>Ajouter un nouveau client</h1> 
             </tr>
             <tr> 
             	<td><i>Id de la session</i><input type="number" name="idSession"></td> 
@@ -37,10 +42,10 @@
 	<form action="SearchClientServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Rechercher un Client</i> 
+	          	<h1>Rechercher un client existant</h1>
 	         </tr>
-	         <h1>Voici la liste de tous les Clients deja renseignes</h1>
 	        <tr>
+            	<td>
             	<SELECT name="idClient" >
             <%ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());%>
     		<%ClientService clientserv= context.getBean("servClient",ClientService.class);%>
@@ -49,6 +54,7 @@
                    </br><OPTION Value="<%=client.toString().split("  |  ")[0]%>"><%= client %>
                 <% } %>
                 </SELECT>
+                </td>
             </tr>      
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
@@ -59,20 +65,22 @@
 	<form action="RemoveClientServlet" method="POST">
 		<table>		
 			<tr>          
-	          	<td><i>Remove un Client</i> 
-	         </tr>
-	         <h1>Voici la liste de tous les Clients deja renseignes</h1>
+	          <h1>Supprimer un client existant</h1> 
+	        </tr>
 	        <tr>
+	        <td>
             	<SELECT name="idClient" >
     			<% for (Object client:clientsdisponibles){ %>
                    </br><OPTION Value="<%=client.toString().split("  |  ")[0]%>"><%= client %>
                 <% } %>
                 </SELECT>
+            </td>
             </tr>           
 	         <tr>
 	         	<td><input type="submit" name="submit"></td>
 	         </tr>
 		</table>
 	</form>
+	<%@include file="footer.jsp" %>
 </body>
 </html>

@@ -38,7 +38,7 @@ public class Session {
 	@Column(columnDefinition = "BOOLEAN")
 	private boolean installationFinie=false;
 	
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_salle")
 	private Salle salle;
 	

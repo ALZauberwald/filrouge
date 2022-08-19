@@ -14,6 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.services.SessionService;
 import com.lip6.services.StagiaireService;
+import com.lip6.soaservice.StagiaireSOAService;
 
 /**
  * Servlet implementation class SearchStagiaireServlet

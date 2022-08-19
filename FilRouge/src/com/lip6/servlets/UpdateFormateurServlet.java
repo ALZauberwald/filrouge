@@ -52,7 +52,7 @@ public class UpdateFormateurServlet extends HttpServlet {
 		String modif = request.getParameter("modif");
 		
 		fs.updateFormateur(idFormateur,champAModif,modif);
-		response.sendRedirect("index.html");
+		response.sendRedirect("accueilAdmin.jsp");
 	}
 
 }

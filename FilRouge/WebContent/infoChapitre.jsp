@@ -10,7 +10,11 @@
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Chapitre" ></jsp:useBean>
 <jsp:useBean id="formationsdisponibles" scope="request" class="java.util.HashSet" ></jsp:useBean>
 <body>
- 
+ <%@ include file="header.jsp" %>
+	<br>
+	<br>
+	<br>
+	<br>
 <form action="UpdateChapitreServlet" method="POST">
 	<table>		
 		<tr>          
@@ -87,5 +91,6 @@
 		</br>
 	</table>
 </form>
+<%@include file="footer.jsp" %>
 </body>
 </html>
