@@ -31,7 +31,32 @@
 
 	 <br><br>
  -->
-		<div class="center"><h1 >Gestion Administrateur</h1></div>
+ <br><br><br><br>
+ <table id="admintable"><caption>Gestion administrateur</caption>
+ 	<tr id="admintr">
+ 		 <th></th>
+ 		 <td id="admintd"><a href="creersession.jsp">Rubrique Session</a></td>
+ 		 <td id="admintd"><a href="rubriqueFormation.jsp">Rubrique formation</a></td>
+ 	</tr>
+ 	<tr id="admintr">
+ 		 <td id="admintd"><a href="addStagiaire.jsp">Rubrique stagiaire</a></td>
+ 		 <td id="admintd"><a href="addFormateur.jsp">Rubrique formateur</a></td>
+ 		 <td id="admintd"><a href="rubriquePrerequis.jsp">Rubrique prerequis</a></td>
+ 		 <td id="admintd"><a href="rubriqueObjectif.jsp">Rubrique objectif</a></td>	 
+ 	</tr>
+ 	<tr id="admintr">
+ 		 <td id="admintd"><a href="addSalle.jsp">Rubrique Salle</a></td>
+ 		 <td id="admintd"><a href="addClient.jsp">Rubrique client</a></td>
+ 		 <td id="admintd"><a href="rubriqueChapitre.jsp">Rubrique chapitre</a></td>
+ 		 <td id="admintd"><a href="rubriqueTheme.jsp">Rubrique theme</a></td>
+ 	</tr>
+
+ 
+ 
+ </table>
+ 
+ 
+		<!-- <div class="center"><h1 >Gestion Administrateur</h1></div>
 	<br><br>
 		<h1><a href="creersession.jsp">Rubrique Session</a></h1>
 	<br><br>
@@ -68,7 +93,7 @@
 	
 	<br><br>
 		<h1><a href="rubriqueFormation.jsp">Creer, rechercher, supprimer ou mettre a  jour une formation</a></h1>
-	<br><br>
+	<br><br> -->
     <%@include file="footer.jsp" %>	
 </body>
 </html>

@@ -278,7 +278,7 @@ public class DAOFormation {
 				Prerequis pr= new Prerequis(formationprerequis);				
 				Chapitre cp= new Chapitre("chapitre test", 5, "Ce chapitre n'existe pas vraiment :)");
 				Theme tm = new Theme("theme test");
-				Theme st1= new Theme("Je suis destin� � �tre un sous theme");
+				Theme st1= new Theme("Je suis destine a etre un sous theme");
 				
 				Formation newform= new Formation(formationname,formationdetail);
 				

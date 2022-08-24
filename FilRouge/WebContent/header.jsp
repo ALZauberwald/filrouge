@@ -12,11 +12,11 @@
 <header class="cd-main-header">
 		<div class="logo">
 			<a  href="index.html" title="formation informatique" >
-				<img src="./images/ibLogo.jpg" alt="Accueil ib formation" width="100">
+				<img src="./images/it-logo.png" alt="Accueil ib formation" width="100">
 			</a>
 		</div>
 		<div class="topnav">
-	  		<a class="active" href="#home">Home</a>
+	  		<a href="index.html">Home</a>
 	  		<a href="#formations">Formations</a>
 	  		<a href="#contact">Contact</a>
 	  		<a href="#client">Espace client</a>
