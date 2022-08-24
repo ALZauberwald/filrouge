@@ -35,7 +35,7 @@
 	
 	<h1>Rechercher un objectif déjà existant</h1>
 	<br>
-	<form action="SearchObjectifServlet" method="POST">
+	<form action="SearchObjectifServlet" method="GET">
 		<table>		
 			<tr>          
 	          	<td><i>Rechercher un objectif</i> 

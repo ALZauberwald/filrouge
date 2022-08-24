@@ -67,7 +67,7 @@ form.example input[type=text] {
   margin-top:120px;
   margin-left: 200px;
   font-size: 17px;
-  border: 1px solid red;
+  border: 1px solid #2596be;
   float: left;
   width: 30%;
   background: #f1f1f1;
@@ -78,10 +78,10 @@ form.example button {
   float: left;
   width: 10%;
   padding: 10px;
-  background: red;
+  background: #2596be;
   color: white;
   font-size: 17px;
-  border: 1px solid red;
+  border: 1px solid #2596be;
   border-left: none; /* Prevent double borders */
   cursor: pointer;
   margin-top:120px;
@@ -117,4 +117,25 @@ footer >div{
 }
 .center{
 	text-align: center;
+}
+
+#admintable{
+	height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+	
+}
+
+#admintd{
+	border: 1px solid black;
+	padding : 50px;	
+}
+
+#admintd:hover{
+	background-color:#2596be;
+}
+caption{
+	font-size:30px;
+	color: #2596be;
 }
