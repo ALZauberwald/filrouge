@@ -22,6 +22,7 @@
 	  		<a href="#client">Espace client</a>
 	  		<a href="#quisommenous">Qui sommes-nous</a>
 	  		<input type="text" placeholder="Search..">
+	  		<a href="accueilAdmin.jsp">Accueil Admin</a>
 	  		
 	  		
 			
