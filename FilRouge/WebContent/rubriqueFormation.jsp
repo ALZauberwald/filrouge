@@ -31,13 +31,13 @@
 	    <table>
 	    	<tr>
 		    	<th>Partie admin</th>          
-	            <td><i>Ajouter une formation &#224 la base de donn&#233e.</i> 
+	            <td><i>Ajouter une formation a la base de donnee.</i> 
             </tr>
             <tr>
 	            <td><i>Nom de la formation</i> <input type="text" name="formationname">  </td>
-	            <td><i>D&#233tail de la formation</i> <input type="text" name="formationdetail">  </td>
+	            <td><i>Detail de la formation</i> <input type="text" name="formationdetail">  </td>
 	            <td><i>Objectif de la formation</i> <input type="text" name="formationobjectif">  </td>
-	            <td><i>Pr&#233requis de la formation</i> <input type="text" name="formationprerequis">  </td>
+	            <td><i>Prerequis de la formation</i> <input type="text" name="formationprerequis">  </td>
             </tr>
             <tr> 
             	<td><input type="submit" name="submit">  </td> 
@@ -77,7 +77,7 @@
 	    <table>
 	    	<tr>
 		    	<th>Partie admin</th>          
-	            <td><i>Supprimer une formation de la base de donnÃ©e.</i> 
+	            <td><i>Supprimer une formation de la base de donnee.</i> 
             </tr>
             <tr>
             	<Select name ="idFormation">
