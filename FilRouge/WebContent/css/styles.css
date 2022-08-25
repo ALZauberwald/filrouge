@@ -139,3 +139,13 @@ caption{
 	font-size:30px;
 	color: #2596be;
 }
+#afftbl{
+	border-collapse: collapse;
+	margin: auto;
+}
+#afftd{
+	border: 1px solid black;
+	border-spacing : 0px;
+	border-collapse: collapse;
+	text-align: center;
+}
