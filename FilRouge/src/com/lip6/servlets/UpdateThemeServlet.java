@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.lip6.services.FormationService;
 import com.lip6.services.ObjectifService;
 import com.lip6.services.PrerequisService;
 import com.lip6.services.ThemeService;
@@ -54,7 +57,15 @@ public class UpdateThemeServlet extends HttpServlet {
 			
 
 			thserv.updateTheme(champAModif, modif , id);
-			response.sendRedirect("accueilAdmin.jsp");
+			FormationService formationserv = context.getBean("servFormation",FormationService.class);
+			request.setAttribute("formationsdisponibles", formationserv.recupFormations());
+			
+			
+			request.setAttribute("themesdisponibles", thserv.recupTheme());
+			
+			request.setAttribute("form",thserv.searchTheme(id));
+			RequestDispatcher rd= request.getRequestDispatcher("infoTheme.jsp") ;
+			rd.forward(request, response);
 	}
 
 }

@@ -58,7 +58,7 @@ public class AddClientServlet extends HttpServlet {
 		
 		
 		cs.addClient(id,nom, prenom,  adresse,tel, mail,numSiret);
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueClient.jsp");
 	}
 
 }

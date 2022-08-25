@@ -43,7 +43,7 @@ public class RemovePrerequisServlet extends HttpServlet {
 		
 		prerequis.removePrerequis(id);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriquePrerequis.jsp");
 	}
 
 }

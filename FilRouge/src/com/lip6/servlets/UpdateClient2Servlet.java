@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,20 +49,28 @@ public class UpdateClient2Servlet extends HttpServlet {
             System.out.println(beanName + "******************");
         }
         ClientService cs = context.getBean("servClient",ClientService.class);
+        SessionService session = context.getBean("servSession",SessionService.class);
+		
+        long idClient= Long.parseLong(request.getParameter("idClient"));
+        
+		
+		request.setAttribute("cli",cs.searchClient(idClient));
+		request.setAttribute("sessionsdisponibles",session.recupSession());
+		
 		
 		
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSession")) {
-			long idClient= Long.parseLong(request.getParameter("idClient"));
 			long idSess= Long.parseLong(request.getParameter("idSession"));
 			cs.assoSession(idClient,idSess );
 		}
 		else if (choix.equals("rmSession")) {
-			long idClient= Long.parseLong(request.getParameter("idClientRm"));
-			long idSess= Long.parseLong(request.getParameter("idSessRm"));
-			cs.removeSession(idClient,idSess );
+			long idClient2= Long.parseLong(request.getParameter("idClientRm"));
+			long idSess= Long.parseLong(request.getParameter("idSessionRm"));
+			cs.removeSession(idClient2,idSess );
 		}
-		response.sendRedirect("accueilAdmin.jsp");
+		RequestDispatcher rd= request.getRequestDispatcher("infoclient.jsp") ;
+		rd.forward(request, response);
 	}
 
 }

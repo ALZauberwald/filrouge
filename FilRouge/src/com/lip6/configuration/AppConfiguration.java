@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ImportResource;
 
 @ImportResource(locations = {"classpath:applicationContext.xml"})
 
-@ComponentScan(basePackages = {"com.lip6.configuration, com.lip6.daos, com.lip6.entities, com.lip6.services, com.lip6.servlets, com.lip6.util"})
+@ComponentScan(basePackages = {"com.lip6.*"})
 
 @Configuration
 public class AppConfiguration {

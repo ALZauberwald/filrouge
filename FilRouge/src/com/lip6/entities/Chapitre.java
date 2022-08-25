@@ -71,44 +71,44 @@ public class Chapitre {
 	public void setFormation(Formation formation) {
 		this.formation = formation;
 	}
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((detailChapitre == null) ? 0 : detailChapitre.hashCode());
-		result = prime * result + dureeChapitre;
-		result = prime * result + ((formation == null) ? 0 : formation.hashCode());
-		result = prime * result + ((nomChapitre == null) ? 0 : nomChapitre.hashCode());
-		return result;
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Chapitre other = (Chapitre) obj;
-		if (detailChapitre == null) {
-			if (other.detailChapitre != null)
-				return false;
-		} else if (!detailChapitre.equals(other.detailChapitre))
-			return false;
-		if (dureeChapitre != other.dureeChapitre)
-			return false;
-		if (formation == null) {
-			if (other.formation != null)
-				return false;
-		} else if (!formation.equals(other.formation))
-			return false;
-		if (nomChapitre == null) {
-			if (other.nomChapitre != null)
-				return false;
-		} else if (!nomChapitre.equals(other.nomChapitre))
-			return false;
-		return true;
-	}
+//	@Override
+//	public int hashCode() {
+//		final int prime = 31;
+//		int result = 1;
+//		result = prime * result + ((detailChapitre == null) ? 0 : detailChapitre.hashCode());
+//		result = prime * result + dureeChapitre;
+//		result = prime * result + ((formation == null) ? 0 : formation.hashCode());
+//		result = prime * result + ((nomChapitre == null) ? 0 : nomChapitre.hashCode());
+//		return result;
+//	}
+//	@Override
+//	public boolean equals(Object obj) {
+//		if (this == obj)
+//			return true;
+//		if (obj == null)
+//			return false;
+//		if (getClass() != obj.getClass())
+//			return false;
+//		Chapitre other = (Chapitre) obj;
+//		if (detailChapitre == null) {
+//			if (other.detailChapitre != null)
+//				return false;
+//		} else if (!detailChapitre.equals(other.detailChapitre))
+//			return false;
+//		if (dureeChapitre != other.dureeChapitre)
+//			return false;
+//		if (formation == null) {
+//			if (other.formation != null)
+//				return false;
+//		} else if (!formation.equals(other.formation))
+//			return false;
+//		if (nomChapitre == null) {
+//			if (other.nomChapitre != null)
+//				return false;
+//		} else if (!nomChapitre.equals(other.nomChapitre))
+//			return false;
+//		return true;
+//	}
 	@Override
 	public String toString() {
 		return idChapitre + "  |  " + nomChapitre ;

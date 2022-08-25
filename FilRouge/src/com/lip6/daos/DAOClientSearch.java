@@ -13,7 +13,7 @@ import org.springframework.stereotype.Repository;
 
 import com.lip6.entities.Formation;
 import com.lip6.util.JpaUtil;
-
+@Repository("daoSearch")
 public class DAOClientSearch {
 	
 	public Set<Formation> resultSearch(String result) {

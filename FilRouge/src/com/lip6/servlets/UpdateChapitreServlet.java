@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.services.ChapitreService;
+import com.lip6.services.FormationService;
 import com.lip6.services.PrerequisService;
 
 
@@ -52,7 +55,14 @@ public class UpdateChapitreServlet extends HttpServlet {
 			ChapitreService chapitre = context.getBean("servChapitre",ChapitreService.class);
 			
 			chapitre.updateChapitre(champAModif, modif , id);
-			response.sendRedirect("accueilAdmin.jsp");
+			request.setAttribute("form",chapitre.searchChapitre(id));
+			RequestDispatcher rd= request.getRequestDispatcher("infoChapitre.jsp") ;
+			
+			FormationService formationserv = context.getBean("servFormation",FormationService.class);
+			request.setAttribute("formationsdisponibles", formationserv.recupFormations());
+			
+			
+			rd.forward(request, response);
 	}
 
 }

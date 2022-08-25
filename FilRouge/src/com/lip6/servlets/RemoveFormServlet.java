@@ -49,7 +49,7 @@ public class RemoveFormServlet extends HttpServlet {
 		
 		formation.removeFormation(id);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueFormation.jsp");
 	}
 
 }

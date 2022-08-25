@@ -49,7 +49,7 @@ public class AddFormServlet extends HttpServlet {
 		
 		formation.createFormation(nomform, detform, objform, prereform);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueFormation.jsp");
 	}
 
 }

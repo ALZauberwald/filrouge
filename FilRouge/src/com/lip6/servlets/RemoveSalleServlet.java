@@ -51,7 +51,7 @@ public class RemoveSalleServlet extends HttpServlet {
         SalleService salle = context.getBean("servSalle",SalleService.class);
 		long id = Long.parseLong(request.getParameter("idSalle"));
 		salle.removeSalle(id);
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueSalle.jsp");
 	}
 
 }

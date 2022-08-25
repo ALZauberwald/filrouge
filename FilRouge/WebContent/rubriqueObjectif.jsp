@@ -8,6 +8,7 @@
 <html>
 <head>
 	<meta charset="ISO-8859-1">
+	<link rel="stylesheet" href="css/styles.css">
 	<title>Rubrique objectif</title>
 </head>
 
@@ -35,7 +36,7 @@
 	
 	<h1>Rechercher un objectif déjà existant</h1>
 	<br>
-	<form action="SearchObjectifServlet" method="GET">
+	<form action="SearchObjectifServlet" method="POST">
 		<table>		
 			<tr>          
 	          	<td><i>Rechercher un objectif</i> 

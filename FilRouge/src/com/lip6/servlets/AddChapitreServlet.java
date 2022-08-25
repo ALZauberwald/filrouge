@@ -48,7 +48,7 @@ public class AddChapitreServlet extends HttpServlet {
 		ChapitreService chapitre = context.getBean("servChapitre",ChapitreService.class);
 		chapitre.createChapitre(nomchap, dureechap, detailchap);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueChapitre.jsp");
 	}
 
 }

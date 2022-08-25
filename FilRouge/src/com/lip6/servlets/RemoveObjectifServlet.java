@@ -44,7 +44,7 @@ public class RemoveObjectifServlet extends HttpServlet {
 		
 		objectif.removeObjectif(id);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueObjectif.jsp");
 	}
 
 }

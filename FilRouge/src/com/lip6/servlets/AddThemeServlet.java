@@ -47,7 +47,7 @@ public class AddThemeServlet extends HttpServlet {
 		
 		theme.createTheme(nomth);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueTheme.jsp");
 	}
 
 }

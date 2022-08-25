@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,29 +53,34 @@ public class UpdateTheme2Servlet extends HttpServlet {
 			
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			ThemeService them = context.getBean("servTheme",ThemeService.class);
+			FormationService formationserv = context.getBean("servFormation",FormationService.class);
+			
+			long idTheme= Long.parseLong(request.getParameter("idTheme"));
 			
 			if(choix.equals("assoFormation")) {
-				long idTheme= Long.parseLong(request.getParameter("idTheme"));
 				long idForm= Long.parseLong(request.getParameter("idFormation"));
 				them.assoFormation(idTheme, idForm);
 			}
 			else if (choix.equals("rmFormation")) {
-				long idTheme= Long.parseLong(request.getParameter("idThemeRm"));
+				long idThemefo= Long.parseLong(request.getParameter("idThemeRm"));
 				long idForm= Long.parseLong(request.getParameter("idFormationRm"));
-				them.rmFormation(idTheme, idForm);
+				them.rmFormation(idThemefo, idForm);
 			}
 			else if(choix.equals("assoSoustheme")) {
-				long idTheme= Long.parseLong(request.getParameter("idTheme"));
 				long idSoustheme= Long.parseLong(request.getParameter("idSoustheme"));
 				them.assoSoustheme(idTheme, idSoustheme);
 			}
 			else if (choix.equals("rmSoustheme")) {
-				long idTheme= Long.parseLong(request.getParameter("idThemeRm"));
+				long idThemest= Long.parseLong(request.getParameter("idThemeRm"));
 				long idSoustheme= Long.parseLong(request.getParameter("idSousthemeRm"));
-				them.rmSoustheme(idTheme, idSoustheme);
+				them.rmSoustheme(idThemest, idSoustheme);
 			}
+			request.setAttribute("formationsdisponibles", formationserv.recupFormations());
+			request.setAttribute("themesdisponibles", them.recupTheme());
 			
-			response.sendRedirect("accueilAdmin.jsp");
+			request.setAttribute("form",them.searchTheme(idTheme));
+			RequestDispatcher rd= request.getRequestDispatcher("infoTheme.jsp") ;
+			rd.forward(request, response);
 	}
 
 }

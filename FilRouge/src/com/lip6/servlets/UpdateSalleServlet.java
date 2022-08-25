@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -47,14 +49,19 @@ public class UpdateSalleServlet extends HttpServlet {
             System.out.println(beanName + "******************");
         }
         SalleService salle = context.getBean("servSalle",SalleService.class);
-		
+        SessionService sessionserv = context.getBean("servSession",SessionService.class);
 		
 		long idSalle = Long.parseLong(request.getParameter("idSalle"));
 		String adresse = request.getParameter("adresse");
 		String nomSalle = request.getParameter("nomSalle");
 
 		salle.updateSalle(idSalle, adresse , nomSalle);
-		response.sendRedirect("accueilAdmin.jsp");
+		
+		request.setAttribute("salle",salle.searchSalle(idSalle));
+		request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
+		
+		RequestDispatcher rd= request.getRequestDispatcher("infosalle.jsp") ;
+		rd.forward(request, response);
 	}
 
 }

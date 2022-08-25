@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -15,9 +17,12 @@ import com.lip6.entities.Formation;
 import com.lip6.entities.Salle;
 import com.lip6.entities.Session;
 import com.lip6.entities.TypeSession;
+import com.lip6.services.ChapitreService;
 import com.lip6.services.FormationService;
+import com.lip6.services.ObjectifService;
 import com.lip6.services.PrerequisService;
 import com.lip6.services.SessionService;
+import com.lip6.services.ThemeService;
 
 /**
  * Servlet implementation class UpdateSessionServlet
@@ -51,12 +56,28 @@ public class UpdateFormationServlet extends HttpServlet {
 			String champAModif = request.getParameter("champAModif");
 			String modif = request.getParameter("modif");
 			String idstr = request.getParameter("idFormation");
-			long id = Long.parseLong(idstr);
+			long idform = Long.parseLong(idstr);
 			
 			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
 			FormationService forma = context.getBean("servFormation",FormationService.class);
-			forma.updateFormation(champAModif, modif , id);
-			response.sendRedirect("accueilAdmin.jsp");
+			ObjectifService objectifserv = context.getBean("servObjectif",ObjectifService.class);
+			PrerequisService prerequisserv = context.getBean("servPrerequis",PrerequisService.class);
+			ChapitreService chapitreserv = context.getBean("servChapitre",ChapitreService.class);
+			ThemeService themeserv = context.getBean("servTheme",ThemeService.class);
+			SessionService sessionserv = context.getBean("servSession",SessionService.class);
+			
+			forma.updateFormation(champAModif, modif , idform);
+			
+			
+			request.setAttribute("form",forma.searchFormation(idform));
+			request.setAttribute("objectifsdisponibles", objectifserv.recupObjectifs());
+			request.setAttribute("prerequisdisponibles", prerequisserv.recupPrerequis());
+			request.setAttribute("chapitresdisponibles", chapitreserv.recupChapitres());
+			request.setAttribute("themesdisponibles", themeserv.recupTheme());
+			request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
+
+			RequestDispatcher rd= request.getRequestDispatcher("infoformation.jsp") ;
+			rd.forward(request, response);
 	}
 
 }

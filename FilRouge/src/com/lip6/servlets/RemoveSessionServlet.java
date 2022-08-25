@@ -51,7 +51,7 @@ public class RemoveSessionServlet extends HttpServlet {
 		long id = Long.parseLong(request.getParameter("idSession"));
 		session.removeSession(id);
 		
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueSession.jsp");
 	}
 
 }
