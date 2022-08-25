@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/styles.css">
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="stag" scope="request" class="com.lip6.entities.Stagiaire" ></jsp:useBean>
@@ -68,7 +69,7 @@
         </tr>
            	<th>Vous voulez supprimer la session d'un stagiaire ?</th><input type="HIDDEN" name="idStagiaireRm" type="number" value="<%= stag.getId()%>">
            	<td><i>Voici la liste des sessions qui sont pour l'instant liées à ce stagiaire</i>
-            	<SELECT size="1" name="idSessRm">
+            	<SELECT size="1" name="idSessionRm">
              		<% for (com.lip6.entities.Session sess:stag.getSessions()){ %>
 						<OPTION value="<%=sess.toString().split("  |  ")[0]%>"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
 					<% } %>  

@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,6 +13,7 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.services.FormateurService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class UpdateFormateurServlet
@@ -46,13 +49,18 @@ public class UpdateFormateurServlet extends HttpServlet {
             System.out.println(beanName + "******************");
         }
         FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+        SessionService session = context.getBean("servSession",SessionService.class);
         
         Long idFormateur= Long.parseLong(request.getParameter("idFormateur"));
 		String champAModif = request.getParameter("champAModif");
 		String modif = request.getParameter("modif");
 		
 		fs.updateFormateur(idFormateur,champAModif,modif);
-		response.sendRedirect("accueilAdmin.jsp");
+		request.setAttribute("form",fs.searchFormateur(idFormateur));
+		request.setAttribute("sessionsdisponibles",session.recupSession());
+		
+		RequestDispatcher rd= request.getRequestDispatcher("infoformateur.jsp") ;
+		rd.forward(request, response);
 	}
 
 }

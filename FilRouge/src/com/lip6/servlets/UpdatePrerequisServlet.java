@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -51,7 +53,10 @@ public class UpdatePrerequisServlet extends HttpServlet {
 			PrerequisService prerequis = context.getBean("servPrerequis",PrerequisService.class);
 			
 			prerequis.updatePrerequis(champAModif, modif , id);
-			response.sendRedirect("accueilAdmin.jsp");
+
+			request.setAttribute("form",prerequis.searchPrerequis(id));
+			RequestDispatcher rd= request.getRequestDispatcher("infoPrerequis.jsp") ;
+			rd.forward(request, response);
 	}
 
 }

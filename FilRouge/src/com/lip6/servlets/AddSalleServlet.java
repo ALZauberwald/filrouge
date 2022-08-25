@@ -54,7 +54,7 @@ public class AddSalleServlet extends HttpServlet {
 		
 		
 		salle.addSalle(adresse, nomSalle);
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueSalle.jsp");
 	}
 
 }

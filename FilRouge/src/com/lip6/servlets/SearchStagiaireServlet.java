@@ -14,7 +14,6 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.services.SessionService;
 import com.lip6.services.StagiaireService;
-import com.lip6.soaservice.StagiaireSOAService;
 
 /**
  * Servlet implementation class SearchStagiaireServlet
@@ -51,7 +50,8 @@ public class SearchStagiaireServlet extends HttpServlet {
         }
         StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
         SessionService session = context.getBean("servSession",SessionService.class);
-		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
+		
+        long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		
 		request.setAttribute("stag",stagiaire.searchStagiaire(idStagiaire));
 		request.setAttribute("sessionsdisponibles",session.recupSession());

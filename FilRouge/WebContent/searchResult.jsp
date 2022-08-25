@@ -9,10 +9,13 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
 <body>
-<%@ include file="header.jsp" %>
+<%@ include file="headerClient.jsp" %>
+
 <br>
 <br>
 <br>
@@ -38,11 +41,10 @@
 		</ul>	
 	</form>
 	<div class="epais">
-	<form class="example" action="ClientSearchServlet" method="POST">
-		<i>Pour effectuer une autre recherche</i>
-  		<input type="text" placeholder="Thème, référence, mot clé..." name="search">
-  		<button type="submit"><i class="fa fa-search"></i></button>
-	</form>
+		<form class="example" action="ClientSearchServlet" method="POST">
+	  		<input type="text" placeholder="Thème, référence, mot clé..." name="search">
+	  		<button type="submit"><i class="fa fa-search"></i></button>
+		</form>
 	</div>	
 <%@include file="footer.jsp" %>
 </body>

@@ -51,7 +51,7 @@ public class RemoveStagiaireServlet extends HttpServlet {
 		long idStagiaire = Long.parseLong(request.getParameter("idStagiaire"));
 		
 		stagiaire.removeStagiaire(idStagiaire);
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueStagiaire.jsp");
 	}
 
 }

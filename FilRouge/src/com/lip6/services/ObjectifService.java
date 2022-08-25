@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 
 import com.lip6.daos.DAOObjectif;
 import com.lip6.entities.Objectif;
-import com.lip6.soaservices.ObjectifSOAService;
 
 
 @Service("servObjectif")
@@ -28,11 +27,8 @@ public class ObjectifService {
 		daoObjectif.addObjectif(objectifname);
 	}
 	public Objectif searchObjectif(long id) {
-		System.out.println("3333333333333333333333333333J'arrive dans objectifservcice.searchobjectif juste avant  l'appel d'objectifdao ici id ="+id);
-		ObjectifSOAService obsoa=new ObjectifSOAService();
-		Objectif de= obsoa.searchObjectif(id);
-		System.out.println("J'arrive a la fin de objectifservice88888888888888888888888888888888888888888888888888888888888888888888888888888");
-		return de;
+		
+		return daoObjectif.searchObjectif(id);
 		
 		
 	}

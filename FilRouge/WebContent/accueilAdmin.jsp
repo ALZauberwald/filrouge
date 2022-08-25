@@ -19,18 +19,18 @@
  <table id="admintable"><caption>Gestion administrateur</caption>
  	<tr id="admintr">
  		 <th></th>
- 		 <td id="admintd"><a href="creersession.jsp">Rubrique Session</a></td>
+ 		 <td id="admintd"><a href="rubriqueSession.jsp">Rubrique Session</a></td>
  		 <td id="admintd"><a href="rubriqueFormation.jsp">Rubrique formation</a></td>
  	</tr>
  	<tr id="admintr">
- 		 <td id="admintd"><a href="addStagiaire.jsp">Rubrique stagiaire</a></td>
- 		 <td id="admintd"><a href="addFormateur.jsp">Rubrique formateur</a></td>
+ 		 <td id="admintd"><a href="rubriqueStagiaire.jsp">Rubrique stagiaire</a></td>
+ 		 <td id="admintd"><a href="rubriqueFormateur.jsp">Rubrique formateur</a></td>
  		 <td id="admintd"><a href="rubriquePrerequis.jsp">Rubrique prerequis</a></td>
  		 <td id="admintd"><a href="rubriqueObjectif.jsp">Rubrique objectif</a></td>	 
  	</tr>
  	<tr id="admintr">
- 		 <td id="admintd"><a href="addSalle.jsp">Rubrique Salle</a></td>
- 		 <td id="admintd"><a href="addClient.jsp">Rubrique client</a></td>
+ 		 <td id="admintd"><a href="rubriqueSalle.jsp">Rubrique Salle</a></td>
+ 		 <td id="admintd"><a href="rubriqueClient.jsp">Rubrique client</a></td>
  		 <td id="admintd"><a href="rubriqueChapitre.jsp">Rubrique chapitre</a></td>
  		 <td id="admintd"><a href="rubriqueTheme.jsp">Rubrique theme</a></td>
  	</tr>

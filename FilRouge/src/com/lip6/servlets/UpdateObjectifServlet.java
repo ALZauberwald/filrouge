@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -52,7 +54,9 @@ public class UpdateObjectifServlet extends HttpServlet {
 			ObjectifService obj = context.getBean("servObjectif",ObjectifService.class);
 			
 			obj.updateObjectif(champAModif, modif , id);
-			response.sendRedirect("accueilAdmin.jsp");
+			request.setAttribute("form",obj.searchObjectif(id));
+			RequestDispatcher rd= request.getRequestDispatcher("infoobjectif.jsp") ;
+			rd.forward(request, response);
 	}
 
 }

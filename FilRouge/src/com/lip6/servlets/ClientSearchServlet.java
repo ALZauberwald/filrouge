@@ -42,16 +42,16 @@ public class ClientSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());		
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());		
 		
-//		String[] allBeanNames = context.getBeanDefinitionNames();
-//        for(String beanName : allBeanNames) {
-//            System.out.println(beanName + "******************");
-//        }
-		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        ClientSearchService css = context.getBean("searchServ",ClientSearchService.class);
 		String result = request.getParameter("search");
 		
-		ClientSearchService css = new ClientSearchService();
+		
 		request.setAttribute("formationsdisponibles",css.resultSearch(result));
 		RequestDispatcher rd= request.getRequestDispatcher("searchResult.jsp") ;
 		rd.forward(request, response);

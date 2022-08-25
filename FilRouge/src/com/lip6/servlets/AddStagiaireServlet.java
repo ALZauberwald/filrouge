@@ -57,7 +57,7 @@ public class AddStagiaireServlet extends HttpServlet {
 		
 		stagiaire.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueStagiaire.jsp");
 	}
 
 }

@@ -4,15 +4,16 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/styles.css">
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="sess" scope="request" class="com.lip6.entities.Session" ></jsp:useBean>
 <body>
+<%@ include file="headerClient.jsp" %>
+<br><br><br><br>
 	<table>
+				<h1><%=sess.getNomSession() %>	</h1>
 			
-			<tr>          
-	            <td><i>Modifier une session dans la base de donnée.</i> 
-            </tr>
             <tr>
              	<td><i>Nom Session</i></br> <%= sess.getNomSession() %>  </td>
              	<td><i>Nom Formation</i></br>
@@ -52,6 +53,7 @@
             <td><input type="submit" name="submit"></td>
             </tr>
 		</table>
-	</form>			
+	</form>	
+<%@include file="footer.jsp" %>		
 </body>
 </html>

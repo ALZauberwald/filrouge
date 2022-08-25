@@ -44,7 +44,7 @@ public class RemoveThemeServlet extends HttpServlet {
 
 		theme.removeTheme(id);
 		//redirection 
-		response.sendRedirect("accueilAdmin.jsp");
+		response.sendRedirect("rubriqueTheme.jsp");
 	}
 
 }

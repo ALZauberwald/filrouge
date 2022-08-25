@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
+<link rel="stylesheet" href="css/styles.css">
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="salle" scope="request" class="com.lip6.entities.Salle" ></jsp:useBean>

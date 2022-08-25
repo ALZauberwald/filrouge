@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -48,23 +50,29 @@ public class UpdateChapitre2Servlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			String choix = request.getParameter("choix");
-			ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
-			ChapitreService cpserv = context.getBean("servChapitre",ChapitreService.class);
-			
-			if(choix.equals("assoFormation")) {
-				long idChapitre= Long.parseLong(request.getParameter("idChapitre"));
-				long idForm= Long.parseLong(request.getParameter("idFormation"));
-				cpserv.assoFormation(idChapitre, idForm);
-			}
-			else if (choix.equals("rmFormation")) {
-				long idChapitre= Long.parseLong(request.getParameter("idChapitreRm"));
-				long idForm= Long.parseLong(request.getParameter("idFormationRm"));
-				cpserv.rmFormation(idChapitre, idForm);
-			}
-			
-			
-			response.sendRedirect("accueilAdmin.jsp");
-	}
+		String choix = request.getParameter("choix");
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		ChapitreService cpserv = context.getBean("servChapitre",ChapitreService.class);
+		
+		long idChapitre= Long.parseLong(request.getParameter("idChapitre"));
+		if(choix.equals("assoFormation")) {
+			long idForm= Long.parseLong(request.getParameter("idFormation"));
+			cpserv.assoFormation(idChapitre, idForm);
+		}
+		else if (choix.equals("rmFormation")) {
+			long idChapitre2= Long.parseLong(request.getParameter("idChapitreRm"));
+			long idForm= Long.parseLong(request.getParameter("idFormationRm"));
+			cpserv.rmFormation(idChapitre2, idForm);
+		}
+		
+		request.setAttribute("form",cpserv.searchChapitre(idChapitre));
+		RequestDispatcher rd= request.getRequestDispatcher("infoChapitre.jsp") ;
+		
+		FormationService formationserv = context.getBean("servFormation",FormationService.class);
+		request.setAttribute("formationsdisponibles", formationserv.recupFormations());
+		
+		
+		rd.forward(request, response);
+}
 
 }

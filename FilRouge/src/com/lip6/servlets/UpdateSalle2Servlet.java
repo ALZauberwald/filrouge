@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -12,6 +14,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import com.lip6.services.FormationService;
 import com.lip6.services.SalleService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class UpdateSalle2Servlet
@@ -47,20 +50,27 @@ public class UpdateSalle2Servlet extends HttpServlet {
             System.out.println(beanName + "******************");
         }
         SalleService salle = context.getBean("servSalle",SalleService.class);
-		
+        SessionService sessionserv = context.getBean("servSession",SessionService.class);
+
+		long idsalle= Long.parseLong(request.getParameter("idSalle"));
+
 		
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSession")) {
-			long idsalle= Long.parseLong(request.getParameter("idSalle"));
 			long idsess= Long.parseLong(request.getParameter("idSession"));
 			salle.assoSession(idsalle, idsess);
 		}
 		else if (choix.equals("rmSession")) {
-			long idsalle= Long.parseLong(request.getParameter("idSalleRm"));
+			long idsalle2= Long.parseLong(request.getParameter("idSalleRm"));
 			long idsess= Long.parseLong(request.getParameter("idSessionRm"));
-			salle.removeSession(idsalle, idsess);
+			salle.removeSession(idsalle2, idsess);
 		}
-		response.sendRedirect("accueilAdmin.jsp");
+		
+		request.setAttribute("salle",salle.searchSalle(idsalle));
+		request.setAttribute("sessionsdisponibles", sessionserv.recupSession());
+		
+		RequestDispatcher rd= request.getRequestDispatcher("infosalle.jsp") ;
+		rd.forward(request, response);
 	}
 
 }

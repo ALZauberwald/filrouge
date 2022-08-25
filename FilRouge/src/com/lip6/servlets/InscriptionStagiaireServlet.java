@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.lip6.services.SessionService;
 import com.lip6.services.StagiaireService;
 
 /**
@@ -54,8 +57,12 @@ ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext
 		String tel =request.getParameter("tel");
 		String mail = request.getParameter("mail");
 		
+		System.out.println(request.getParameter("idSession"));
+		SessionService sessionserv = context.getBean("servSession",SessionService.class);
+		request.setAttribute("sess",sessionserv.searchSession(idSession) );
 		stagiaire.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
-		response.sendRedirect("confirmationinscription.jsp");
+		RequestDispatcher rd= request.getRequestDispatcher("affichageSession.jsp") ;
+		rd.forward(request, response);
 	}
 
 }

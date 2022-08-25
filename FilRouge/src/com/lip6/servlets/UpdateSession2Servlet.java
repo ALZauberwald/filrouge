@@ -1,6 +1,8 @@
 package com.lip6.servlets;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +12,12 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
+import com.lip6.services.ClientService;
+import com.lip6.services.FormateurService;
+import com.lip6.services.FormationService;
+import com.lip6.services.SalleService;
 import com.lip6.services.SessionService;
+import com.lip6.services.StagiaireService;
 
 /**
  * Servlet implementation class UpdateSession2Servlet
@@ -46,59 +53,70 @@ public class UpdateSession2Servlet extends HttpServlet {
             System.out.println(beanName + "******************");
         }
         SessionService session = context.getBean("servSession",SessionService.class);
+        ClientService cs = context.getBean("servClient",ClientService.class);
+        FormateurService fs = context.getBean("servFormateur",FormateurService.class);
+        SalleService salle = context.getBean("servSalle",SalleService.class);
+        StagiaireService stagiaire = context.getBean("servStagiaire",StagiaireService.class);
+        FormationService formserv = context.getBean("servFormation",FormationService.class);
+        
+
+		long idSess= Long.parseLong(request.getParameter("idSession"));
 		
 		String choix = request.getParameter("choix");
 		if(choix.equals("assoSalle")) {
-			long idSess= Long.parseLong(request.getParameter("idSession"));
 			long idsalle= Long.parseLong(request.getParameter("idSalle"));
 			session.assoSalle(idSess, idsalle);
 		}
 		else if (choix.equals("rmSalle")) {
-			long idSess= Long.parseLong(request.getParameter("idSessRm"));
+			long idSessSa= Long.parseLong(request.getParameter("idSessRm"));
 			long idsalle= Long.parseLong(request.getParameter("idSalleRm"));
-			session.removeSalle(idSess,idsalle );
+			session.removeSalle(idSessSa,idsalle );
 		}
 		else if(choix.equals("assoFormation")) {
-			long idSess= Long.parseLong(request.getParameter("idSession"));
 			long idFormation= Long.parseLong(request.getParameter("idFormation"));
 			session.assoFormation(idSess, idFormation);
 		}
 		else if (choix.equals("rmFormation")) {
-			long idSess= Long.parseLong(request.getParameter("idSessRm"));
+			long idSessFo= Long.parseLong(request.getParameter("idSessRm"));
 			long idFormation= Long.parseLong(request.getParameter("idFormationRm"));
-			session.removeFormation(idSess,idFormation );
+			session.removeFormation(idSessFo,idFormation );
 		}
 		else if(choix.equals("assoFormateur")) {
-			long idSess= Long.parseLong(request.getParameter("idSession"));
 			long idFormateur= Long.parseLong(request.getParameter("idFormateur"));
 			session.assoFormateur(idSess, idFormateur);
 		}
 		else if (choix.equals("rmFormateur")) {
-			long idSess= Long.parseLong(request.getParameter("idSessRm"));
+			long idSessFo= Long.parseLong(request.getParameter("idSessRm"));
 			long idFormateur= Long.parseLong(request.getParameter("idFormateurRm"));
-			session.removeFormateur(idSess,idFormateur );
+			session.removeFormateur(idSessFo,idFormateur );
 		}
 		else if(choix.equals("assoStagiaire")) {
-			long idSess= Long.parseLong(request.getParameter("idSession"));
 			long idStagiaire= Long.parseLong(request.getParameter("idStagiaire"));
 			session.assoStagiaire(idSess, idStagiaire);
 		}
 		else if (choix.equals("rmStagiaire")) {
-			long idSess= Long.parseLong(request.getParameter("idSessRm"));
+			long idSessSt= Long.parseLong(request.getParameter("idSessRm"));
 			long idStagiaire= Long.parseLong(request.getParameter("idStagiaireRm"));
-			session.removeStagiaire(idSess,idStagiaire );
+			session.removeStagiaire(idSessSt,idStagiaire );
 		}
 		else if(choix.equals("assoClient")) {
-			long idSess= Long.parseLong(request.getParameter("idSession"));
 			long idClient= Long.parseLong(request.getParameter("idClient"));
 			session.assoClient(idSess, idClient);
 		}
 		else if (choix.equals("rmClient")) {
-			long idSess= Long.parseLong(request.getParameter("idSessRm"));
+			long idSessCl= Long.parseLong(request.getParameter("idSessRm"));
 			long idClient= Long.parseLong(request.getParameter("idClientRm"));
-			session.removeClient(idSess,idClient );
+			session.removeClient(idSessCl,idClient );
 		}
-		response.sendRedirect("accueilAdmin.jsp");
+		request.setAttribute("sess",session.searchSession(idSess));
+		request.setAttribute("sallesdisponibles",salle.recupSalle());
+		request.setAttribute("formationsdisponibles",formserv.recupFormations());
+		request.setAttribute("formateursdisponibles",fs.recupFormateur());
+		request.setAttribute("clientsdisponibles",cs.recupClient());
+		request.setAttribute("stagiairesdisponibles",stagiaire.recupStagiaire());
+		
+		RequestDispatcher rd= request.getRequestDispatcher("infosession.jsp") ;
+		rd.forward(request, response);
 	}
 
 }
