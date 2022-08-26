@@ -13,6 +13,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>Insert title here</title>
 </head>
+<jsp:useBean id="formationsdisponibles" scope = "request" class="java.util.HashSet"></jsp:useBean>
 <body>
 <%@ include file="headerClient.jsp" %>
 
@@ -20,19 +21,30 @@
 <br>
 <br>
 <br>
+	
 	<form action="AffichageSessionServlet" method="POST">
 		<ul><c:forEach var="formation" items="${requestScope.formationsdisponibles}">
-		
 				<li ><c:out value="${formation.getNomFormation()}" /></a>
 					<c:forEach var="sess" items="${formation.getSessions()}">
 					 	<ul >
 					 		<li>	
-					 				<c:out value="${sess.getNomSession()}"/>
-					 				<c:out value="${sess.getPrix()}"/>
-					 				<c:out value="${sess.getDateDebut()}"/>
-					 				<c:out value="${sess.getDateFin()}"/>
-					 				<c:out value="${sess.getIdSession()}"/>
+					 			<table>
+					 				<tr>
+					 					<td>Session</td>
+					 					<td>Prix</td>
+					 					<td>Date de Début</td>
+					 					<td>Date de Fin</td>
+					 					<td>Ville</td>
+					 				</tr>
+					 				<tr>
+						 				<td><c:out value="${sess.getNomSession()}"/></td>
+						 				<td><c:out value="${sess.getPrix()}"/></td>
+						 				<td><c:out value="${sess.getDateDebut()}"/></td>
+						 				<td><c:out value="${sess.getDateFin()}"/></td>
+						 				<td><c:out value="${sess.getLieu()}"/>
+					 				</tr>
 					 				<button type="submit" name="idSession" value="${sess.getIdSession()}">Choose</button>
+					 			</table>
 					 		</li>
 					 	</ul>
 					</c:forEach>
@@ -45,6 +57,13 @@
 	  		<input type="text" placeholder="Thème, référence, mot clé..." name="search">
 	  		<button type="submit"><i class="fa fa-search"></i></button>
 		</form>
+		<div class="center">
+		<%if(formationsdisponibles.isEmpty()){ %>
+			<h5 >Aucune formation ne correspond à votre recherche, veuillez entrer une nouvelle recherche</h5>
+		<%} %>
+		</div>
+			 
+			
 	</div>	
 <%@include file="footer.jsp" %>
 </body>
