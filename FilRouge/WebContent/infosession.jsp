@@ -218,7 +218,7 @@
             				<OPTION VALUE="<%= client.toString().split("  |  ")[0]%>"><%= client %>	
 						<% } %> 
 					</SELECT> 
-           		<br><button input type="submit" name="choix" value="assoClient">Ajouter la session
+           		<br><button input type="submit" name="choix" value="assoClient">Ajouter le client
         </td>
         <td id="afftd">
            	<input type="HIDDEN" name="idSessRm" type="number" value="<%= sess.getIdSession()%>">
@@ -227,7 +227,7 @@
    					<OPTION value="<%= cl.toString().split("  |  ")[0]%>"><%= cl.getId() %>  |  <%=cl.getNom() %>
 				<% } %>
 				</SELECT>	
-           	<br><button input type="submit" name="choix" value="rmClient">Supprimer la session
+           	<br><button input type="submit" name="choix" value="rmClient">Supprimer le client
         </td>
       </tr>
             

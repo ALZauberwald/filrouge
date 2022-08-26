@@ -50,9 +50,9 @@ public class ClientSearchServlet extends HttpServlet {
         }
         ClientSearchService css = context.getBean("searchServ",ClientSearchService.class);
 		String result = request.getParameter("search");
-		
-		
+		request.setAttribute("search",result);
 		request.setAttribute("formationsdisponibles",css.resultSearch(result));
+		
 		RequestDispatcher rd= request.getRequestDispatcher("searchResult.jsp") ;
 		rd.forward(request, response);
 	}

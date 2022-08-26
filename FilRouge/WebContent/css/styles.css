@@ -116,7 +116,7 @@ footer >div{
 	min-height: 200px;
 }
 .center{
-	text-align: center;
+	margin-left:200px;
 }
 
 #admintable{
@@ -170,3 +170,4 @@ h1{
 	width :26px;
 	 height:26px;
 }
+
