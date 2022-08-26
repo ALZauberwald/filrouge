@@ -36,7 +36,7 @@ img {
 
 /* Change the color of links on hover */
 .topnav a:hover {
-  background-color: #ff8000;
+  background-color: #2596be;
   color: black;
 }
 
@@ -124,12 +124,13 @@ footer >div{
     display: flex;
     align-items: center;
     justify-content: center;
-	
+    border-collapse:collapse;	
 }
 
 #admintd{
 	border: 1px solid black;
 	padding : 50px;	
+	
 }
 
 #admintd:hover{
@@ -169,5 +170,12 @@ h1{
 #dimensionimg:hover{
 	width :26px;
 	 height:26px;
+}
+#dimensionlogo{
+	display:block;
+	margin-left: auto;
+    margin-right: auto;
+	width :60px;
+	height:60px;
 }
 

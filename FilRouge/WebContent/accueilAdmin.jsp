@@ -5,6 +5,8 @@
 <head>
 <meta charset="ISO-8859-1">
 <link rel="stylesheet" href="css/styles.css">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
 <title>Test</title>
 </head>
 <body>
@@ -16,7 +18,7 @@
 
 
  <br><br><br><br>
- <table id="admintable"><caption>Gestion administrateur</caption>
+ <table  class="table"><caption class="caption-top">Gestion administrateur</caption>
  	<tr id="admintr">
  		 <th></th>
  		 <td id="admintd"><a href="rubriqueSession.jsp">Rubrique Session</a></td>
