@@ -50,7 +50,7 @@ public class AddSessionServlet extends HttpServlet {
         SessionService session = context.getBean("servSession",SessionService.class);
 		
 		
-		long formation = Long.parseLong(request.getParameter("formation"));
+		long formation = Long.parseLong(request.getParameter("idFormation"));
 		String nomSession =request.getParameter("nomSession");
 		String prixSession =request.getParameter("prix");
 		String dateDebut = request.getParameter("dateDebut");
