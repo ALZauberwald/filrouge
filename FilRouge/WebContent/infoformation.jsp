@@ -5,7 +5,8 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="stylesheet" href="css/styles.css"> 
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <title>Insert title here</title>
 </head>
 <jsp:useBean id="form" scope="request" class="com.lip6.entities.Formation" ></jsp:useBean>
@@ -24,9 +25,9 @@
 	<br>
 <form action="UpdateFormationServlet" method="POST">
 	
-	<table id="afftbl"><caption>Voici le contenu de la formation selectionnee<br></caption>
+	<table id="afftbl" class="table table-info"><caption class="caption-top">Voici le contenu de la formation selectionnee<br></caption>
 	<!-- affichage du contenu de la formation -->          
-	    	
+	  	<thead>
         <tr>
         	<td>Id Formation</td>
         	<td>Nom Formation</td>
@@ -37,6 +38,8 @@
         	<td>Themes</td>
         	<td>Chapitres</td>
         </tr>
+        </thead>
+        <tbody>
         <tr id="afftr">
         	
            	<td id="afftd"><%= form.getIdFormation() %> </td>
@@ -84,12 +87,13 @@
        		<td><i>Veuillez rentrer la valeur du champ a modifier</i> <input name="modif" type="text" /></td>
              <td><input type="submit" name="submit"></td>
         </tr>
+        </tbody>
    </table>
 </form>
 <!-- affichage des modifications d'associations possibles -->
 <form action="UpdateFormation2Servlet" method="POST">
-	<table id="afftbl"> <caption>Vous pouvez modifier une association<br></caption>
-		<tr>
+	<table id="afftbl" class="table  table-hover"> <caption class="caption-top">Vous pouvez modifier une association<br></caption>
+		<tr class="table-info">
 			<td id="afftd">avec</td>
 			<td id="afftd">Ajouter</td>
 			<td id="afftd">Supprimer</td>
@@ -104,7 +108,7 @@
 						<% } %> 
 					</SELECT> 
             		<input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"> 
-           			<br><button input type="submit" name="choix" value="asso">Ajouter l'objectif
+           			<br><div id="containerimg"><button input type="submit" name="choix" value="asso"><img src="images/plus.jpg" id="dimensionimg"></div>
         	</td>
         	<td id="afftd">
            	<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
@@ -113,7 +117,7 @@
 						<OPTION value="<%= objectif.toString().split("  |  ")[0]%>"> <%= objectif.getIdObjectif()%>  |  <%= objectif.getNomObjectif()%>
 					<% } %> 
 				</SELECT> 
-				<br><button input type="submit" name="choix" value="rm">Supprimer l'objectif
+				<br><div id="containerimg"><button input type="submit" name="choix" value="rm"><img src="images/logocorbeille.png" id="dimensionimg"></div>
            	</td>
             	
          </tr>
@@ -128,7 +132,7 @@
 						<OPTION value="<%= prerequis.toString().split("  |  ")[0]%>"> <%= prerequis %>	
 					<% } %> 
 				</SELECT> 
-        		<br><button input type="submit" name="choix" value="assoPrerequis">Ajouter le prerequis
+        		<br><div id="containerimg"><button input type="submit" name="choix" value="assoPrerequis"><img src="images/plus.jpg" id="dimensionimg"></div>
         	</td>
         	<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
@@ -137,7 +141,7 @@
 						<OPTION value="<%= prerequis.toString().split("  |  ")[0]%>"> <%= prerequis.getIdPrerequis()%>  |  <%= prerequis.getNomPrerequis()%>
 					<% } %> 
 				</SELECT> 
-           		<br><button input type="submit" name="choix" value="rmPrerequis">Supprimer le prerequis
+           		<br><div id="containerimg"><button input type="submit" name="choix" value="rmPrerequis"><img src="images/logocorbeille.png" id="dimensionimg"></div>
            	</td>
          </tr>
             
@@ -151,7 +155,8 @@
 						<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre %>	
 					<% } %> 
 				</SELECT>     
-           		<br><button input type="submit" name="choix" value="assoChapitre">Ajouter le chapitre</td>
+           		<br><div id="containerimg"><button input type="submit" name="choix" value="assoChapitre"><img src="images/plus.jpg" id="dimensionimg"></div>
+           	</td>
         	<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>"> 	
             	<SELECT size="1" name="idChapitreRm">
@@ -159,7 +164,7 @@
 						<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre.getIdChapitre()%>  |  <%= chapitre.getNomChapitre()%>
 					<% } %> 
 				</SELECT> 
-           		<br><button input type="submit" name="choix" value="rmChapitre">Supprimer le chapitre
+           		<br><div id="containerimg"><button input type="submit" name="choix" value="rmChapitre"><img src="images/logocorbeille.png" id="dimensionimg"></div>
            	</td>
          </tr>
          
@@ -173,7 +178,7 @@
            				<OPTION value="<%= theme.toString().split("  |  ")[0]%>"><%= theme %>	
 					<% } %> 
 				</SELECT> 
-           		<br><button input type="submit" name="choix" value="assoTheme">Ajouter le theme
+           		<br><div id="containerimg"><button input type="submit" name="choix" value="assoTheme"><img src="images/plus.jpg" id="dimensionimg"></div>
            	</td>
        
            	<td id="afftd">
@@ -183,7 +188,8 @@
 						<OPTION value="<%= theme.toString().split("  |  ")[0]%>"> <%= theme.getIdTheme()%>  |  <%= theme.getNomTheme()%>
 					<% } %> 
 				</SELECT>            	
-           		<br><button input type="submit" name="choix" value="rmTheme">Supprimer le theme</td>
+           		<br><div id="containerimg"><button input type="submit" name="choix" value="rmTheme"><img src="images/logocorbeille.png" id="dimensionimg"></div>
+           	</td>
          </tr> 
             
          <!-- Gestion des sessions -->  
@@ -196,7 +202,7 @@
             				<OPTION value="<%= sess.toString().split("  |  ")[0]%>"><%= sess %>	
 						<% } %> 
 					</SELECT> 
-           			<br><button input type="submit" name="choix" value="assoSession">Ajouter la session
+           			<br><div id="containerimg"><button input type="submit" name="choix" value="assoSession"><img src="images/plus.jpg" id="dimensionimg"></div>
            		</td>
        		<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
@@ -205,7 +211,7 @@
 						<OPTION value="<%= sess.toString().split("  |  ")[0]%>"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
 					<% } %> 
 				</SELECT>            	
-           		<br><button input type="submit" name="choix" value="rmSession">Supprimer la session
+           		<br><div id="containerimg"><button input type="submit" name="choix" value="rmSession"><img src="images/logocorbeille.png" id="dimensionimg"></div>
            	</td>
          </tr>    
             

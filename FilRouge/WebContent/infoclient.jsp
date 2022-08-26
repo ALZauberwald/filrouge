@@ -35,7 +35,7 @@
         	<h2>Pour modifier un champ</h2>
         	<input type="HIDDEN" name="idClient" type="number" value="<%= cli.getId()%>">
            	
-           	<td><i>Veuillez choisir le champ à modifier</i></br>
+           	<td><i>Veuillez choisir le champ a modifier</i></br>
            		<SELECT name="champAModif" size="1">
 					<OPTION value="nom"> Nom du client (<%=cli.getNom() %>)
 					<OPTION value="prenom"> Prenom du client (<%= cli.getPrenom()%>)
@@ -45,7 +45,7 @@
 					<OPTION value="siret"> Num�ro de Siret du Client (<%= cli.getNumSiret()%>)
 				</SELECT> 
 			</td>
-       		<td><i>Veuillez rentrer la valeur du champ à modifier</i></br> <input name="modif" type="text" /></td>
+       		<td><i>Veuillez rentrer la valeur du champ a modifier</i></br> <input name="modif" type="text" /></td>
         </tr>
         <tr>
              <td><input type="submit" name="submit"></td>
@@ -57,7 +57,7 @@
 	<table>
 <!-- Gestion des sessions -->  
          <tr>
-           	<th>Vous voulez ajouter une session à une salle ?</th><input type="HIDDEN" name="idClient" type="number" value="<%= cli.getId()%>">    	
+           	<th>Vous voulez ajouter une session a une salle ?</th><input type="HIDDEN" name="idClient" type="number" value="<%= cli.getId()%>">    	
             	<td><i>Voici la liste des sessions disponibles</i>	
             		<SELECT size="1" name="idSession">
             			<% for (Object sess:sessionsdisponibles){%>

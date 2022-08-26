@@ -46,7 +46,7 @@
 					<OPTION value="embauche"> Date d'embauche du formateur (<%= form.getDateEmbauche()%>)
 				</SELECT> 
 			</td>
-       		<td><i>Veuillez rentrer la valeur du champ à modifier</i></br> <input name="modif" type="text" /></td>
+       		<td><i>Veuillez rentrer la valeur du champ a modifier</i></br> <input name="modif" type="text" /></td>
         </tr>
         <tr>
              <td><input type="submit" name="submit"></td>
@@ -58,7 +58,7 @@
 	<table>
 <!-- Gestion des sessions -->  
          <tr>
-           	<th>Vous voulez ajouter une session à une salle ?</th><input type="HIDDEN" name="idFormateur" type="number" value="<%= form.getId()%>">    	
+           	<th>Vous voulez ajouter une session a une salle ?</th><input type="HIDDEN" name="idFormateur" type="number" value="<%= form.getId()%>">    	
             	<td><i>Voici la liste des sessions disponibles</i>	
             		<SELECT size="1" name="idSession">
             			<% for (Object sess:sessionsdisponibles){%>
