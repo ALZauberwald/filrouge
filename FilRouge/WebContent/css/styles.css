@@ -149,3 +149,25 @@ caption{
 	border-collapse: collapse;
 	text-align: center;
 }
+h1{
+	color: #2596be;
+}
+#containerimg{
+	display:block;
+	margin-left: auto;
+    margin-right: auto;
+	width :32px;
+	height:32px;
+}
+#dimensionimg{
+	display:block;
+	margin-left: auto;
+    margin-right: auto;
+	width :20px;
+	height:20px;
+}
+#dimensionimg:hover{
+	width :26px;
+	 height:26px;
+}
+

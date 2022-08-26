@@ -69,7 +69,7 @@
            	<td><button input type="submit" name="choix" value="assoFormation">Ajouter la formation</td>
         </tr> 
            	<th>Vous voulez supprimer une formation de ce theme ?</th><input type="HIDDEN" name="idThemeRm" type="number" value="<%= form.getIdTheme()%>">
-           	<td><i>Voici la liste des formations qui sont pour l'instant liés à ce theme</i>
+           	<td><i>Voici la liste des formations qui sont pour l'instant lies a ce theme</i>
             	<SELECT size="1" name ="idFormationRm">
             		<% for (com.lip6.entities.Formation formation:form.getFormation()){%>
 						<OPTION value="<%= formation.toString().split("  |  ")[0]%>"> <%= formation.getIdFormation()%>  |  <%= formation.getNomFormation()%>
@@ -97,7 +97,7 @@
            	<td><button input type="submit" name="choix" value="assoSoustheme">Ajouter le sous-theme</td>
         </tr>     
            	<th>Vous voulez supprimer un sous-theme de ce theme ?</th><input type="HIDDEN" name="idThemeRm" type="number" value="<%= form.getIdTheme()%>">
-           	<td><i>Voici la liste des sous-themes qui sont pour l'instant liés à ce theme</i>
+           	<td><i>Voici la liste des sous-themes qui sont pour l'instant lies a ce theme</i>
             	<SELECT size="1" name = "idSousthemeRm">
             		<% for (com.lip6.entities.Theme soustheme:form.getSousthemes()){%>
 						<OPTION value="<%= soustheme.toString().split("  |  ")[0]%>"> <%= soustheme.getIdTheme()%>  |  <%= soustheme.getNomTheme()%>

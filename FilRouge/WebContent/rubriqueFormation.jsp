@@ -19,14 +19,6 @@
 	<br>
 	<br>
 	<br>
-	<%-- <h1>Voici la liste de toutes les formations deja renseignees</h1>
-	<%FormationService formaserv= new FormationService();%>
-	<%java.util.Set<Formation> formationsdisponibles = formaserv.recupFormations(); %>
-	<% for (Object formation:formationsdisponibles){ %>
-   				</br><%= formation %> 
-				<% } %> --%>
-
-
 	<h1>Ajouter une formation</h1>
 	<form action="AddFormServlet" method="post">
 	    <table>
@@ -37,8 +29,6 @@
             <tr>
 	            <td><i>Nom de la formation</i> <input type="text" name="formationname">  </td>
 	            <td><i>Detail de la formation</i> <input type="text" name="formationdetail">  </td>
-	            <td><i>Objectif de la formation</i> <input type="text" name="formationobjectif">  </td>
-	            <td><i>Prerequis de la formation</i> <input type="text" name="formationprerequis">  </td>
             </tr>
             <tr> 
             	<td><input type="submit" name="submit">  </td> 
@@ -48,12 +38,12 @@
   	
   	
   	
-  	<h1>Chercher une formation ou/et la mettre Ã  jour</h1>
+  	<h1>Chercher une formation ou/et la mettre a jour</h1>
 	<form action="SearchFormationServlet" method="post">
 	    <table>
 	    	<tr>
 		    	<th>Partie admin</th>          
-	            <td><i>chercher une formation dans la base de donnÃ©e.</i> 
+	            <td><i>chercher une formation dans la base de donnee.</i> 
             </tr>
             <tr>
             	<Select name ="idFormation">
@@ -82,7 +72,7 @@
             </tr>
             <tr>
             	<Select name ="idFormation">
-		            <!-- <td><i>Id de la formation Ã  rechercher</i> <input type="number" name="idFormation">  </td> -->
+		            <!-- <td><i>Id de la formation a rechercher</i> <input type="number" name="idFormation">  </td> -->
 					<% for (Object formation:formationsdisponibles){ %>
 	   				</br><option value ="<%= formation.toString().split("  |  ")[0]%>"><%= formation %> 
 					<% } %>

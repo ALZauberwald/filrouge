@@ -273,23 +273,8 @@ public class DAOFormation {
 			EntityManager em=JpaUtil.getEmf().createEntityManager();	
 			EntityTransaction tx = em.getTransaction();
 			
-			tx.begin();	
-				Objectif ob= new Objectif(formationobjectif);				
-				Prerequis pr= new Prerequis(formationprerequis);				
-				Chapitre cp= new Chapitre("chapitre test", 5, "Ce chapitre n'existe pas vraiment :)");
-				Theme tm = new Theme("theme test");
-				Theme st1= new Theme("Je suis destine a etre un sous theme");
-				
-				Formation newform= new Formation(formationname,formationdetail);
-				
-				newform.getObjectifsFormation().add(ob);						
-				newform.getPrerequisFormation().add(pr);
-				newform.getChapitres().add(cp);
-				cp.setFormation(newform);
-				newform.getTheme().add(tm);
-				tm.getFormation().add(newform);
-				tm.getSousthemes().add(st1);
-										
+			tx.begin();					
+				Formation newform= new Formation(formationname,formationdetail);					
 				em.persist(newform);;
 			tx.commit();
 			

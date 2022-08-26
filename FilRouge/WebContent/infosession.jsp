@@ -177,7 +177,7 @@
 	           	<input type="HIDDEN" name="idSessRm" type="number" value="<%= sess.getIdSession()%>">
 	      		<SELECT size="1" name="idFormateurRm">
 		      		<%if (sess.getFormateur()==null){%>
-		      		<br> Aucune formateur attitré
+		      		<br> Aucun formateur attitré
 		      		<%}else{%>
 		     			<% com.lip6.entities.Formateur form2=sess.getFormateur();%>
 					<OPTION value="<%= form2.toString().split("  |  ")[0]%>"><%= form2.getId() %>  |  <%=form2.getNom() %>

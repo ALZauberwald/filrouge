@@ -38,7 +38,7 @@
 	<table>
 <!-- Gestion des sessions -->  
          <tr>
-           	<th>Vous voulez ajouter une session à une salle ?</th><input type="HIDDEN" name="idSalle" type="number" value="<%= salle.getIdSalle()%>">    	
+           	<th>Vous voulez ajouter une session a une salle ?</th><input type="HIDDEN" name="idSalle" type="number" value="<%= salle.getIdSalle()%>">    	
             	<td><i>Voici la liste des sessions disponibles</i>	
             		<SELECT size="1" name="idSession">
             			<% for (Object sess:sessionsdisponibles){%>
