@@ -23,20 +23,21 @@
 	<br>
 	<br>
 	<br>
+<div class="retreci">
 <form action="UpdateFormationServlet" method="POST">
 	
-	<table id="afftbl" class="table table-info"><caption class="caption-top">Voici le contenu de la formation selectionnee<br></caption>
+	<table id="afftbl" class="table "><caption class="caption-top">Voici le contenu de la formation selectionnee<br></caption>
 	<!-- affichage du contenu de la formation -->          
 	  	<thead>
-        <tr>
-        	<td>Id Formation</td>
-        	<td>Nom Formation</td>
-        	<td>Detail de la formation</td>
-        	<td>Objectifs</td>
-        	<td>Prerequis</td>
-        	<td>Sessions</td>
-        	<td>Themes</td>
-        	<td>Chapitres</td>
+        <tr class="table-info">
+        	<td id="afftd">Id Formation</td>
+        	<td id="afftd">Nom Formation</td>
+        	<td id="afftd">Detail de la formation</td>
+        	<td id="afftd">Objectifs</td>
+        	<td id="afftd">Prerequis</td>
+        	<td id="afftd">Sessions</td>
+        	<td id="afftd">Themes</td>
+        	<td id="afftd">Chapitres</td>
         </tr>
         </thead>
         <tbody>
@@ -72,23 +73,33 @@
 				<% } %>   
 			</td>     
         </tr>
-        <!-- affichage des modifications possibles (les champs)-->
-        <tr>        
-        	
-		</tr>       
-        <tr>
-       	 <th>Vous pouvez modifier un champ</th>
-           	<td><i>Formation n°<%= form.getIdFormation()%></i> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
-           	<td><i>Veuillez choisir le champ a modifier</i>
-           		<SELECT name="champAModif" size="1">
-					<OPTION value="nom"> Nom de la formation (<%= form.getNomFormation()%>)
-					<OPTION value="detail"> Detail de la formation (<%= form.getDetailFormation()%>)
-				</SELECT> 
-       		<td><i>Veuillez rentrer la valeur du champ a modifier</i> <input name="modif" type="text" /></td>
-             <td><input type="submit" name="submit"></td>
-        </tr>
         </tbody>
-   </table>
+        <!-- affichage des modifications possibles (les champs)-->
+        </table>
+        <div class="table-responsive">
+        <table class="table"><caption class="caption-top">Vous pouvez modifier un champ<br></caption>      
+	        <thead>
+		        <tr class="table-info">
+		           	<td id="afftd">Formation</td>
+		           	<td id="afftd">Champ a modifier</td> 
+		       		<td id="afftd">Veuillez rentrer la valeur du champ a modifier</td>
+		       		<td id="afftd">Modifier</td>    
+		        </tr>
+	        </thead>
+	        <tbody>
+		        <tr>
+		        	<td id="afftd">n°<%= form.getIdFormation()%> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
+		        	<td id="afftd"><SELECT name="champAModif" size="1">
+							<OPTION value="nom"> Nom de la formation (<%= form.getNomFormation()%>)
+							<OPTION value="detail"> Detail de la formation (<%= form.getDetailFormation()%>)
+						</SELECT>
+					</td >
+		        	<td id="afftd"> <input name="modif" type="text" /></td>
+		        	<td id="afftd"><input type="submit" name="submit" value="modifier"></td>
+		        </tr>
+	        </tbody>
+	   	</table>
+	   	</div>
 </form>
 <!-- affichage des modifications d'associations possibles -->
 <form action="UpdateFormation2Servlet" method="POST">
@@ -218,6 +229,7 @@
 	</table>
 
 </form>
+</div>
 <%@include file="footer.jsp" %>
 </body>
 </html>

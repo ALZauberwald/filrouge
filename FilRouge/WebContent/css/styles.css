@@ -170,4 +170,22 @@ h1{
 	width :26px;
 	 height:26px;
 }
-
+.moitie{
+	width:50%;
+	border: color: #2596be;
+	float: right;
+}
+.infoForm{
+	float:left;
+	width:50%;
+}
+h2 {
+	color: #2596be;
+}
+.retreci{
+	width:700px;
+	margin:auto;
+}
+.aligncenter{
+	text-align: center;
+}
