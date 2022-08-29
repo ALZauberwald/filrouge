@@ -22,7 +22,7 @@
 <br>
 	<div class="table-responsive ">
 		<table class="table "id ="afftbl"><caption class="caption-top aligncenter" >Voici le contenu de la session selectionnee<br></caption>
-			<tr class="table-info">
+			<tr class="table-info " >
 	        	<td id ="afftd">Id Session</td>
 	        	<td id ="afftd">Nom Session</td>
 	        	<td id ="afftd">Formations</td>
@@ -35,7 +35,7 @@
 	        	<td id ="afftd">Type session</td>
 	        	<td id ="afftd">Installation terminee</td> 
 	        	<td id ="afftd">Salle</td> 
-	        	<td id ="afftd">Stagiaire</td>   
+	        	<td id ="afftd">Stagiaires</td>   
 	        	<td id ="afftd">Clients</td>  	
 	        </tr>
 			 <tr id="afftr">
@@ -64,7 +64,7 @@
 					</td>
 		            <td id= "afftd"> <%= sess.getTypeSession() %>  </td>
 		            <td id= "afftd"> <%= sess.isInstallationFinie() %></td>  
-		            <td id= "afftd"> 
+		            <td id="affcell" class="cell"> 
 			            <%if (sess.getSalle()==null){%>
 		      				NA</br>
 		      			<%}else{%>      			
@@ -73,14 +73,15 @@
 		   				</br>Nom Salle : <%= sa.getNomSalle() %> 
 						<% }%>
 					</td>
-					<td id= "afftd">
+					<td id= "afftd" >
 	             		<% for (com.lip6.entities.Stagiaire st:sess.getStagiaires()){ %>
-		   				<%= st.getNom() %> <%=st.getPrenom() %></br>
-						<% } %>   
+		   				<li class="cell"><%= st.getNom() %> <%=st.getPrenom() %></li>
+						<% } %> 
+						</ul>  
 					</td>
 					<td id= "afftd">
 		             	<% for (com.lip6.entities.Client cl:sess.getClient()){ %>
-		   				</br><%= cl.getNom() %> <%=cl.getPrenom() %>
+		   				<%= cl.getNom() %> <%=cl.getPrenom() %>
 						<% } %>   
 					</td>	            
 	            </tr>

@@ -99,12 +99,12 @@ form.example::after {
 }
 
 footer {
-	bottom:0px;
+	bottom:0;
 	height:150px ;
 	background-color:#c0c0c0;
 	margin-top:150px;
 	width:100%;
-	overflow: hidden;
+	clear:both;
 }
 footer >div{
 	
@@ -181,11 +181,17 @@ h1{
 }
 
 .moitie{
-	width:50%;
+	/* width:50%;
 	border: color: #2596be;
-	float: right;
+	float: right; */
+	width:70%;
+	margin :auto;
 }
 .infoForm{
+	width:70%;
+	margin:auto;
+}
+.divRep{
 	float:left;
 	width:50%;
 }
@@ -216,7 +222,7 @@ h2 {
 .petit{
 	width:100px;
 }
-.liste{
+td > select{
 	white-space: nowrap; 
     overflow: hidden;
     text-overflow: ellipsis;
@@ -235,3 +241,15 @@ h2 {
     height:auto;  /* just added this line */
     max-width:150px;
 }
+.insc{
+	width:70%;
+}
+.but{
+	margin-left:200px;
+}
+/* .a{
+	display: none;
+}
+.a li:firstchild {
+	display:block;
+} */
