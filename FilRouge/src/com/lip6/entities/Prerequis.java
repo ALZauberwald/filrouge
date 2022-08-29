@@ -9,10 +9,16 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+
+@Component ("classeprerequis")
+@Scope ("prototype")
 @Entity
 public class Prerequis {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idPrerequis;
+	private long idPrerequis;
 	private String nomPrerequis;
 	
 	public Prerequis(String nomPrerequis) {
@@ -20,18 +26,23 @@ public class Prerequis {
 		this.nomPrerequis = nomPrerequis;
 	}
 	public Prerequis() {}
-	public int getIdPrerequis() {
+	
+	public long getIdPrerequis() {
 		return idPrerequis;
 	}
-	public void setIdPrerequis(int idPrerequis) {
+	public void setIdPrerequis(long idPrerequis) {
 		this.idPrerequis = idPrerequis;
 	}
->>>>>>> f871008343da385c413784f67afd74e497a6b2bb
 	public String getNomPrerequis() {
 		return nomPrerequis;
 	}
 	public void setNomPrerequis(String nomPrerequis) {
 		this.nomPrerequis = nomPrerequis;
 	}
+	@Override
+	public String toString() {
+		return  idPrerequis + "  |  "+ nomPrerequis ;
+	}
+	
 	
 }

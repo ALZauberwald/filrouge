@@ -26,14 +26,14 @@ public class Evaluation {
 	public Evaluation() {
 		
 	}
-	
-	public int getIdEvaluation() {
-		return idEvaluation;
-	}
 	public Evaluation(String nomEvaluation) {
 		super();
 		this.nomEvaluation = nomEvaluation;
 	}
+	public int getIdEvaluation() {
+		return idEvaluation;
+	}
+	
 	public void setIdEvaluation(int idEvaluation) {
 		this.idEvaluation = idEvaluation;
 	}

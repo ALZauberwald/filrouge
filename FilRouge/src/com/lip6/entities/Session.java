@@ -1,17 +1,27 @@
 package com.lip6.entities;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import org.hibernate.annotations.ColumnDefault;
+
+import java.beans.*;
 @Entity
 public class Session {
 	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,41 +30,56 @@ public class Session {
 	private String nomSession;
 	private float prix=1000;
 	private String dateDebut;
+	private String dateFin;
 	private String lieu;
+	@Column(columnDefinition = "BOOLEAN")
 	private boolean formateurConfirme;
-	private TypeSession typesession;
+	private TypeSession typeSession;
+	@Column(columnDefinition = "BOOLEAN")
+	private boolean installationFinie=false;
 	
-	@ManyToOne(cascade = CascadeType.PERSIST)
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="id_salle")
 	private Salle salle;
 	
 	@OneToMany(cascade = CascadeType.ALL)
 	private List<Evaluation>evaluations=new ArrayList<Evaluation>() ;
 	
-	//@ManyToOne
-	//private Formateur formateur;
+	@ManyToOne
+	@JoinColumn(name="id_formateur")
+	private Formateur formateur;
 	
-	//@ManyToMany
-	//private List<Stagiaire> stagiaire = new ArrayList<Stagiaire>();
+	@ManyToMany(cascade ={CascadeType.PERSIST,
+			CascadeType.DETACH,
+			CascadeType.MERGE,
+			CascadeType.REFRESH
+},mappedBy = "sessions")
+	private Set<Stagiaire> stagiaires = new HashSet<>();
 	
-	//@ManyToMany
-	//private List<Client> client = new ArrayList <Client>();
+	@ManyToMany(cascade ={CascadeType.PERSIST,
+			CascadeType.DETACH,
+			CascadeType.MERGE,
+			CascadeType.REFRESH
+},mappedBy = "sessions")
+	private Set<Client> clients = new HashSet<>();
 	
-//	@ManyToOne
-//	@JoinColumn(name="id_formation")
-//	private Formation formation;
+	@ManyToOne
+	@JoinColumn(name="id_formation")
+	private Formation formation;
 
-	public Session(String nomSession, float prix, String dateDebut, String lieu, TypeSession typesession) {
+	public Session(String nomSession, float prix, String dateDebut,String dateFin, String lieu, TypeSession typeSession) {
 		this.nomSession=nomSession;
 		this.prix = prix;
 		this.dateDebut = dateDebut;
+		this.dateFin=dateFin;
 		this.lieu = lieu;
 		this.formateurConfirme = false;
-		this.typesession = typesession;
+		this.typeSession = typeSession;
+		this.installationFinie=false;
 	}
 
 	public Session() {
-		super();
+		
 	}
 
 	public long getIdSession() {
@@ -97,12 +122,12 @@ public class Session {
 		this.formateurConfirme = formateurConfirme;
 	}
 
-	public TypeSession getTypesession() {
-		return typesession;
+	public TypeSession getTypeSession() {
+		return typeSession;
 	}
 
-	public void setTypesession(TypeSession typesession) {
-		this.typesession = typesession;
+	public void setTypeSession(TypeSession typeSession) {
+		this.typeSession = typeSession;
 	}
 
 	public Salle getSalle() {
@@ -121,13 +146,13 @@ public class Session {
 		this.evaluations = evaluations;
 	}
 
-//	public Formation getFormation() {
-//		return formation;
-//	}
-//
-//	public void setFormation(Formation formation) {
-//		this.formation = formation;
-//	}
+	public Formation getFormation() {
+		return formation;
+	}
+
+	public void setFormation(Formation formation) {
+		this.formation = formation;
+	}
 
 	public String getNomSession() {
 		return nomSession;
@@ -136,15 +161,54 @@ public class Session {
 	public void setNomSession(String nomSession) {
 		this.nomSession = nomSession;
 	}
+	
+
+	public String getDateFin() {
+		return dateFin;
+	}
+
+	public void setDateFin(String dateFin) {
+		this.dateFin = dateFin;
+	}
+
+	public boolean isInstallationFinie() {
+		return installationFinie;
+	}
+
+	public void setInstallationFinie(boolean installationFinie) {
+		this.installationFinie = installationFinie;
+	}
+
+	public Set<Stagiaire> getStagiaires() {
+		return stagiaires;
+	}
+
+	public void setStagiaires(Set<Stagiaire> stagiaires) {
+		this.stagiaires = stagiaires;
+	}
+
+	public Formateur getFormateur() {
+		return formateur;
+	}
+
+	public void setFormateur(Formateur formateur) {
+		this.formateur = formateur;
+	}
+
+	public Set<Client> getClient() {
+		return clients;
+	}
+
+	public void setClient(Set<Client> client) {
+		this.clients = client;
+	}
 
 	@Override
 	public String toString() {
-		return "Session [idSession=" + idSession + ", nomSession=" + nomSession + ", prix=" + prix + ", dateDebut="
-				+ dateDebut + ", lieu=" + lieu + ", formateurConfirme=" + formateurConfirme + ", typesession="
-				+ typesession + ", salle=" + salle + ", evaluations=" + evaluations + "]";
+
+		return  idSession + "  |  "  + nomSession;
+
 	}
-	
-	
 	
 	
 	

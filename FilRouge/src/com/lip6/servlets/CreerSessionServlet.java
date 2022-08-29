@@ -7,8 +7,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import com.lip6.entities.TypeSession;
-import com.lip6.services.FormationService;
+import com.lip6.services.SalleService;
+import com.lip6.services.SessionService;
 
 /**
  * Servlet implementation class CreerSession
@@ -37,13 +41,22 @@ public class CreerSessionServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext(getServletContext());
+		
+		String[] allBeanNames = context.getBeanDefinitionNames();
+        for(String beanName : allBeanNames) {
+            System.out.println(beanName + "******************");
+        }
+        SessionService session = context.getBean("servSession",SessionService.class);
+		
+		
+		long formation = Long.parseLong(request.getParameter("formation"));
 		String nomSession =request.getParameter("nomSession");
 		String prixSession =request.getParameter("prix");
 		String dateDebut = request.getParameter("dateDebut");
+		String dateFin = request.getParameter("dateFin");
 		String lieuSession =request.getParameter("lieuSession");
 		String typeSession = request.getParameter("typeSession");
-		String adresse = request.getParameter("adresse");
-		String nomSalle = request.getParameter("nomSalle");
 		
 		TypeSession type = TypeSession.INTER_ENTREPRISE;
 		if(typeSession.equals("inter entreprise"))
@@ -55,8 +68,7 @@ public class CreerSessionServlet extends HttpServlet {
 		
 		
 		
-		FormationService formation= new FormationService();
-		formation.createSession(nomSession,Float.parseFloat(prixSession),dateDebut,lieuSession,type,adresse,nomSalle);
+		session.createSession(formation,nomSession,Float.parseFloat(prixSession),dateDebut,dateFin,lieuSession,type);
 		//redirection 
 		response.sendRedirect("index.html");
 	}

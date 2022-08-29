@@ -1,0 +1,249 @@
+@charset "ISO-8859-1";
+
+.logo {
+    float: left;
+    padding: 15px 0;
+}
+div {
+    display: block;
+}
+.logo a {
+    font-size: 28px;
+    display: block;
+    padding: 0 0 0 20px;
+}
+img {
+    border: 0;
+    -ms-interpolation-mode: bicubic;
+    vertical-align: middle;
+}
+/* Add a black background color to the top navigation */
+.topnav {
+  background-color: #ffffff;
+  overflow: hidden;
+  margin-left: 150px;
+}
+
+/* Style the links inside the navigation bar */
+.topnav a {
+  float: left;
+  color: #000040;
+  text-align: center;
+  padding: 14px 22px;
+  text-decoration: none;
+  font-size: 20px;
+}
+
+/* Change the color of links on hover */
+.topnav a:hover {
+  background-color: #2596be;
+  color: black;
+}
+
+/* Add a color to the active/current link */
+.topnav a.active {
+  background-color: #ffffff;
+  color: green;
+}
+
+.topnav > input[type=text] {
+  	border: 1px solid grey;
+ 	padding: 13px;
+  	margin-top: 8px;
+  	margin-right: 16px;
+	font-size: 17px;
+}
+.topnav > form {
+	float:right;
+  	margin-top: 0px;
+  	margin-right: 16px;
+  	font-size: 10px;
+}
+
+
+/* Style the search field */
+form.example input[type=text] {
+  padding: 10px;
+  margin-top:120px;
+  font-size: 17px;
+  border: 1px solid #2596be;
+  float: left;
+  margin-left:35px;
+  width: 80%;
+  background: #f1f1f1;
+}
+
+/* Style the submit button */
+form.example button {
+  float: left;
+  width: 10%;
+  padding: 10px;
+  background: #2596be;
+  color: white;
+  font-size: 17px;
+  border: 1px solid #2596be;
+  border-left: none; /* Prevent double borders */
+  cursor: pointer;
+  margin-top:120px;
+}
+
+form.example button:hover {
+  background: #0b7dda;
+}
+
+/* Clear floats */
+form.example::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+footer {
+	bottom:0;
+	height:150px ;
+	background-color:#c0c0c0;
+	margin-top:150px;
+	width:100%;
+	clear:both;
+}
+footer >div{
+	
+	margin-left:150px;
+	color: #fff;
+	
+}
+.epais{
+	min-height: 200px;
+}
+.center{
+	margin-left:200px;
+}
+
+#admintable{
+	height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-collapse:collapse;	
+}
+
+#admintd{
+	border: 1px solid black;
+	padding : 50px;	
+	
+}
+
+#admintd:hover{
+	background-color:#2596be;
+}
+#adminblanc{
+	border-bottom: 1px solid black;
+}
+caption{
+	font-size:30px;
+	color: #2596be;
+}
+#afftbl{
+	border-collapse: collapse;
+	margin: auto;
+}
+#affcell{
+	border: 1px solid black;
+	border-spacing : 0px;
+	border-collapse: collapse;
+}
+#afftd{
+	border: 1px solid black;
+	border-spacing : 0px;
+	border-collapse: collapse;
+	text-align: center;
+}
+h1{
+	color: #2596be;
+}
+#containerimg{
+	display:block;
+	margin-left: auto;
+    margin-right: auto;
+	width :32px;
+	height:32px;
+}
+#dimensionimg{
+	display:block;
+	margin-left: auto;
+    margin-right: auto;
+	width :20px;
+	height:20px;
+}
+#dimensionimg:hover{
+	width :26px;
+	 height:26px;
+}
+
+.moitie{
+	/* width:50%;
+	border: color: #2596be;
+	float: right; */
+	width:70%;
+	margin :auto;
+}
+.infoForm{
+	width:70%;
+	margin:auto;
+}
+.divRep{
+	float:left;
+	width:50%;
+}
+h2 {
+	color: #2596be;
+}
+.retreci{
+	width:1000px;
+	margin:auto;
+}
+.aligncenter{
+	text-align: center;
+}
+#dimensionlogo{
+	display:block;
+	margin-left: auto;
+    margin-right: auto;
+	width :60px;
+	height:60px;
+}
+.decal{
+	margin-left:30px;
+}
+.ex_table { 
+	table-layout:fixed;
+	width: 100%;
+}
+.petit{
+	width:100px;
+}
+td > select{
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:450px;
+}
+.cell { 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:150px;
+    list-style-type: none;
+}
+.cell:hover{
+    overflow: visible; 
+    white-space: normal;
+    height:auto;  /* just added this line */
+    max-width:150px;
+}
+.insc{
+	width:70%;
+}
+.but{
+	margin-left:200px;
+}
