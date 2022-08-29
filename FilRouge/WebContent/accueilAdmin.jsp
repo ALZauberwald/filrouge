@@ -16,31 +16,27 @@
 	<br>
 	<br>
 
-
- <br><br><br><br>
- <table  class="table"><caption class="caption-top">Gestion administrateur</caption>
- 	<tr id="admintr">
- 		 <th></th>
- 		 <td id="admintd"><a href="rubriqueSession.jsp">Rubrique Session</a></td>
- 		 <td id="admintd"><a href="rubriqueFormation.jsp">Rubrique formation</a></td>
- 	</tr>
- 	<tr id="admintr">
- 		 <td id="admintd"><a href="rubriqueStagiaire.jsp">Rubrique stagiaire</a></td>
- 		 <td id="admintd"><a href="rubriqueFormateur.jsp">Rubrique formateur</a></td>
- 		 <td id="admintd"><a href="rubriquePrerequis.jsp">Rubrique prerequis</a></td>
- 		 <td id="admintd"><a href="rubriqueObjectif.jsp">Rubrique objectif</a></td>	 
- 	</tr>
- 	<tr id="admintr">
- 		 <td id="admintd"><a href="rubriqueSalle.jsp">Rubrique Salle</a></td>
- 		 <td id="admintd"><a href="rubriqueClient.jsp">Rubrique client</a></td>
- 		 <td id="admintd"><a href="rubriqueChapitre.jsp">Rubrique chapitre</a></td>
- 		 <td id="admintd"><a href="rubriqueTheme.jsp">Rubrique theme</a></td>
- 	</tr>
-
- 
- 
- </table>
- 
+ <div class="retreci">
+	 <table  class="table"><caption class="caption-top aligncenter">Gestion administrateur<br></caption>
+	 	<tr id="admintr">
+	 		 <th id="adminblanc"></th>
+	 		 <td class="table-info" id="admintd"><a href="rubriqueSession.jsp" class="link-dark">Rubrique Session</a></td>
+	 		 <td class="table-light" id="admintd"><a href="rubriqueFormation.jsp" class="link-dark">Rubrique formation</a></td>
+	 	</tr>
+	 	<tr id="admintr">
+	 		 <td class="table-info" id="admintd" id="afftd"><a href="rubriqueStagiaire.jsp" class="link-dark">Rubrique stagiaire</a></td>
+	 		 <td class="table-light" id="admintd"><a href="rubriqueFormateur.jsp" class="link-dark">Rubrique formateur</a></td>
+	 		 <td class="table-info" id="admintd"><a href="rubriquePrerequis.jsp" class="link-dark">Rubrique prerequis</a></td>
+	 		 <td class="table-light" id="admintd"><a href="rubriqueObjectif.jsp" class="link-dark">Rubrique objectif</a></td>	 
+	 	</tr>
+	 	<tr id="admintr">
+	 		 <td class="table-light" id="admintd"><a href="rubriqueSalle.jsp" class="link-dark">Rubrique Salle</a></td>
+	 		 <td class="table-info" id="admintd"><a href="rubriqueClient.jsp" class="link-dark">Rubrique client</a></td>
+	 		 <td class="table-light" id="admintd"><a href="rubriqueChapitre.jsp" class="link-dark">Rubrique chapitre</a></td>
+	 		 <td class="table-info" id="admintd"><a href="rubriqueTheme.jsp" class="link-dark">Rubrique theme</a></td>
+	 	</tr>
+	 </table>
+ </div>
  
 		
     <%@include file="footer.jsp" %>	

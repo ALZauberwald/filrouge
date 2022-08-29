@@ -21,12 +21,12 @@
 <br>
 <br>
 <br>
-	
+	<div class="retreci">
 	<form action="AffichageSessionServlet" method="POST">
 		<ul><c:forEach var="formation" items="${requestScope.formationsdisponibles}">
 			<%int num = 1;%>
-			<table class="table caption-top table-hover afftbl">
-  				<caption><c:out value="${formation.getNomFormation()}" /></caption>
+			<table class="table table-hover afftbl">
+  				<caption class="caption-top aligncenter" >Formation : <c:out value="${formation.getNomFormation()}" /></caption>
 					 				<thead>
 					 					<tr class="table-info">
 					 						<th scope="col" id="afftd">#</th>	
@@ -57,18 +57,20 @@
 			</c:forEach>
 		</ul>	
 	</form>
+	</div>
+	<div class="retreci">
 	<div class="epais">
 		<form class="example" action="ClientSearchServlet" method="POST">
 	  		<input type="text" placeholder="Thème, référence, mot clé..." name="search">
 	  		<button type="submit"><i class="fa fa-search"></i></button>
 		</form>
-		<div class="center">
+		<div class="decal">
 		<%if(formationsdisponibles.isEmpty()){ %>
 			<h5 >Aucune formation ne correspond à votre recherche, veuillez entrer une nouvelle recherche</h5>
 		<%} %>
 		</div>
 			 
-			
+		</div>	
 	</div>	
 <%@include file="footer.jsp" %>
 </body>

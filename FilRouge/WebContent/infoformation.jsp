@@ -77,7 +77,7 @@
         <!-- affichage des modifications possibles (les champs)-->
         </table>
         <div class="table-responsive">
-        <table class="table"><caption class="caption-top">Vous pouvez modifier un champ<br></caption>      
+        <table class="table"><caption class="caption-top">Vous pouvez modifier les attributs formation<br></caption>      
 	        <thead>
 		        <tr class="table-info">
 		           	<td id="afftd">Formation</td>
@@ -90,8 +90,8 @@
 		        <tr>
 		        	<td id="afftd">n°<%= form.getIdFormation()%> <input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"></td>
 		        	<td id="afftd"><SELECT name="champAModif" size="1">
-							<OPTION value="nom"> Nom de la formation (<%= form.getNomFormation()%>)
-							<OPTION value="detail"> Detail de la formation (<%= form.getDetailFormation()%>)
+							<OPTION value="nom"> Nom de la formation</OPTION>
+							<OPTION value="detail"> Detail de la formation</OPTION>
 						</SELECT>
 					</td >
 		        	<td id="afftd"> <input name="modif" type="text" /></td>
