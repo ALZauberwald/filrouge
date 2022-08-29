@@ -26,7 +26,7 @@
 <div class="retreci">
 <form action="UpdateFormationServlet" method="POST">
 	
-	<table id="afftbl" class="table "><caption class="caption-top">Voici le contenu de la formation selectionnee<br></caption>
+	<table id="afftbl" class="table ex_table"><caption class="caption-top">Voici le contenu de la formation selectionnee<br></caption>
 	<!-- affichage du contenu de la formation -->          
 	  	<thead>
         <tr class="table-info">
@@ -44,32 +44,32 @@
         <tr id="afftr">
         	
            	<td id="afftd"><%= form.getIdFormation() %> </td>
-           	<td id="afftd"><%= form.getNomFormation() %>  </td>
-           	<td id="afftd"><%= form.getDetailFormation() %>  </td>
+           	<td id="affcell" class="cell"><%= form.getNomFormation() %>  </td>
+           	<td id="affcell" class="cell"><%= form.getDetailFormation() %>  </td>
              	
-            <td id="afftd">            
+            <td id="affcell" >            
            		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){ %>
-   				<%= objectif.getNomObjectif() %> 
+   				<li class="cell"><%= objectif.getNomObjectif() %></li> <br>
 				<% } %> 
             </td>
-             <td id="afftd"> 
+             <td id="affcell"> 
             	<% for (com.lip6.entities.Prerequis prerequis:form.getPrerequisFormation()){ %>
-   				<%= prerequis.getNomPrerequis() %> 
+   				<li class="cell"><%= prerequis.getNomPrerequis() %> </li>
 				<% } %> 
 			</td> 
-             <td id="afftd"> 
+             <td id="affcell"> 
              	<% for (com.lip6.entities.Session ses:form.getSessions()){ %>
    				<%= ses.getNomSession() %> 
 				<% } %>   
 			</td> 
-             <td id="afftd">
+             <td id="affcell">
              	<% for (com.lip6.entities.Theme th:form.getTheme()){ %>
-   				<%= th.getNomTheme() %> 
+   				<li class="cell"><%= th.getNomTheme() %> </li>
 				<% } %>   
 			</td>
-            <td id="afftd"> 
+            <td id="affcell"> 
             	<% for (com.lip6.entities.Chapitre cp:form.getChapitres()){ %>
-   				</br><%= cp.getNomChapitre() %> 
+   				<li class="cell"><%= cp.getNomChapitre() %> </li>
 				<% } %>   
 			</td>     
         </tr>
@@ -111,9 +111,9 @@
 		</tr>
         <!-- Gestion des objectifs --> 
         <tr>
-           	<th id="afftd">Un objectif</th>
+           	<th id="afftd" class="petit">Un objectif</th>
            	<td id="afftd">	
-            		<SELECT size="1" name = "idObjectif">
+            		<SELECT size="1" name = "idObjectif" class="liste">
             			<% for (Object objectif:objectifsdisponibles){%>
 							<OPTION value ="<%= objectif.toString().split("  |  ")[0]%>"> <%= objectif%>	
 						<% } %> 
@@ -123,7 +123,7 @@
         	</td>
         	<td id="afftd">
            	<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-            	<SELECT size="1" name ="idObjectifRm">
+            	<SELECT size="1" name ="idObjectifRm" class="liste">
             		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){%>
 						<OPTION value="<%= objectif.toString().split("  |  ")[0]%>"> <%= objectif.getIdObjectif()%>  |  <%= objectif.getNomObjectif()%>
 					<% } %> 
@@ -161,7 +161,7 @@
            	<th id="afftd">Un chapitre</th>       	  	
             <td id="afftd">
             	<input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">  
-           		<SELECT size="1" name="idChapitre">
+           		<SELECT size="1" name="idChapitre" class="cell">
            			<% for (Object chapitre:chapitresdisponibles){%>
 						<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre %>	
 					<% } %> 

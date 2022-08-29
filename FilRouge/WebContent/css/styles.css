@@ -147,6 +147,11 @@ caption{
 	border-collapse: collapse;
 	margin: auto;
 }
+#affcell{
+	border: 1px solid black;
+	border-spacing : 0px;
+	border-collapse: collapse;
+}
 #afftd{
 	border: 1px solid black;
 	border-spacing : 0px;
@@ -188,7 +193,7 @@ h2 {
 	color: #2596be;
 }
 .retreci{
-	width:700px;
+	width:1000px;
 	margin:auto;
 }
 .aligncenter{
@@ -203,4 +208,30 @@ h2 {
 }
 .decal{
 	margin-left:30px;
+}
+.ex_table { 
+	table-layout:fixed;
+	width: 100%;
+}
+.petit{
+	width:100px;
+}
+.liste{
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:450px;
+}
+.cell { 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:150px;
+    list-style-type: none;
+}
+.cell:hover{
+    overflow: visible; 
+    white-space: normal;
+    height:auto;  /* just added this line */
+    max-width:150px;
 }
