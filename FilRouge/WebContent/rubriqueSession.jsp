@@ -67,7 +67,7 @@
 		<table class="table" id ="afftbl"><caption class="caption-top aligncenter">Rechercher une session</caption>
             <tr class="table-info">
             	<td id ="afftd">Id et Nom de la Session</td>
-            	<td id ="afftd">Valider</td>
+            	<td id ="afftd">Rechercher</td>
             </tr>
             <tr>
 	            <td id ="afftd">
@@ -92,7 +92,7 @@
 	            
 	            <tr class="table-info">
 	            	<td id ="afftd">Id et Nom de la Session</td>
-	            	<td id ="afftd">Rechercher</td>
+	            	<td id ="afftd">Supprimer</td>
 	            	
 	            </tr>
 	            <tr>

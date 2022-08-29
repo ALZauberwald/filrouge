@@ -49,7 +49,7 @@
              	
             <td id="affcell" >            
            		<% for (com.lip6.entities.Objectif objectif:form.getObjectifsFormation()){ %>
-   				<li class="cell"><%= objectif.getNomObjectif() %></li> <br>
+   				<li class="cell"><%= objectif.getNomObjectif() %></li>
 				<% } %> 
             </td>
              <td id="affcell"> 
@@ -138,7 +138,7 @@
            	<th id="afftd">Un prerequis</th>
            	<td id="afftd">
            		<input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    	
-           		<SELECT size="1" name="idPrerequis">
+           		<SELECT size="1" name="idPrerequis" class="liste">
            			<% for (Object prerequis:prerequisdisponibles){%>
 						<OPTION value="<%= prerequis.toString().split("  |  ")[0]%>"> <%= prerequis %>	
 					<% } %> 
@@ -147,7 +147,7 @@
         	</td>
         	<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-            	<SELECT size="1" name="idPrerequisRm">
+            	<SELECT size="1" name="idPrerequisRm" class="liste">
             		<% for (com.lip6.entities.Prerequis prerequis:form.getPrerequisFormation()){%>
 						<OPTION value="<%= prerequis.toString().split("  |  ")[0]%>"> <%= prerequis.getIdPrerequis()%>  |  <%= prerequis.getNomPrerequis()%>
 					<% } %> 
@@ -161,7 +161,7 @@
            	<th id="afftd">Un chapitre</th>       	  	
             <td id="afftd">
             	<input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">  
-           		<SELECT size="1" name="idChapitre" class="cell">
+           		<SELECT size="1" name="idChapitre" class="liste">
            			<% for (Object chapitre:chapitresdisponibles){%>
 						<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre %>	
 					<% } %> 
@@ -170,7 +170,7 @@
            	</td>
         	<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>"> 	
-            	<SELECT size="1" name="idChapitreRm">
+            	<SELECT size="1" name="idChapitreRm" class="liste">
             		<% for (com.lip6.entities.Chapitre chapitre:form.getChapitres()){%>
 						<OPTION value="<%= chapitre.toString().split("  |  ")[0]%>"> <%= chapitre.getIdChapitre()%>  |  <%= chapitre.getNomChapitre()%>
 					<% } %> 
@@ -184,7 +184,7 @@
            	<th id="afftd">Un theme</th>
            	<td id="afftd">
            		<input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>">    		
-           		<SELECT size="1" name="idTheme">
+           		<SELECT size="1" name="idTheme" class="liste">
            			<% for (Object theme:themesdisponibles){%>
            				<OPTION value="<%= theme.toString().split("  |  ")[0]%>"><%= theme %>	
 					<% } %> 
@@ -194,7 +194,7 @@
        
            	<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-            	<SELECT size="1" name="idThemeRm">
+            	<SELECT size="1" name="idThemeRm" class="liste">
             		<% for (com.lip6.entities.Theme theme:form.getTheme()){%>
 						<OPTION value="<%= theme.toString().split("  |  ")[0]%>"> <%= theme.getIdTheme()%>  |  <%= theme.getNomTheme()%>
 					<% } %> 
@@ -208,7 +208,7 @@
            	<th id="afftd">Une session</th>   	
             	<td id="afftd">
             		<input type="HIDDEN" name="idFormation" type="number" value="<%= form.getIdFormation()%>"> 
-            		<SELECT size="1" name="idSession">
+            		<SELECT size="1" name="idSession" class="liste">
             			<% for (Object sess:sessionsdisponibles){%>
             				<OPTION value="<%= sess.toString().split("  |  ")[0]%>"><%= sess %>	
 						<% } %> 
@@ -217,7 +217,7 @@
            		</td>
        		<td id="afftd">
            		<input type="HIDDEN" name="idFormationRm" type="number" value="<%= form.getIdFormation()%>">
-            	<SELECT size="1" name="idSessionRm">
+            	<SELECT size="1" name="idSessionRm" class="liste">
             		<% for (com.lip6.entities.Session sess:form.getSessions()){ %>
 						<OPTION value="<%= sess.toString().split("  |  ")[0]%>"> <%= sess.getIdSession()%>  |  <%= sess.getNomSession() %>
 					<% } %> 
