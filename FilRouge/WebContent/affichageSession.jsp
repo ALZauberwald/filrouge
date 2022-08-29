@@ -95,7 +95,7 @@
 				</div>
 				<input type="HIDDEN" name="idSession" type="number" value="<%= sess.getIdSession()%>">
 				<% String mail = request.getParameter("mail");%>
-		        <div ><a href="mailto:producodagejavajeremy88@yopmail.com" target="_blank" value="test"><button type="submit" name="submit" class="btn btn-success btn-lg pull-right">Submit</button></a></div>
+		        <div ><input type="submit" name="submit"></div>
 		        <div><br></div>
 			</form>	
 		</div>

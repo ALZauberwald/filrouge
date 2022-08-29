@@ -12,12 +12,12 @@
 <%@ include file="headerClient.jsp" %>
 <br>
 <h1>Votre inscription à cette session est validée</h1>
-<div class="epais">
-<form class="example" action="ClientSearchServlet" method="POST">
-  <input type="text" placeholder="Thème, référence, mot clé..." name="search">
-  <button type="submit"><i class="fa fa-search"></i></button>
+<br>
+<br>
+<h1>Pour retourner au sommaire</h1>
+<form action= "index.html" method ="post">
+	<button>Cliquez ici</button>
 </form>
-</div>
 <%@include file="footer.jsp" %>
 </body>
 </html>
