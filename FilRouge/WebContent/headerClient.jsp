@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<header class="cd-main-header">
+<header >
 		<div class="logo">
 			<a  href="index.html" title="formation informatique" >
 				<img src="./images/it-logo.png" alt="Accueil IT Training" width="100">
@@ -20,8 +20,6 @@
 	  		<a href="#contact">Contact</a>
 	  		<a href="#client">Espace client</a>
 	  		<a href="#quisommenous">Qui sommes-nous</a>
-	  		<input type="text" placeholder="Search..">
-	  		
 	  		<form  action = "accueilAdmin.jsp" method="POST">
 				<h2>Connexion admin</h2>
 				<table>

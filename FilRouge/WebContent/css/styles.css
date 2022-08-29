@@ -65,11 +65,11 @@ img {
 form.example input[type=text] {
   padding: 10px;
   margin-top:120px;
-  margin-left: 200px;
   font-size: 17px;
   border: 1px solid #2596be;
   float: left;
-  width: 30%;
+  margin-left:35px;
+  width: 80%;
   background: #f1f1f1;
 }
 
@@ -136,6 +136,9 @@ footer >div{
 #admintd:hover{
 	background-color:#2596be;
 }
+#adminblanc{
+	border-bottom: 1px solid black;
+}
 caption{
 	font-size:30px;
 	color: #2596be;
@@ -143,6 +146,11 @@ caption{
 #afftbl{
 	border-collapse: collapse;
 	margin: auto;
+}
+#affcell{
+	border: 1px solid black;
+	border-spacing : 0px;
+	border-collapse: collapse;
 }
 #afftd{
 	border: 1px solid black;
@@ -185,7 +193,7 @@ h2 {
 	color: #2596be;
 }
 .retreci{
-	width:700px;
+	width:1000px;
 	margin:auto;
 }
 .aligncenter{
@@ -198,4 +206,32 @@ h2 {
 	width :60px;
 	height:60px;
 }
-
+.decal{
+	margin-left:30px;
+}
+.ex_table { 
+	table-layout:fixed;
+	width: 100%;
+}
+.petit{
+	width:100px;
+}
+.liste{
+	white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:450px;
+}
+.cell { 
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width:150px;
+    list-style-type: none;
+}
+.cell:hover{
+    overflow: visible; 
+    white-space: normal;
+    height:auto;  /* just added this line */
+    max-width:150px;
+}
