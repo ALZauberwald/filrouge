@@ -38,7 +38,7 @@ public class RestSessionService {
 			
 		
         for(Stagiaire st : se.getStagiaires()) {
-        	liste+="<br>"+st.toString();
+        	liste+="<br>"+st.toString()+" "+st.getPrenom() + " - " + st.getTel() + " - " +st.getMail();
         }
 		return "<html>"+"<head>"+"<link rel=\"stylesheet\" href=\"../../../css/styles.css\">"+"<link href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css\" rel=\"stylesheet\" integrity=\"sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC\" crossorigin=\"anonymous\">\r\n"
 				+"<title>"+"Liste"+"</title>"+"</head>"+"<body>"
@@ -52,7 +52,7 @@ public class RestSessionService {
 		  		"<input type=\"text\" placeholder=\"Search..\">"+
 		  		"<a href=\"../../../accueilAdmin.jsp\">Accueil Admin</a>"+
 		  		"</div>"+"</header>"+"<br>"+"<br>"+"<br>"+"<br>"+"<br>"+"<br>"+
-		  		"<div class=\"but\">"+"<h2>"+"Session" + se.toString()+"</h2>" + "<br>" +"Nombre de stagiaires = " + String.valueOf(se.getStagiaires().size()) 
+		  		"<div class=\"but\">"+"<h2>"+"Session " + se.toString()+"</h2>" + "<br>" +"Nombre de stagiaires = " + String.valueOf(se.getStagiaires().size()) 
 				+ "<br>" + "Liste des stagiaires pour cette session: " +"<br>" 
 				+ liste+"</div>"+"<footer>"+ "<div>"+"<ul>"+"<h1>"+"Linkedin"+"</h1>"+
 				"<li>"+"<a href=\"https://www.linkedin.com/in/caillej\"/>"+"Jeremy Caille"+"</a>"+"</li>"

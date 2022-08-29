@@ -81,7 +81,7 @@
 					</td>
 					<td id= "afftd">
 		             	<% for (com.lip6.entities.Client cl:sess.getClient()){ %>
-		   				<%= cl.getNom() %> <%=cl.getPrenom() %>
+		   				<li class="cell"><%= cl.getNom() %> <%=cl.getPrenom() %></li>
 						<% } %>   
 					</td>	            
 	            </tr>

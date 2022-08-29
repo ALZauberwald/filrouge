@@ -25,7 +25,7 @@
 	<form action="AffichageSessionServlet" method="POST">
 		<ul><c:forEach var="formation" items="${requestScope.formationsdisponibles}">
 			<%int num = 1;%>
-			<table class="table table-hover afftbl">
+			<table class="table table-hover " id ="afftbl">
   				<caption class="caption-top aligncenter" >Formation : <c:out value="${formation.getNomFormation()}" /></caption>
 					 				<thead>
 					 					<tr class="table-info">
@@ -47,7 +47,7 @@
 							 				<td id="afftd"><c:out value="${sess.getDateDebut()}"/></td>
 							 				<td id="afftd"><c:out value="${sess.getDateFin()}"/></td>
 							 				<td id="afftd"><c:out value="${sess.getLieu()}"/></td>
-							 				<td id="afftd"><button class="btn btn-outline-dark" type="submit" name="idSession" value="${sess.getIdSession()}">Cliquez ici</button></td>
+							 				<td id="afftd"><button  type="submit" name="idSession" value="${sess.getIdSession()}">Cliquez ici</button></td>
 						 				</tr>
 					 				</c:forEach>
 					 				</tbody>		 				

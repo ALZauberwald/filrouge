@@ -61,7 +61,7 @@ ApplicationContext context = WebApplicationContextUtils.getWebApplicationContext
 		SessionService sessionserv = context.getBean("servSession",SessionService.class);
 		request.setAttribute("sess",sessionserv.searchSession(idSession) );
 		stagiaire.addStagiaire(idSession,nomStagiaire,prenomStagiaire,adresse,tel,mail);
-		RequestDispatcher rd= request.getRequestDispatcher("affichageSession.jsp") ;
+		RequestDispatcher rd= request.getRequestDispatcher("confirmationinscription.jsp") ;
 		rd.forward(request, response);
 	}
 
